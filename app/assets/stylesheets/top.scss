@@ -1,0 +1,97 @@
+// Place all the styles related to the Top controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.box29 {
+  margin: 2em 0;
+  background: #C0C0C0;
+}
+.box29 .box-title {
+  font-size: 1.2em;
+  background: #808080;
+  padding: 4px;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+.box29 p {
+  padding: 15px 20px;
+  margin: 0;
+}
+
+.star_rate {
+  padding-top: 15px;
+  padding-left: 10px;
+}
+
+.list-head .list-sort {
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs>li {
+  float: left;
+  margin-bottom: -1px;
+}
+
+.list-head .list-sort li.on a {
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-bottom: 1px solid #fff;
+  color: #222;
+}
+.list-head .list-sort li a {
+  color: #27b;
+  display: block;
+  padding: none;
+  position: relative;
+}
+.nav-tabs>li>a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+}
+.nav>li>a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+.list-mgr-img-box {
+  float: left;
+  position: relative;
+}
+.list-mgr-img-text{
+  padding-left: 120px;
+}
+.m_top_space {
+  padding-top: 30px;
+}
+.s_top_space {
+  padding-top: 15px;
+}
+.posted_text {
+  padding-left: 20px;
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.box2 {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3;/*文字色*/
+  background: #FFF;
+  border: solid 1px black;/*線*/
+  border-radius: 10px;/*角の丸み*/
+}
+.box2 p {
+  margin: 0;
+  padding: 0;
+}
