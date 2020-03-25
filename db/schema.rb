@@ -10,7 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_121527) do
+ActiveRecord::Schema.define(version: 2020_03_25_121958) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "masseur_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["masseur_id"], name: "index_favorites_on_masseur_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "masseurs", force: :cascade do |t|
+    t.string "masseur_name", null: false
+    t.string "masseur_email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.integer "store_id"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["masseur_email"], name: "index_masseurs_on_masseur_email", unique: true
+    t.index ["reset_password_token"], name: "index_masseurs_on_reset_password_token", unique: true
+    t.index ["store_id"], name: "index_masseurs_on_store_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "review"
+    t.float "rate"
+    t.integer "masseur_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["masseur_id"], name: "index_reviews_on_masseur_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
 
   create_table "stores", force: :cascade do |t|
     t.string "store_name", null: false
@@ -37,4 +72,9 @@ ActiveRecord::Schema.define(version: 2020_03_24_121527) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorites", "masseurs"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "masseurs", "stores"
+  add_foreign_key "reviews", "masseurs"
+  add_foreign_key "reviews", "users"
 end
