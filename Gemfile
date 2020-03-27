@@ -33,7 +33,7 @@ gem 'font-awesome-rails'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
-
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
