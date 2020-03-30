@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   }
   root "top#index"
   get "/shop", to: "top#shop"
-  get "/blog", to: "top#blogdetails"
+  get "/details", to: "top#details"
 end
