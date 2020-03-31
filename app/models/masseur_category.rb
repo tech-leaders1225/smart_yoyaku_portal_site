@@ -1,0 +1,2 @@
+class MasseurCategory < ApplicationRecord
+end
