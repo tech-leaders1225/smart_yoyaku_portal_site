@@ -1,4 +1,4 @@
-class TopController < ApplicationController
+class User::TopController < User::Base
   def index
   end
   def shop

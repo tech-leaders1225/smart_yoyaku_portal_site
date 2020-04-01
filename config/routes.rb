@@ -12,15 +12,21 @@ Rails.application.routes.draw do
 
 
   # User↓========================================================================================
-    root "top#index"
-    get "/shop", to: "top#shop"
-    get "/details", to: "top#details"
+    namespace :user do
+      root "top#index"
+      get "/shop", to: "top#shop"
+      get "/details", to: "top#details"
+    end
 
   
 
   # Admin↓========================================================================================
-    get 'admins/top', to: 'admins#top'
+    namespace :admin do
+      get 'admins/top', to: 'admins#top'
+    end
 
   # Masseur↓========================================================================================
+    namespace :masseur do
 
+    end
 end

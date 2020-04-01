@@ -1,16 +1,1 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <title>SmartReservation</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body class="cantainer">
-    <%= render 'layouts/header' %>
-    <%= yield %>
-    <%= render 'layouts/fotter' %>
-  </body>
-</html>
+<%= content_for?(:content) ? yield(:content) : yield %>
