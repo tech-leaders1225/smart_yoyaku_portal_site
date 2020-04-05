@@ -1,10 +1,10 @@
 class User::TopController < User::Base
   def index
   end
+  
   def shop
   end
 
-  def blogdetails
+  def details
   end
-
 end
