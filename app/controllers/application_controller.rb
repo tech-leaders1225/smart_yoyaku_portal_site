@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
 
   # adminでログイン後のリダイレクト先を指定
   def after_sign_in_path_for(resource)
-    admins_top_path
+    admin_top_path
   end
 end
