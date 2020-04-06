@@ -6,7 +6,7 @@ RSpec.describe "Admin::Admins", type: :request do
     @admin = create(:admin)
   end
 
-  it "admin/topが表示される" do
+  it "ログイン後にadmin/topが表示されること" do
     sign_in(@admin)
     get admin_top_path 
     expect(response.status).to render_template :top
