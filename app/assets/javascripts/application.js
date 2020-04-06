@@ -15,7 +15,7 @@
 // require js/bootstrap.min.js
 //= require bootstrap-sprockets
 //= require rails-ujs
-//= require turbolinks
+// require turbolinks
 // require js/jquery-ui.min.js
 // require js/imagesloaded.pkgd.min.js
 // require js/jquery.countdown.min.js
@@ -25,4 +25,4 @@
 // require js/jquery.slicknav.js
 // require js/owl.carousel.min.js
 // require js/main.js
-//= require_tree .
+// require_tree .
