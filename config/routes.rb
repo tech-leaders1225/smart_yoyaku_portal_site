@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: "user/top#index"
+  
   # devise↓ =====================================================================================
     devise_for :admins
     devise_for :masseurs
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
 
   # User↓========================================================================================
     namespace :user do
-      root "top#index"
       get "/shop", to: "top#shop"
       get "/details", to: "top#details"
     end
