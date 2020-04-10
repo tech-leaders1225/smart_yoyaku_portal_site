@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-
+  
   # User↓========================================================================================
-    root to: "user/top#index"
-    get "/shop", to: "user/top#shop"
+    root            to: "user/top#index"
+    get "/shop",    to: "user/top#shop"
     get "/details", to: "user/top#details"
 
   # devise↓ =====================================================================================
-    devise_for :admins
+    devise_for :admins, ActiveAdmin::Devise.config
+    ActiveAdmin.routes(self)    
+    
     devise_for :masseurs
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     devise_for :users, controllers: {
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
 
   # Admin↓========================================================================================
     namespace :admin do
-      get '/top', to: 'admins#top'    
+    #  get '/top', to: 'admins#top'    
     end
 
   # Masseur↓========================================================================================
