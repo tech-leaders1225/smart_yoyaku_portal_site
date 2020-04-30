@@ -8,4 +8,5 @@ RSpec.describe Store, type: :model do
   it "有効なstoreを持つこと" do
     expect(@store).to be_valid
   end
+
 end
