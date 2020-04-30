@@ -1,8 +1,5 @@
-class Masseur < ApplicationRecord
-  belongs_to :store
-  has_many :review, dependent: :delete_all
-  has_many :favorite, dependent: :delete_all
-  has_many :business_trip_range, dependent: :delete_all
+class StoreManager < ApplicationRecord
+  has_one :store, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
