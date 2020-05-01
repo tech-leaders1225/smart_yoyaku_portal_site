@@ -1,0 +1,39 @@
+ja:
+  activerecord:
+    models:
+      # view側： User.model_name.human => "ユーザ" / t("activerecord.models.user")と同じ
+      user: ユーザー
+      massuer: マッサージ師
+      admin: 管理者
+      category: カテゴリ
+      favorite: お気に入り
+      review: 口コミ
+      store: 店舗
+    # model毎に定義したいattributesを記述
+    attributes:
+        user:
+          # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+          name: 名前
+          nickname: ニックネーム
+          gender: 性別
+          address: 住所
+        masseur:
+          masseur_name: 名前
+          store_id: 店舗
+        review:
+          review: 口コミ
+          rate: 評価
+        store:
+          store_name: 店舗名
+          adress: 住所
+          store_phonenumber: 電話番号
+          store_desctription: 店舗についての説明
+          store_image:
+  # 全てのmodelで共通して使用するattributesを定義
+  attributes:
+    id: ID
+    email: メールアドレス
+    password: パスワード
+    password_confirmation: パスワード確認
+    created_at: 作成日
+    updated_at: 更新日
