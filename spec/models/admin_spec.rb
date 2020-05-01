@@ -12,7 +12,7 @@ RSpec.describe Admin, type: :model do
   it "emailが無ければ無効な状態であること" do
     @admin.email = ''
     @admin.valid?
-    expect(@admin.errors[:email]).to include("can't be blank")
+    expect(@admin).to be_invalid
   end
 
 end
