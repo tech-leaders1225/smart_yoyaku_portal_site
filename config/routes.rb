@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :store_manager do
+    get 'top_page/new'
+  end
   # User↓========================================================================================
     root            to: "user/top#index"
     get "/shop",    to: "user/top#shop"
@@ -31,6 +34,6 @@ Rails.application.routes.draw do
     devise_for :store_managers
 
     namespace :store_manager do
-
+      get "/store_manager/top", to: 'top_page#top'
     end
 end
