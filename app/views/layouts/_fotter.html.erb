@@ -44,8 +44,12 @@
                     <div class="footer-widget">
                         <h5>Smart Portal システム</h5>
                         <ul>
-                            <li><a href="#">管理システムログイン</a></li>
-                            <li><a href="#">Smart Portalサイトに出店希望の方</a></li>
+                            <li><%= link_to "管理システムログイン", new_store_manager_session_path %></li>
+                            <li><%= link_to "Smart Portalサイトに出店希望の方", new_store_manager_registration_path %></li>
+                            <!-- 以下のログアウトボタンは仮 -->
+                            <% if store_manager_signed_in? %>
+                                <li><%= link_to "【#{current_store_manager.name}】ログアウト", destroy_store_manager_session_path, method: :delete %></li>
+                            <% end %>
                         </ul>
                     </div>
                 </div>
