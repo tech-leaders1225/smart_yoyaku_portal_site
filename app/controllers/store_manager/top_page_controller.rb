@@ -1,4 +1,4 @@
 class StoreManager::TopPageController < StoreManager::Base
-  def new
+  def top
   end
 end

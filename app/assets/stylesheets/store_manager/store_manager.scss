@@ -1,11 +1,12 @@
 // Place all the styles related to the store_manager/Store_manager controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import "bootstrap";
 li {
   list-style: none;
 }
 .top_space {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .text_area {
   text-align: center;
@@ -18,8 +19,11 @@ li {
 .text_left {
   text-align: left;
 }
-.text_space_40 {
-  margin-top: 40px
+.left_logo {
+  float: left;
+}
+.right_bottun {
+  float: right;
 }
 .text_space_15 {
   margin-top: 15px;
@@ -39,7 +43,7 @@ li {
 }
 .hader_space {
   padding-top: 0px;
-  height: 40px;
+  height: 96px;
   padding-left: 0px;
   border-bottom: 1px solid #b5b5b5;
 }
@@ -66,7 +70,7 @@ li {
   color: #222;
   display: block;
   float: left;
-  height: 30px;
+  height: 40px;
   margin-right: 10px;
   margin-bottom: -1px;
   text-align: center;
@@ -81,7 +85,7 @@ li {
   border-radius: 4px 4px 0 0;
   display: block;
   float: left;
-  height: 30px;
+  height: 40px;
   margin-right: 10px;
   margin-bottom: -1px;
   text-align: center;
@@ -89,4 +93,6 @@ li {
   padding-top: 10px;
   text-decoration: none;
 }
-
+.btn_space {
+  margin-top: 10px;
+}
