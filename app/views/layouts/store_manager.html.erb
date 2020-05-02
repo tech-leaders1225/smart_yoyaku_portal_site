@@ -8,6 +8,7 @@
   </head>
 <body>
 <% content_for :content do %>
+  <%= render 'store_manager/store_manager/header' %>
   <%= yield %>
 <% end %>
 <%= render template: "layouts/application" %>
