@@ -65,13 +65,21 @@
                         <li><%= link_to "詳細ページ", details_path %></li>
                         <li><a href="./blog.html">Blog</a></li>
                         <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">アカウント</a>
-                            <ul class="dropdown">
-                                <li><%= link_to "ログイン", "#" %></li>
-                                <li><%= link_to "新規作成", "#" %></li>
-                                <li><%= link_to "ログアウト", "#" %></li>
-                            </ul>
-                        </li>
+                        <!-- 以下は(仮)Decorator導入の際に整える -->
+                        <% if user_signed_in? %>
+                            <li><%= link_to "#{current_user.name}", "#" %>
+                                <ul class="dropdown">
+                                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                                </ul>
+                            </li>
+                        <% else %>
+                            <li><a href="#">アカウント</a>
+                                <ul class="dropdown">
+                                    <li><%= link_to "ログイン", new_user_session_path %></li>
+                                    <li><%= link_to "新規作成", new_user_registration_path %></li>
+                                </ul>
+                            </li>
+                        <% end %>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>

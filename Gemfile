@@ -32,6 +32,8 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
+gem 'devise-i18n'
+gem 'rails-i18n'
 gem 'activeadmin'
 
 # Use Capistrano for deployment
