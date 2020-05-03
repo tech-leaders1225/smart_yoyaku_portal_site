@@ -1,0 +1,2 @@
+module StoreManager::TopPageHelper
+end
