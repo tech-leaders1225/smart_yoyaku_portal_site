@@ -34,6 +34,7 @@ gem 'jquery-turbolinks'
 gem 'devise'
 gem 'devise-i18n'
 gem 'rails-i18n'
+gem 'enum_help'
 gem 'activeadmin'
 
 # Use Capistrano for deployment

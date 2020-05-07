@@ -7,6 +7,9 @@
                         <a href="#"><i class="fa fa-home"></i> Smart Portal</a>
                         <span>Category</span>
                     </div>
+                    <% flash.each do |message_type, msg| %>
+                        <div class="alert alert-success"><%= msg %></div>
+                    <% end %>
                 </div>
             </div>
         </div>

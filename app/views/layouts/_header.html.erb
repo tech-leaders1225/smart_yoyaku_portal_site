@@ -62,13 +62,14 @@
                     <ul>
                         <li><%= link_to "トップ", root_path %></li>
                         <li><%= link_to "一覧ページ", shop_path %></li>
-                        <li><%= link_to "詳細ページ", details_path %></li>
+                        <li><%= link_to "詳細", details_path %></li>
                         <li><a href="./blog.html">Blog</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                         <!-- 以下は(仮)Decorator導入の際に整える -->
                         <% if user_signed_in? %>
                             <li><%= link_to "#{current_user.name}", "#" %>
                                 <ul class="dropdown">
+                                    <li><%= link_to "マイページ", user_path(current_user) %></li>
                                     <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
                                 </ul>
                             </li>
@@ -76,7 +77,7 @@
                             <li><a href="#">アカウント</a>
                                 <ul class="dropdown">
                                     <li><%= link_to "ログイン", new_user_session_path %></li>
-                                    <li><%= link_to "新規作成", new_user_registration_path %></li>
+                                    <li><%= link_to "新規会員登録", new_user_registration_path %></li>
                                 </ul>
                             </li>
                         <% end %>
@@ -87,7 +88,7 @@
         </div>
     </header>
     <!-- Header End -->
-
+    <!-- 以下を消すとスマホ用のメニューが表示されなくなる -->
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
