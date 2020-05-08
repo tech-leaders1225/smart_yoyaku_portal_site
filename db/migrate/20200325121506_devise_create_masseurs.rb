@@ -7,6 +7,8 @@ class DeviseCreateMasseurs < ActiveRecord::Migration[6.0]
       t.string :masseur_name,       null: false
       t.string :masseur_email,      null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.string :adress
+      t.string :phone_number
       t.references :store,          foreign_key: true
       ## Recoverable
       t.string   :reset_password_token

@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_081721) do
     t.string "masseur_name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "adress"
+    t.string "phone_number"
     t.integer "store_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

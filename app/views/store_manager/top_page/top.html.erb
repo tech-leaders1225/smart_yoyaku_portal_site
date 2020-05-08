@@ -1,4 +1,7 @@
 <div class="top_space text_area text_width">
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-success mt-5 text_left"><%= message %></div>
+    <% end %>
   <div class="text_left">
     <h1 class="top_space">マイページトップ</h1>
   </div>
