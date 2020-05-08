@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>namespace - store</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'store', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'store', 'data-turbolinks-track': 'reload' %>
+  </head>
+<body>
+<% content_for :content do %>
+  <%= yield %>
+<% end %>
+<%= render template: "layouts/application" %>
+</body>
+</html>

@@ -22,6 +22,20 @@ Rails.application.routes.draw do
       passwords:     'users/passwords',
       registrations: 'users/registrations'
     }
+    devise_for :store_managers, :controllers => {
+      :registrations => 'store_managers/registrations',
+      :sessions => 'store_managers/sessions'
+    }
+    devise_scope :store_manager do
+      get "store_managers/:id", :to => "store_managers/registrations#show", as: "store_managers_show"
+      get "store_managers/sign_out", :to => "store_managers/sessions#destroy"
+    end
+
+    # devise_scope :store_managers do
+    #   get "sign_in", :to => "store_managers/sessions#new"
+    #   get "sign_out", :to => "store_managers/sessions#destroy"
+    # end
+
 
     devise_scope :user do
       get "/users/:id", :to => "users/registrations#show", as: :user
@@ -38,9 +52,7 @@ Rails.application.routes.draw do
     end
 
   # Store_manager↓========================================================================================
-    devise_for :store_managers
-
     namespace :store_manager do
-      get "/store_manager/top", to: 'top_page#top'
+      get "/:id/top", to: 'top_page#top'
     end
 end

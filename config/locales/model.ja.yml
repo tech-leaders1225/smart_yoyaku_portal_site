@@ -9,6 +9,7 @@ ja:
       favorite: お気に入り
       review: 口コミ
       store: 店舗
+      store_manager: マッサージ師
     # model毎に定義したいattributesを記述
     attributes:
         user:
@@ -27,8 +28,10 @@ ja:
           store_name: 店舗名
           adress: 住所
           store_phonenumber: 電話番号
-          store_desctription: 店舗についての説明
-          store_image:
+          store_description: 店舗についての説明
+          store_image: 店舗画像
+        store_manager:
+          name: 名前
   # 全てのmodelで共通して使用するattributesを定義
   attributes:
     id: ID
@@ -37,3 +40,4 @@ ja:
     password_confirmation: パスワード確認
     created_at: 作成日
     updated_at: 更新日
+    current_password: 現在のパスワード
