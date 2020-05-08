@@ -1,0 +1,13 @@
+// ここに@import "bootstrap"を入れないと７行目が効かない
+@import "bootstrap";
+
+.field_with_errors {
+  display: contents;
+  input {
+    @extend .is-invalid;
+  }
+}
+
+#error_explanation {
+  color: dd0000;
+}

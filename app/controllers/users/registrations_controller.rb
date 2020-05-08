@@ -11,7 +11,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :correct_user, only: [:show]
 
   def show
-    @user = User.find(current_user.id) if user_signed_in?
   end
 
   # GET /resource/sign_up
@@ -85,7 +84,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # アクセスしたユーザーが現在ログインしているユーザーか確認します。
   def correct_user
-    unless User.find(params[:id]) == current_user
+    unless (params[:id]) == current_user.id.to_s
       flash[:notice] = "アクセス権限がありません。"
       redirect_to root_url
     end
