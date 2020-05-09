@@ -68,6 +68,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  # userのログイン後の画面を指定
+  # users/registrations_controllerに移すと動作しなくなる
 
   # user情報の更新後の画面を指定
   def after_update_path_for(users)
