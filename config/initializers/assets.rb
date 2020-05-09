@@ -12,6 +12,8 @@ Rails.application.config.assets.precompile += %w( admin.css admin.js )
 Rails.application.config.assets.precompile += %w( user.css user.js )
 Rails.application.config.assets.precompile += %w( masseur.css masseur.js )
 Rails.application.config.assets.precompile += %w( store_manager.css store_manager.js )
+Rails.application.config.assets.precompile += %w( store_managers.css store_managers.js )
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

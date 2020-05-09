@@ -1,0 +1,43 @@
+<div class="text_width">
+  <h1 class="left_logo">Smart Potal</h1>
+  <div class="right_bottun">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-warning btn_space" %>
+  </div>
+  <div class="hader_space">
+    <div class="">
+      <ul class="header_ul_space ">
+        <li>
+          <%= link_to "マイページ", store_manager_path(current_store_manager),  class:"header_line no_nuderline" %>
+        </li>
+        <li>
+          <%= link_to "予約の管理", "#",  class:"header_line no_nuderline" %>
+        </li>
+        <li>
+          <a class="header_line_a">登録内容の編集</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="top_space">
+  <div class="text_width text_left">
+    <h1 class="top_space bottom_space">登録内容</h1>
+    <div class="over_flow_h top_space">
+      <a class="registered_content left_logo no_nuderline" href="/store_managers/edit" >
+        <div class="bottom_space">個人情報の登録変更</div>
+        <div class="black_color ">名前/メールアドレスの変更</div>
+      </a>
+      <a class="registered_content right_logo no_nuderline" href="#">
+        <div class="bottom_space">店舗情報の変更</div>
+        <div class="black_color ">店舗名等の変更</div>
+      </a>
+    </div>
+    <div class="over_flow_h top_space_10">
+      <a data-confirm="本当にいいですか？" data-method="delete" href="/store_managers" class="registered_content left_logo no_nuderline" href="#">
+        <div class="bottom_space">退会</div>
+        <div class="black_color ">退会したい場合はこちら</div>
+      </a>
+    </div>
+  </div>
+</div>
+<%= render template: "layouts/store_managers"%>
