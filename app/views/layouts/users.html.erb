@@ -1,0 +1,16 @@
+<!-- deviseによって作成されたviewファイル用、headerとfotterを含まない --> 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>namespace - user</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'user', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'user', 'data-turbolinks-track': 'reload' %>
+  </head>
+<body>
+  <% content_for :content do %>
+    <%= yield %>
+  <% end %>
+  <%= render template: "layouts/application" %>
+</body>
+</html>

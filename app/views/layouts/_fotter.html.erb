@@ -35,8 +35,13 @@
                     <div class="footer-widget">
                         <h5>アカウント</h5>
                         <ul>
-                            <li><a href="#">ログイン</a></li>
-                            <li><a href="#">新規作成</a></li>
+                            <% if user_signed_in? %>
+                                <li><%= link_to "マイページ", user_path(current_user) %></li>
+                                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                            <% else %>
+                                <li><%= link_to "ログイン", new_user_session_path %></a></li>
+                                <li><%= link_to "新規会員登録", new_user_registration_path %></li>
+                            <% end %>
                         </ul>
                     </div>
                 </div>
