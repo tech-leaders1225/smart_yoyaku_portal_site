@@ -1,13 +1,20 @@
 # frozen_string_literal: true
 
 class StoreManagers::RegistrationsController < Devise::RegistrationsController
-  before_action :sign_in_store_manager, only:[:show]
-  before_action :correct_store_manager, only:[:show]
+  before_action :sign_in_store_manager, only:[:show, :index]
+  before_action :correct_store_manager, only:[:show, :index]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   def show
   end
+
+  def index
+  end
+
+  def details
+  end
+
   # GET /resource/sign_up
   def new
     @store_manager = StoreManager.new

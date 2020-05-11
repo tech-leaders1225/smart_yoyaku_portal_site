@@ -130,3 +130,42 @@ li {
 .no_nuderline:hover {
     text-decoration: none;
 }
+.table_width {
+  width: 120px;
+}
+.table_height {
+  height: 50px;
+}
+.table_border {
+  border: 1px solid #222;
+}
+.table_text_aligin_c {
+  text-align: center;
+}
+.table_text_aligin_r {
+  text-align: right;
+  padding-right: 15px;
+}
+.back_color_g {
+  background-color: #C0C0C0;
+}
+.detals_table {
+  height: 250px;
+  width: 400px;
+  margin: auto;
+}
+.details_btn {
+  margin: auto !important;
+}
+.index_space {
+    display: block;
+    float: left;
+    height: 50px;
+    text-align: center;
+    width: 120px;
+    color: black;
+    text-decoration: none;
+}
+.index_space:hover {
+  color: black;
+}
