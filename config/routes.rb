@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     }
     devise_scope :store_manager do
       get "store_managers/:id", :to => "store_managers/registrations#show", as: "store_managers_show"
+      get "store_managers/:id/reservations", :to => "store_managers/registrations#index", as: "store_managers_index"
+      get "store_manager/:id/detales", :to => "store_managers/registrations#detales", as: "store_managers_detales"
       get "store_managers/sign_out", :to => "store_managers/sessions#destroy"
     end
 
