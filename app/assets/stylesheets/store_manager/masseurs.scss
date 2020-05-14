@@ -1,0 +1,13 @@
+@import "bootstrap";
+
+.field_with_errors {
+  display: contents;
+  input {
+    @extend .is-invalid;
+  }
+}
+
+//↓↓↓効かない
+#error_explanation {
+  color: dd0000;
+}
