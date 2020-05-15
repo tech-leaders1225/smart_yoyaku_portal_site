@@ -21,6 +21,8 @@ ja:
         masseur:
           masseur_name: 名前
           store_id: 店舗
+          adress: 住所
+          phone_number: 電話番号
         review:
           review: 口コミ
           rate: 評価
