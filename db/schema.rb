@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_081721) do
+ActiveRecord::Schema.define(version: 2020_05_13_054258) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -120,12 +120,19 @@ ActiveRecord::Schema.define(version: 2020_04_30_081721) do
     t.index ["reset_password_token"], name: "index_store_managers_on_reset_password_token", unique: true
   end
 
+  create_table "storeimages", force: :cascade do |t|
+    t.string "image"
+    t.integer "store_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_storeimages_on_store_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "store_name", null: false
     t.string "adress"
     t.string "store_phonenumber", null: false
     t.string "store_description"
-    t.string "store_image"
     t.integer "store_manager_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -153,4 +160,5 @@ ActiveRecord::Schema.define(version: 2020_04_30_081721) do
   add_foreign_key "masseurs", "stores"
   add_foreign_key "reviews", "masseurs"
   add_foreign_key "reviews", "users"
+  add_foreign_key "storeimages", "stores"
 end

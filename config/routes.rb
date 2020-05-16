@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :store_manager do
-    get 'top_page/new'
-  end
   # User↓========================================================================================
     root            to: "user/top#index"
     get "/shop",    to: "user/top#shop"
@@ -56,5 +53,7 @@ Rails.application.routes.draw do
   # Store_manager↓========================================================================================
     namespace :store_manager do
       get "/:id/top", to: 'top_page#top'
+      get "/:id/store/:id/edit", to: 'store#edit', as: :store_edit
+      patch "/:id/store/:id/update", to: 'store#update', as: :store_update
     end
 end

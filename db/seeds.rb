@@ -15,6 +15,7 @@ User.create(name: "tester",
             password: "password",
             password_confirmation: "password",
             nickname: "tester",
+            gender: "male"
            )
 
 StoreManager.create(email: "store_manager@email.com",
@@ -25,8 +26,7 @@ StoreManager.create(email: "store_manager@email.com",
 Store.create(store_name: "abc_store",
              adress: "japan-aichi-nagoya",
              store_phonenumber: "08012345678",
-             store_description: "テストの解説",
-             store_image: "https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg",
+             store_description: "テストの解説aaaaaaaa",
              store_manager_id: 1
             )
 
