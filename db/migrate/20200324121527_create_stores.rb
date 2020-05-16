@@ -5,7 +5,6 @@ class CreateStores < ActiveRecord::Migration[6.0]
       t.string :adress
       t.string :store_phonenumber, null: false
       t.string :store_description
-      t.string :store_image
       t.references :store_manager
       t.timestamps
     end

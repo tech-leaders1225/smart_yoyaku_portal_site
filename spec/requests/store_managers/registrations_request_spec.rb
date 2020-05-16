@@ -73,6 +73,7 @@ RSpec.describe "StoreManagers::Registrations", type: :request do
   describe "GET show" do
     context "ログインユーザーの場合" do
       it "自身のtopページが表示されること" do
+        @store = Store.create(store_name: "テスト店",store_phonenumber: "000-0000-0000", store_manager_id: @store_manager.id)
         sign_in @store_manager
         get store_managers_show_path(@store_manager)
         expect(response.status).to render_template :show

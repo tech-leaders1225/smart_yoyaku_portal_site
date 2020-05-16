@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   #deviceを使用したstoreのsigun_upに使用
   def configure_permitted_store_parameters
-    added_store_attrs = [:name, :email, :password, :password_confirmation, store_attributes:[:id, :store_name, :adress, :store_phonenumber, :store_description, :store_image]]
+    added_store_attrs = [:name, :email, :password, :password_confirmation, store_attributes:[:id, :store_name, :adress, :store_phonenumber, :store_description, storeimages_attributes:[:id , { image: [] }]]]
     devise_parameter_sanitizer.permit :sign_up, keys: added_store_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_store_attrs
   end

@@ -7,6 +7,7 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   def show
+    @store = Store.find(current_store_manager.store.id)
   end
 
   def index
@@ -19,6 +20,7 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   def new
     @store_manager = StoreManager.new
     @store = @store_manager.build_store
+    @image = @store.storeimages.build
   end
 
   # POST /resource
@@ -28,14 +30,14 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
 
 
   # GET /resource/edit
-  #def edit
-  #  super
-  #end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
-  #def update
-  #  super
-  #end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy

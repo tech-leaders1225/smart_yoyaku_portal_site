@@ -36,6 +36,8 @@ gem 'devise-i18n'
 gem 'rails-i18n'
 gem 'enum_help'
 gem 'activeadmin'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

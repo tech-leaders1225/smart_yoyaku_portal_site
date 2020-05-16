@@ -53,14 +53,14 @@
 
             <div class="field mt-3">
               <%= sf.label :store_description, class:"mr-2" %>
-              <%= sf.text_field :store_description, class:"form-control" %>
+              <%= sf.text_area :store_description, class:"form-control" %>
             </div>
-
-            <div class="field mt-3">
-              <%= sf.label :store_image, class:"mr-2" %><br>
-              <%= sf.text_field :store_image, class:"form-control" %>
-            </div>
-
+            <!--<%= sf.fields_for :storeimages do |sif| %>
+                <div class="field mt-3">
+                  <%= sif.label :image, class:"mr-2" %><br>
+                  <%= sif.file_field :image, multiple: true %>
+                </div>
+              <% end %>-->
           <% end %>
           <div class="actions mt-5 text-center">
             <%= f.submit "アカウント作成", class:"btn btn-primary btn_width"%>
