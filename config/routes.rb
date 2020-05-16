@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     devise_for :masseurs
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     devise_scope :user do
-      get "/user/:id", :to => "users/registrations#show"
+      get "/user/:id", :to => "users/registrations#show", as: :user
     end
 
     devise_for :users, controllers: {
@@ -36,9 +36,7 @@ Rails.application.routes.draw do
     # end
 
 
-    devise_scope :user do
-      get "/users/:id", :to => "users/registrations#show", as: :user
-    end
+    
 
   # Admin↓========================================================================================
     namespace :admin do
@@ -55,5 +53,6 @@ Rails.application.routes.draw do
       get "/:id/top", to: 'top_page#top'
       get "/:id/store/:id/edit", to: 'store#edit', as: :store_edit
       patch "/:id/store/:id/update", to: 'store#update', as: :store_update
+      resources :masseurs, except: :show
     end
 end
