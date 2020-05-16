@@ -56,4 +56,5 @@ Rails.application.routes.draw do
       get "/:id/store/:id/edit", to: 'store#edit', as: :store_edit
       patch "/:id/store/:id/update", to: 'store#update', as: :store_update
     end
+    
 end
