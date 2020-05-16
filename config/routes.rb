@@ -55,6 +55,6 @@ Rails.application.routes.draw do
       get "/:id/top", to: 'top_page#top'
       get "/:id/store/:id/edit", to: 'store#edit', as: :store_edit
       patch "/:id/store/:id/update", to: 'store#update', as: :store_update
+      resources :masseurs, except: :show
     end
-    
 end
