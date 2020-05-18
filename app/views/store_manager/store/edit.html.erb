@@ -5,7 +5,8 @@
         <hr>
         <div class="jumbotron">
           <div class="form_group">
-            <%= form_with(model: @store, url: store_manager_store_update_path(@store), method: :patch, local: true) do |sf| %>
+            <%= form_with(model: @store, url: store_manager_store_path(@store), method: :patch, local: true) do |sf| %>
+              <%= render "shared/error_messages", object: sf.object %>
               <div class="field mt-3">
                 <%= sf.label :store_name, class:"mr-2"%><span class="badge badge-danger">必須</span>
                 <%= sf.text_field :store_name, class:"form-control" %>
@@ -32,8 +33,8 @@
                   <%= sif.file_field :image, multiple: true %>
                   <%= sif.check_box :remove_image %>
                 </div>
-                <% end %>-->
-              <% end %>
+                <% end %>
+              <% end %>-->
             <div class="actions mt-5 text-center">
               <%= sf.submit "更新", class:"btn btn-primary btn_width" %>
             </div>

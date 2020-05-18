@@ -13,9 +13,11 @@ class StoreManager::StoreController < StoreManager::Base
   def update
     @store = Store.find(current_store_manager.store.id)
     if @store.update(store_params)
+      flash[:success] = "#{@store.store_name}の情報を更新しました。"
       redirect_to store_manager_path(current_store_manager)
     else
-      redirect_to store_manager_path(current_store_manager)
+      flash[:danger] = "入力内容に誤りがあったため更新できませんでした。"
+      render :edit
     end
   end
 
