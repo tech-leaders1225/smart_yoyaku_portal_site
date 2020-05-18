@@ -4,6 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
+<<<<<<< HEAD
          :recoverable, :rememberable, :validatable
 
   enum gender: { "male": 0, "female": 1, "other": 2 }
@@ -17,4 +18,22 @@ class User < ApplicationRecord
   validates :address, presence: true, length: { in: 5..60 }
   validates :gender, presence: true
   validates :nickname, length: { in: 1..30 }, allow_blank: true
+=======
+         :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google)
+  protected
+  def self.find_for_google(auth)
+    user = User.find_by(email: auth.info.email)
+
+    unless user
+      user = User.create(name:     auth.info.name,
+                         email: auth.info.email,
+                         provider: auth.provider,
+                         uid:      auth.uid,
+                         token:    auth.credentials.token,
+                         password: Devise.friendly_token[0, 20],
+                         meta:     auth.to_yaml)
+    end
+    user
+  end
+>>>>>>> b5bc804... googleログイン機能実装
 end
