@@ -32,6 +32,9 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
