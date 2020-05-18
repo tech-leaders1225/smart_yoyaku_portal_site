@@ -32,24 +32,15 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
-<<<<<<< HEAD
-<<<<<<< HEAD
 gem 'devise-i18n'
 gem 'rails-i18n'
 gem 'enum_help'
 gem 'activeadmin'
 gem 'carrierwave'
 gem 'mini_magick'
-=======
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
->>>>>>> b5bc804... googleログイン機能実装
-=======
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-gem 'dotenv-rails'
->>>>>>> b5bc804... googleログイン機能実装
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

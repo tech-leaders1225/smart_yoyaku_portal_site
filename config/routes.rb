@@ -19,13 +19,10 @@ Rails.application.routes.draw do
       passwords:     'users/passwords',
       registrations: 'users/registrations',
       omniauth_callbacks: "users/omniauth_callbacks"
-<<<<<<< HEAD
     }
     devise_for :store_managers, :controllers => {
       :registrations => 'store_managers/registrations',
       :sessions => 'store_managers/sessions'
-=======
->>>>>>> b5bc804... googleログイン機能実装
     }
     devise_scope :store_manager do
       get "store_managers/:id", :to => "store_managers/registrations#show", as: "store_managers_show"
