@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
 <<<<<<< HEAD
+<<<<<<< HEAD
          :recoverable, :rememberable, :validatable
 
   enum gender: { "male": 0, "female": 1, "other": 2 }
@@ -19,6 +20,8 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :nickname, length: { in: 1..30 }, allow_blank: true
 =======
+=======
+>>>>>>> b5bc804... googleログイン機能実装
          :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i(google)
   protected
   def self.find_for_google(auth)
@@ -35,5 +38,8 @@ class User < ApplicationRecord
     end
     user
   end
+<<<<<<< HEAD
+>>>>>>> b5bc804... googleログイン機能実装
+=======
 >>>>>>> b5bc804... googleログイン機能実装
 end
