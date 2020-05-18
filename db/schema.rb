@@ -74,8 +74,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_054258) do
     t.string "masseur_name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "adress"
-    t.string "phone_number"
     t.integer "store_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -133,10 +131,9 @@ ActiveRecord::Schema.define(version: 2020_05_13_054258) do
     t.string "adress"
     t.string "store_phonenumber", null: false
     t.string "store_description"
-    t.integer "store_manager_id"
+    t.string "store_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["store_manager_id"], name: "index_stores_on_store_manager_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -146,7 +143,17 @@ ActiveRecord::Schema.define(version: 2020_05_13_054258) do
     t.string "nickname"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string "password"
+    t.string "provider"
+    t.string "uid"
+    t.string "meta"
+    t.string "token"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "address"
