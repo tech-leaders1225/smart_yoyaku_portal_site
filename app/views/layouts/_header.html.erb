@@ -8,9 +8,6 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <% unless user_signed_in? %>
-    <%= link_to 'Googleアカウントでログイン',  user_google_omniauth_authorize_path %>
-    <% end %>
 </head>
     <!-- Header Section Begin -->
     <header class="header-section">
@@ -19,9 +16,6 @@
                 <div class="ht-left">
                     <div class="mail-service">
                         <i class=" fa fa-envelope"></i>
-                        <% if user_signed_in? %>
-                        <%= current_user.email %>
-                        <% end %>
                     </div>
                     <div class="phone-service">
                         <i class=" fa fa-phone"></i>
