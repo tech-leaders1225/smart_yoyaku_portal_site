@@ -38,6 +38,9 @@ gem 'enum_help'
 gem 'activeadmin'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
