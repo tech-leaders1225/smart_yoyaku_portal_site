@@ -54,3 +54,29 @@ MasseurCategory.create(
                        masseur_id: 1,
                        category_id: 1,
                       )
+
+
+Plan.create(plan_name: "プラン1", plan_price: 1000,
+            plan_content: "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
+            plan_time: 100,
+            store_id: 1)
+            
+Plan.create(plan_name: "プラン2", plan_price: 1000,
+            plan_content: "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
+            plan_time: 100,
+            store_id: 1)
+
+Plan.create(plan_name: "プラン3", plan_price: 1000,
+            plan_content: "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
+            plan_time: 100,
+            store_id: 1)
+
+Plan.create(plan_name: "プラン4", plan_price: 1000,
+            plan_content: "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
+            plan_time: 100,
+            store_id: 1)
+            
+Plan.create(plan_name: "プラン5", plan_price: 1000,
+            plan_content: "ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
+            plan_time: 100,
+            store_id: 1)
