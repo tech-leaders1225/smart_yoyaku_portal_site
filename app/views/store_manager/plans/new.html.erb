@@ -3,81 +3,65 @@
 <h2 class="title">施術メニュー/料金設定<p style="font-size: 13px;">サイトに記載する施術メニュー、料金の設定を行ってください。</p></h2>
 
 <div class="form-1">
+  <%= form_with(model: @plan, url: store_manager_plans_path, method: :post, local: true) do |f| %>
+    <div class="flex-parent">
+    <!-- 写真昨日はまだ　-->
+      <div class="left-side">
+        プラン写真<span class="entrust-label">任意</span><br>
+        <img src="" height="220" width="220"><br>
+        <button class="file-button">ファイルを選択</button>
+      </div>
+    
+      <div class="right-side">
+        <%= f.hidden_field :store_id, :value => current_store_manager.id %>  <!-- store_idが必須の為 -->
+        
+        <%= f.label "プラン名", class: "" %><span class="necessary-label">必須</span>
+        <%= f.text_field :plan_name, class: "input-form form-control" %>
 
+        <%= f.label "プラン内容", class: "" %><span class="necessary-label">必須</span>
+        <%= f.text_area :plan_content, class: "input-form form-control" %>
 
+        <%= f.label "プラン時間(単位/分)", class: "" %><span class="necessary-label">必須</span>
+        <%= f.number_field :plan_time, class: "input-form form-control" %>
+
+        <%= f.label "プラン料金(税別)", class: "" %><span class="necessary-label">必須</span>
+        <%= f.number_field :plan_price, class: "input-form form-control" %>
+      </div>
+    </div>
+    <%= f.submit "新規作成", class: "create-button" %>
+  <%end %>
 </div>
 
 
 <div class="return-btn"><%= link_to "登録内容の一覧に戻る", store_manager_plans_path %></div>
 
 <style>
-
-.return-btn {
-    margin: 10px 500px 30px 0px;
-    
-    text-align: center;
-
-}
-
-    .page-title {
-    font-size: 25px;
-    margin-left: 100px;
-    
-}
-
-.logout {
-    display: block;
-    padding: 5px;
-    margin-right: 70px;
-    margin-left: 1260px;
-    background: #FFCC00;
-    border: 2px solid silver;
-    
-    
-}
-
-.menu-koumoku {
-    font-size: 15px;
-    margin: 50px;
-    
-    
-}
-
-.memu-nakami {
-    background: silver;
-    padding-top: 10px;
-    padding-right: 25px;
-    padding-bottom: 13px;
-    padding-left: 25px;
-    margin: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.memu-nakami-plan {
-    background: white;
-    padding-top: 10px;
-    padding-right: 25px;
-    padding-bottom: 13px;
-    padding-left: 25px;
-    margin: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    color: black;
-    border: 1px solid silver;
-}
-
 .title {
     font-size: 23px;
-    
     margin: 40px 0px 0px 270px;
 }
 
-.flex-oya {
+.flex-parent {
     display:flex;
     justify-content: center;
+    
 }
 
+.left-side {
+    padding: 30px 30px 0px 30px;
+   
+}
+
+.file-button {
+    margin: 20px;
+}
+
+.create-button {
+    color: white;
+    background: orange;
+    padding: 5px 30px 5px 30px;
+    margin-top: 20px;
+}
 
 .form-1 {
     margin: 30px 250px 30px 250px;
@@ -86,69 +70,30 @@
     text-align: center;
 }
 
-.photo {
-    margin: 0px 20px 0px 0px;
-   
-}
-
-.syasin {
-    border: 1px solid silver;
-}
-
-.file {
-    margin-left: 30px;
+.entrust-label {
+    background: red;
+    color: white;
+    border-radius: 3px;
+    font-size: 15px;
+    margin-left: 7px;
     
 }
 
-
-.daimei {
-    text-align: left;
-}
-
-
-
-.label {
+.necessary-label {
     background: red;
     color: white;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-radius: 3px;
     font-size: 15px;
     margin-left: 7px;
 }
 
-.button {
-    text-align: right;
+.input-form {
+    width: 370px;
+    margin-bottom: 5px;
 }
 
-
-.my-parts {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	position: relative;
-	box-shadow: 0 0 0 1px rgba(0,0,0,.1);
-	cursor: pointer;
-	
-}
-
-.decide-button {
+.return-btn {
+    margin: 10px 500px 30px 0px;
     text-align: center;
 }
-
-.decide {
-    color: white;
-    font-size: 18px;
-    margin-top: 20px;
-    padding: 3px 40px 3px 40px;
-    background: #FF9900;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    
-}
-
-
 </style>
