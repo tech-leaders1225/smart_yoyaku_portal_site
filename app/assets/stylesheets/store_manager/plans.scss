@@ -3,8 +3,14 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 //index_page↓
-.new-btn {
-    margin: -40px 0px 30px 613px;
+
+.showpage-title {
+    padding: 50px 0px 10px 0px;
+}
+
+.new-btn-show {
+    text-align: right;
+    padding: 15px 30px 15px 15px;
 }
 
 //new_page↓
@@ -60,7 +66,7 @@
 }
 
 #input-form {
-    width: 370px;
+    width: 400px;
     margin-bottom: 5px;
 }
 
@@ -71,6 +77,11 @@
 
 //show_page↓
 
+.outer-frame {
+    border: 1px solid silver;
+    padding: 20px;
+    
+}
 
 .flex-parent-show-page {
     display:flex;
@@ -86,7 +97,7 @@
 }
 
 .plan-title {
-    width: 600px;
+    width: 100%;
     height: 50px;
     padding: 10px;
     font-size: 18px;
@@ -94,10 +105,8 @@
 }
 
 .plan-content {
-    width: 600px;
+    width: 100%;
     height: 100px;
-    color: black;
-    text-overflow: ellipsis;
 }
 
 .price-time {
@@ -114,8 +123,9 @@
     padding: 5px;
 }
 
-.row {
-    background: orange;
-    padding: 20px -50px 20px -50px;
+.return-btn-show {
     
+    margin: 20px 350px 0px 0px;
+    text-align: center;
 }
+

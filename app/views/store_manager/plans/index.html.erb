@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-2">
-        
-        <h3 class="my-5 text-center"><%= Store.find(current_store_manager.id).store_name %>の登録プラン一覧</h3>
-        <span class="btn btn-outline-primary new-btn"><%= link_to "新規登録", new_store_manager_plan_path %></span>
+        <h3 class="showpage-title text-center"><%= Store.find(current_store_manager.id).store_name %>の登録プラン一覧</h3>
+        <div class="new-btn-show">
+          <span class="btn btn-outline-primary"><%= link_to "新規登録", new_store_manager_plan_path %></span>
+        </div>
          <% Store.find(current_store_manager.id).plan.each do |plan| %>
            <table class="table">
               <tbody>

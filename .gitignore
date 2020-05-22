@@ -22,4 +22,7 @@
 
 .byebug_history
 
+sqlite-autoconf-3290000
+config/environments/development.rb
+
 /.env
