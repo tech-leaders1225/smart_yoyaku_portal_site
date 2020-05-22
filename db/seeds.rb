@@ -23,12 +23,14 @@ StoreManager.create(email: "store_manager@email.com",
                     password: "password"
                    )
 
-Store.create(store_name: "abc_store",
-             adress: "japan-aichi-nagoya",
-             store_phonenumber: "08012345678",
-             store_description: "テストの解説aaaaaaaa",
+5.times do |n|
+  Store.create(store_name: "abc_store-#{n}",
+             adress: "japan-aichi-nagoya#{n}",
+             store_phonenumber: "08012345678#{n}",
+             store_description: SecureRandom.alphanumeric(120),
              store_manager_id: 1
             )
+end
 
 Masseur.create(masseur_name: "cororo",
                email: "cororo@email.com",
