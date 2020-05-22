@@ -8,7 +8,7 @@ class StoreManager::PlansController < StoreManager::Base
     end
     
     def create
-      @plan = Plan.new(plan_params)
+      @plan = current_store_manager.store.plan.build(plan_params)
       if @plan.save
         flash[:success] = '新規作成に成功しました。'
         redirect_to store_manager_plans_path
@@ -16,6 +16,10 @@ class StoreManager::PlansController < StoreManager::Base
         flash[:danger] = '入力情報に誤りがありました。もう一度入力情報を確認して下さい。'
         render :new
       end
+    end
+    
+    def show
+      @plan = Plan.find(params[:id])
     end
     
     private

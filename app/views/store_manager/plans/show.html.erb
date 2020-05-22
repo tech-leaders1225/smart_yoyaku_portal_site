@@ -1,0 +1,29 @@
+<h3 class="my-5 text-center">プラン詳細</h3>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="flex-parent-show-page">
+            <div class="left-image">
+                <img src="" height="200" width="200">
+            </div>
+            <div class="right-side">
+                <div class="plan-title">
+                    <strong><%= @plan.plan_name %></strong>
+                </div>
+                <div class="plan-content">
+                    <%= @plan.plan_content %>
+                </div>
+                <div class="price-time">
+                    <span class="time-required">所要時間<%= @plan.plan_time %>分</span><span class="time_price"><%= @plan.plan_price %>円(税別)</span>
+                    <span class="btn-outline-primary-all">
+                      <!--<span class="btn btn-outline-primary"><%= link_to "編集", edit_store_manager_plan_path(1) %></span>-->
+                      <!--<span class="btn btn-outline-primary" onclick="return confirm('本当に削除しますか？')"><%= link_to "削除" %></span>-->
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
