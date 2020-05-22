@@ -2,6 +2,10 @@
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
+  def line
+    callback_for(:line)
+  end
+    
   def google
     @user = User.find_for_google(request.env['omniauth.auth'])
 
