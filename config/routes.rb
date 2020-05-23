@@ -54,5 +54,7 @@ Rails.application.routes.draw do
       get "/:id/top", to: 'top_page#top'
       resources :store
       resources :masseurs, except: :show
+      resources :plans
     end
+    
 end

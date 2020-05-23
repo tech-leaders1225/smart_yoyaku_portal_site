@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_054258) do
+ActiveRecord::Schema.define(version: 2020_05_22_114411) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -87,12 +87,22 @@ ActiveRecord::Schema.define(version: 2020_05_13_054258) do
     t.index ["store_id"], name: "index_masseurs_on_store_id"
   end
 
+  create_table "plan_images", force: :cascade do |t|
+    t.string "image"
+    t.integer "plan_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_plan_images_on_plan_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "plan_name"
     t.string "plan_price"
     t.integer "store_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "plan_content"
+    t.integer "plan_time"
     t.index ["store_id"], name: "index_plans_on_store_id"
   end
 
@@ -168,6 +178,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_054258) do
   add_foreign_key "favorites", "masseurs"
   add_foreign_key "favorites", "users"
   add_foreign_key "masseurs", "stores"
+  add_foreign_key "plan_images", "plans"
   add_foreign_key "reviews", "masseurs"
   add_foreign_key "reviews", "users"
   add_foreign_key "storeimages", "stores"

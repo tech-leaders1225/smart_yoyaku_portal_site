@@ -56,3 +56,15 @@ MasseurCategory.create(
                        masseur_id: 1,
                        category_id: 1,
                       )
+
+            
+5.times do |n|
+  plan_name  = plan_name,
+  plan_content = plan_content,
+  plan_time = plan_time
+  Plan.create!(plan_name: "プラン#{n+1}",
+               plan_content: "PCやスマートフォンを使ったり鞄を持ったりと、日常の疲れが溜まりやすい肘から下をもみほぐす【ハンドリフレ】。肩や目が疲れやすい方に、頭から首にかけてもみほぐす【クイックヘッド】。ストレスが溜まりやすい方や頭からスッキリとリラックスしたい方にオススメ。",
+               plan_time: 100,
+               plan_price: 4500,
+               store_id: 1)
+end
