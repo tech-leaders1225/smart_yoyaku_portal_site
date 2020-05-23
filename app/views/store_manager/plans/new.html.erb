@@ -1,8 +1,11 @@
 <h2 class="title">施術メニュー/料金設定<p style="font-size: 13px;">サイトに記載する施術メニュー、料金の設定を行ってください。</p></h2>
 
+
+
 <div class="col-md-8 offset-2">
   <div class="form-2">
     <%= form_with(model: @plan, url: store_manager_plans_path, method: :post, local: true) do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
     <div class="flex-parent-new-page2">
       <div class="left-side">
         プラン写真<span class="entrust-label">任意</span><br>
