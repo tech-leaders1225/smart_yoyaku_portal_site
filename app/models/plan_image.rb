@@ -1,3 +1,3 @@
 class PlanImage < ApplicationRecord
-  belongs_to :plan, dependent: :destroy
+  belongs_to :plan
 end
