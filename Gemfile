@@ -40,6 +40,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-line'
 gem 'dotenv-rails'
 
 # Use Capistrano for deployment
