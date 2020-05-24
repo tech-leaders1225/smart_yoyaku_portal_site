@@ -3,9 +3,9 @@
 
 
 <div class="col-md-8 offset-2">
+  <%= form_with(model: @plan, url: store_manager_plans_path, method: :post, local: true) do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
   <div class="form-2">
-    <%= form_with(model: @plan, url: store_manager_plans_path, method: :post, local: true) do |f| %>
-    <%= render "shared/error_messages", object: f.object %>
     <div class="flex-parent-new-page2">
       <div class="left-side">
         プラン写真<span class="entrust-label">任意</span><br>
@@ -29,7 +29,7 @@
     <div class="create-button-center">
      <%= f.submit "新規作成", class: "create-button" %>
     </div>
-    <% end %>
   </div>
   <div class="return-btn"><%= link_to "登録内容の一覧に戻る", store_manager_plans_path %></div>
+  <% end %>
 </div>
