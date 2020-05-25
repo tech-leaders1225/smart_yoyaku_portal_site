@@ -7,7 +7,7 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   def show
-    @store = Store.find(current_store_manager.store.id)
+    @store = current_store_manager.store
   end
 
   def index
@@ -90,7 +90,7 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   def correct_store_manager
     unless StoreManager.find_by(id: params[:id]) == current_store_manager
       flash[:danger] = "アクセス権限がありません。"
-      redirect_to store_manager_path(current_store_manager)
+      redirect_to store_manager_url(current_store_manager)
     end
   end
 
@@ -98,7 +98,7 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   def sign_in_store_manager
     unless store_manager_signed_in?
       flash[:danger] = "ログインしてください。"
-      redirect_to store_manager_session_path
+      redirect_to store_manager_session_url
     end
   end
 end
