@@ -11,7 +11,7 @@ class StoreManager::MasseursController < StoreManager::Base
   #  @masseur = Masseur.new(masseur_create_params)
   #  if @masseur.save
   #    flash[:success] = "新規マッサージ師を登録しました。"
-  #    redirect_to store_manager_masseurs_path
+  #    redirect_to store_manager_masseurs_url
   #  else
   #    flash[:danger] = "入力内容に誤りがあったため登録できませんでした。"
   #    render :new
@@ -20,7 +20,7 @@ class StoreManager::MasseursController < StoreManager::Base
 
   def index
     @masseurs = Masseur.where(store_id: current_store_manager.store.id)
-    @store = Store.find(current_store_manager.store.id)
+    @store = current_store_manager.store
   end
 
   def edit
@@ -29,20 +29,20 @@ class StoreManager::MasseursController < StoreManager::Base
   def update
     if @masseur.update_attributes(masseur_update_params)
       flash[:success] = "#{@masseur.masseur_name}の情報を更新しました。"
-      redirect_to store_manager_masseurs_path
+      redirect_to store_manager_masseurs_url
     else
       flash[:danger] = "入力内容に誤りがあったため更新できませんでした。"
-      render :edit      
+      render :edit
     end
   end
 
   #def destroy
   #  if @masseur.destroy
   #   flash[:success] = "#{@masseur.masseur_name}を削除しました。"
-  #    redirect_to store_manager_masseurs_path
+  #    redirect_to store_manager_masseurs_url
   #  else
   #    flash[:danger] = "#{@masseur.masseur_name}を削除することができませんでした。"
-  #    redirect_to store_manager_masseurs_path
+  #    redirect_to store_manager_masseurs_url
   #  end
   #end
 
@@ -76,7 +76,7 @@ class StoreManager::MasseursController < StoreManager::Base
     def corrrect_store_manager
       unless current_store_manager.store.masseur.ids.include?params[:id].to_i
         flash[:danger] = "アクセス権限がありません。"
-        redirect_to store_manager_path(current_store_manager)
+        redirect_to store_manager_url(current_store_manager)
       end
     end
 end

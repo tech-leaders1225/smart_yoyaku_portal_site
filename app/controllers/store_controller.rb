@@ -7,15 +7,15 @@ class StoreManager::StoreController < StoreManager::Base
   end
 
   def edit
-    @store = Store.find(current_store_manager.store.id)
+    @store = current_store_manager.store
   end
 
   def update
-    @store = Store.find(current_store_manager.store.id)
+    @store = current_store_manager.store
     if @store.update(store_params)
-      redirect_to store_manager_path(current_store_manager)
+      redirect_to store_manager_url(current_store_manager)
     else
-      redirect_to store_manager_path(current_store_manager)
+      redirect_to store_manager_url(current_store_manager)
     end
   end
 
