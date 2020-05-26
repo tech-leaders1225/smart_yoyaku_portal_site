@@ -45,18 +45,25 @@ RSpec.describe "StoreManager::Plans", type: :request do
         expect(response).to render_template :new
         expect(response.status).to eq 200
       end
-      
-      it "別のstoreを持つのplanのnewは表示されず管理topへ遷移すること" do
-        plan = create(:plan)
-        plan = plan.store.store_manager
+    end
+  end
+  
+  describe "POST /create" do
+    context "store_managerがログイン中の場合" do
+      it "入力内容が正しい場合、planが新規作成されること" do
+        plan_params = FactoryBot.attributes_for(:plan)
         sign_in @store_manager
-        get new_store_manager_plan_path(plan)
-        expect(response).to redirect_to store_manager_url(@store_manager)
+        post store_manager_plans_path(@plan), params: { plan: plan_params }
         expect(response.status).to eq 302
       end
+      it "入力内容が不正な場合、planが新規作成されないこと" do
+        plan_params = FactoryBot.attributes_for(:plan, plan_name: "文字列オーバーです"*30)
+        sign_in @store_manager
+        post store_manager_plans_path(@plan), params: { plan: plan_params }
+        expect(@plan.reload.plan_name).to_not eq "文字列オーバーです"*30
+        expect(response.status).to eq 200
+      end
     end
-    
-    
   end
   
   describe "GET /show" do
@@ -83,4 +90,21 @@ RSpec.describe "StoreManager::Plans", type: :request do
     end
   end
   
+  describe "PATCH /update" do
+    context "store_managerがログイン中の場合" do
+      it "入力内容が正しい場合、plan情報が更新されること" do
+        plan_params = FactoryBot.attributes_for(:plan)
+        sign_in @store_manager
+        patch store_manager_plan_path(@plan), params: { plan: plan_params }
+        expect(response.status).to eq 302
+      end
+      it "入力内容が不正な場合、plan情報が更新されないこと" do
+        plan_params = FactoryBot.attributes_for(:plan, plan_name: "文字列オーバーです"*30)
+        sign_in @store_manager
+        patch store_manager_plan_path(@plan), params: { plan: plan_params }
+        expect(@plan.reload.plan_name).to_not eq "文字列オーバーです"*30
+        expect(response.status).to eq 200
+      end
+    end
+  end
 end
