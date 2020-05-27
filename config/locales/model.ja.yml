@@ -34,6 +34,11 @@ ja:
           store_image: 店舗画像
         store_manager:
           name: 名前
+        plan:
+          plan_name: プラン名
+          plan_content: プラン内容
+          plan_time: プラン時間
+          plan_price: プラン料金
   # 全てのmodelで共通して使用するattributesを定義
   attributes:
     id: ID

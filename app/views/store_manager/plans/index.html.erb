@@ -4,15 +4,15 @@
       <% flash.each do |message_type, msg| %>
         <div class="mt-4 alert alert-<%= message_type %>"><%= msg %></div>
       <% end %>
-        <h3 class="showpage-title text-center"><%= Store.find(current_store_manager.id).store_name %>の登録プラン一覧</h3>
+        <h3 class="showpage-title text-center"><%= current_store_manager.store.store_name %>の登録プラン一覧</h3>
         <div class="new-btn-show">
           <span class="btn btn-outline-primary"><%= link_to "新規登録", new_store_manager_plan_path %></span>
         </div>
-         <% Store.find(current_store_manager.id).plan.each do |plan| %>
+         <% current_store_manager.store.plan.each do |plan| %>
            <table class="table">
               <tbody>
                 <tr>
-                  <td class="align-middle"><%= link_to plan.plan_name, store_manager_plan_path(plan)  %></td>
+                  <td class="align-middle"><%= link_to plan.plan_name.truncate(15), store_manager_plan_path(plan)  %></td>
                   <td class="text-right">
                     <%= link_to "編集", edit_store_manager_plan_path(plan), class:"btn btn-outline-primary" %>
                     <%= link_to "削除", store_manager_plan_path(plan), method: :delete,
@@ -26,3 +26,5 @@
     </div>
   </div>
 </div>
+
+
