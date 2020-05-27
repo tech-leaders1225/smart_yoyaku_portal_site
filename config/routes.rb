@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # User↓========================================================================================
     root            to: "user/top#index"
     get "/shop",    to: "user/top#shop"
-    get "/details", to: "user/top#details"
+    get "/store/:id", to: "user/top#details", as: :details
   # devise↓ =====================================================================================
     devise_for :admins, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)

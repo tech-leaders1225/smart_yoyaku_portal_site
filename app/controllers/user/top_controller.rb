@@ -7,5 +7,10 @@ class User::TopController < User::Base
   end
 
   def details
+    @store = Store.find(params[:id])
+    # @masseur = Masseur.find(params[:id])
+    @plans = @store.plan
+    @masseurs = @store.masseur.all
+    @reviews = Review.all
   end
 end
