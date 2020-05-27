@@ -31,7 +31,7 @@ class StoreManager::PlansController < StoreManager::Base
       flash[:success] = "#{@plan.plan_name}の情報を更新しました。"
       redirect_to store_manager_plans_url
     else
-      flash[:danger] = "入力内容に誤りがあったため更新できませんでした。"
+      flash.now[:danger] = "入力内容に誤りがあったため更新できませんでした。"
       render :edit
     end
   end
