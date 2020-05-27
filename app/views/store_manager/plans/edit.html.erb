@@ -1,32 +1,35 @@
 <h2 class="title">施術メニュー/料金設定<p style="font-size: 13px;">サイトに記載する施術メニュー、料金の設定を行ってください。</p></h2>
-<div class="form-1">
+<div class="col-md-8 offset-2">
+  <% flash.each do |message_type, msg| %>
+    <div class="mt-4 alert alert-<%= message_type %>"><%= msg %></div>
+  <% end %>
   <%= form_with(model: @plan, url: store_manager_plan_path, method: :PATCH, local: true) do |f| %>
-    <div class="flex-parent-new-page">
-    <!-- 写真機能はまだ　-->
-      <div class="left-side">
-        <!--プラン写真<span class="entrust-label">任意</span><br>
-        <img src="" height="220" width="220"><br>
-        <button class="file-button" disabled>ファイルを選択</button>-->
+    <%= render "shared/error_messages", object: f.object %>
+    <div class="form-2">
+      <div class="flex-parent-new-page2">
+        <div class="left-side">
+          <!--プラン写真<span class="entrust-label">任意</span><br>
+          <img src="" height="220" width="220"><br>
+          <button class="file-button" disabled>ファイルを選択</button>-->
+        </div>
+        <div class="right">
+          <%= f.label "プラン名", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.text_field :plan_name, class: "form-control" %>
+
+          <%= f.label "プラン内容", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.text_area :plan_content, class: "form-control" %>
+
+          <%= f.label "プラン時間(単位/分)", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.number_field :plan_time, class: "form-control" %>
+
+          <%= f.label "プラン料金(税別)", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.number_field :plan_price, class: "form-control" %>
+        </div>
       </div>
-      <div class="right-side">
-        <%= f.label "プラン名" %><span class="necessary-label">必須</span>
-        <%= f.text_field :plan_name, class: "form-control", id: "input-form" %>
-
-        <%= f.label "プラン内容" %><span class="necessary-label">必須</span>
-        <%= f.text_area :plan_content, class: "form-control", id: "input-form" %>
-
-        <%= f.label "プラン時間(単位/分)" %><span class="necessary-label">必須</span>
-        <%= f.number_field :plan_time, class: "form-control", id: "input-form" %>
-
-        <%= f.label "プラン料金(税別)" %><span class="necessary-label">必須</span>
-        <%= f.number_field :plan_price, class: "form-control", id: "input-form" %>
-
+      <div class="create-button-center">
+        <%= f.submit "更新", class: "create-button" %>
       </div>
-    </div>
-    <%= f.submit "プランの編集", class: "create-button" %>
-  <%end %>
+    <% end %>
+  </div>
+  <div class="return-btn"><%= link_to "登録内容の一覧に戻る", store_manager_plans_path %></div>
 </div>
-
-
-<div class="return-btn"><%= link_to "登録内容の一覧に戻る", store_manager_plans_path %></div>
-
