@@ -3,7 +3,7 @@
   <div class="service-head">
     <h1 class="ttl-main-page" itemprop="name">
     <i class="icon-l ctg-icon_aircon"></i>
-    <span class="center_span"><%= @store.store_description %></span>
+    <span class="center_span">4/1〜予約！新春CP！技術は富士山級！接客はエベレスト級！15000縁！</span>
     </h1>
     <p class="description" itemprop="description">水圧32kg／cmの強力高圧分解洗浄！10年2万台の実績！損保加入！非喫煙者がお伺いします。消臭コート無料！</p>
   </div>
@@ -53,7 +53,7 @@
           <table class="table">
             <tbody>
               <tr>
-                <td>店長の名前</td>
+                <td>店長</td>
                 <td>
                   <div class="shop-master">
                     <img class="img-master img-circle" src="#" height="60" width="60" alt="店長の写真">
@@ -95,23 +95,7 @@
     <div id="salse-point" class="mb-large">
       <h2 class="content-h2">セールスポイント</h2>
       <div class="box-content">
-        <p>
-          <br>★★★★★★★★★★★★★★★★★★<br>
-          当店の<br>
-          『エアコンクリーニング/天井埋込タイプ』<br>
-          のサービスがお客様に支持され、<br>
-          <br>
-          『くらしのマーケットアワード2018』<br>
-          において総合賞『金賞』を<br>
-          ２年連続受賞しました！！<br>
-          ★★★★★★★★★★★★★★★★★★<br>
-          <br>
-          『金賞』を受賞した<br>
-          当社の【技術】と【接客】については、<br>
-          口コミの下にある<br>
-          『詳しいサービス内容』を<br>
-          ご確認下さい！！！
-        </p>
+        <p><%= @store.store_description %></p>
         <p><%= link_to "このサービスについて質問する", "#"%></p>
       </div>
     </div>
@@ -287,15 +271,19 @@
             </tr>
             <tr>
               <td>営業時間</td>
-              <td>〇〇</td>
+              <td>9:00~18:00</td>
             </tr>
             <tr>
               <td>定休日</td>
-              <td>〇〇／〇〇／〇〇</td>
+              <td>不定休</td>
+            </tr>
+            <tr>
+              <td>店舗連絡先</td>
+              <td><%= @store.store_phonenumber %></td>
             </tr>
             <tr>
               <td>対応地域</td>
-              <td></td>
+              <td>東京都</td>
             </tr>
           </tbody>
         </table>  
