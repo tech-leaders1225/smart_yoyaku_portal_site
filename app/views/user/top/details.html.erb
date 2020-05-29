@@ -13,7 +13,7 @@
         <div class="col-md-6">
           <div class="change-photo">
             <div class="main-photo">
-              <img class="photo1" src="images/products/product-8.jpg" alt="" itemprop="image">
+              <img class="photo1" src="/images/products/product-8.jpg" alt="" itemprop="image">
             </div>
             <div class="thumb-photo">
             </div>      
@@ -61,7 +61,7 @@
                 </td>
                 <td>
                   <div class="text-master">
-                    <p>店長の名前</p>
+                    <p><%= @store.store_manager.name %></p>
                   </div>
                 </td>
               </tr>
@@ -82,12 +82,12 @@
 
   
   <div class="service-link">
-    <span><%= link_to "料金表", "#", class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
-    <span><%= link_to "口コミ（◯件）", "#", class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
-    <span><%= link_to "施術内容", "#", class:"glyphicon glyphicon-menu-down shortcut-on"%></span>   
-    <span><%= link_to "施術までの流れ", "#", class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
-    <span><%= link_to "ご予約の前に", "#", class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
-    <span><%= link_to "店舗について", "#", class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "料金表", { anchor: "price" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "口コミ（◯件）",{ anchor: "review" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "施術内容", { anchor: "storecommit" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>   
+    <span><%= link_to "施術までの流れ", { anchor: "step" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "ご予約の前に", { anchor: "attention" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "店舗について", { anchor: "shop" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
     <%#aria-hidden="true" %>  
   </div>
 
@@ -95,23 +95,7 @@
     <div id="salse-point" class="mb-large">
       <h2 class="content-h2">セールスポイント</h2>
       <div class="box-content">
-        <p>
-          <br>★★★★★★★★★★★★★★★★★★<br>
-          当店の<br>
-          『エアコンクリーニング/天井埋込タイプ』<br>
-          のサービスがお客様に支持され、<br>
-          <br>
-          『くらしのマーケットアワード2018』<br>
-          において総合賞『金賞』を<br>
-          ２年連続受賞しました！！<br>
-          ★★★★★★★★★★★★★★★★★★<br>
-          <br>
-          『金賞』を受賞した<br>
-          当社の【技術】と【接客】については、<br>
-          口コミの下にある<br>
-          『詳しいサービス内容』を<br>
-          ご確認下さい！！！
-        </p>
+        <p><%= @store.store_description %></p>
         <p><%= link_to "このサービスについて質問する", "#"%></p>
       </div>
     </div>
@@ -124,22 +108,13 @@
         <br>
         <table class="table"> 
           <tbody>
+            <% @plans.each do |plan| %>
             <tr>
-              <td>首・肩集中コース</td>
-              <td class="js-price">〇〇円(税込)</td>
+              <td><%= plan.plan_name %></td>
+              <td><%= plan.plan_time %>分</td>
+              <td class="js-price"><%= plan.plan_price %>円(税込)</td>
             </tr>
-            <tr>
-              <td>骨盤矯正コース</td>
-              <td class="js-price">〇〇円(税込)</td>
-            </tr>
-            <tr>
-              <td>ゆったり疲労回復コース</td>
-              <td class="js-price">〇〇円(税込)</td>
-            </tr>
-            <tr>
-              <td>足痩せ集中コース</td>
-              <td class="js-price">〇〇円(税込)</td>
-            </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -161,17 +136,16 @@
           <div id="tab_a" class="tab-pane active">
             <br>
             <h5>店舗の口コミ</h5>
-            <p>☆☆☆☆☆　4.85　口コミ　〇〇件</p>
-
-            <p>店舗の口コミ.each { }</p>
+            <p>☆☆☆☆☆　3.5　口コミ　1件</p>
+            <p>very good</p>
             <br>
             <p><%= link_to "全〇〇件の口コミを見る", "#"%></p>
           </div>
           <div id="tab_b" class="tab-pane">
             <br>
             <h5>施術の口コミ</h5>
-            <p>☆☆☆☆☆　4.85　口コミ　〇〇件</p>
-            <p>施術の口コミ.each { }</p>
+            <p>☆☆☆☆☆　3.5　口コミ　1件</p>
+            <p>so good</p>
             <br>
             <p><%= link_to "全〇〇件の口コミを見る", "#"%></p>
           </div>
@@ -197,20 +171,19 @@
       <p><%= link_to "予約日時を入力する", "#", class:"btn btn-warning btn-lg "%></p>
     </div>
 
-    <div id="price" class="service-price">
+    <div id="storecommit" class="service-price">
       <h2 class="content-h2">施術内容</h2>
       <div class="box-content">
+        <% @plans.each do |plan| %>
         <p>
-          施術内容についての説明<br>
-          施術内容についての説明<br>
-          施術内容についての説明<br>
-          施術内容についての説明<br>
-          施術内容についての説明<br>
+        <%= plan.plan_name%><br>
+          <%= plan.plan_content %><br>
         </p>
+        <% end %>
       </div>
     </div>
 
-    <div id="price" class="service-step">
+    <div id="step" class="service-step">
       <h2 class="content-h2">施術までの流れ</h2>
       <div class="box-content">
         <ul class="item-step list-unstyled">
@@ -260,33 +233,27 @@
       </div>
     </div>
 
-    <div id="price" class="service-price">
+    <div id="attention" class="service-price">
       <h2 class="content-h2">ご予約の前に</h2>
       <div class="box-content">
         <h5>お客様へのお願い</h5>
           <p>
-            ・お客様へのお願い<br>
-            ・お客様へのお願い<br>
             ・お客様へのお願い<br>
           </p>
           <br>
           <h5>変更・キャンセルについて</h5>
           <p>
             ・変更・キャンセルについて<br>
-            ・変更・キャンセルについて<br>
-            ・変更・キャンセルについて<br>
           </p>
           <br>
           <h5>よくある質問と答え</h5>
           <p>
             ・よくある質問と答え<br>
-            ・よくある質問と答え<br>
-            ・よくある質問と答え<br>
           </p>
       </div>
     </div>
 
-    <div id="price" class="service-price">
+    <div id="shop" class="service-price">
       <h2 class="content-h2">この店舗について</h2>
       <div class="box-content">
         <table class="table">
@@ -294,25 +261,29 @@
             <tr>
               <td>写真</td>
               <td>
-                店長：〇〇<br>
+                店長：<%= @store.store_manager.name %><br>
                 コメント：PayPay, Line Pay, クレジットカード使用可
               </td>
             </tr>
             <tr>
               <td>所在地</td>
-              <td>〇〇</td>
+              <td><%= @store.adress %></td>
             </tr>
             <tr>
               <td>営業時間</td>
-              <td>〇〇</td>
+              <td>9:00~18:00</td>
             </tr>
             <tr>
               <td>定休日</td>
-              <td>〇〇／〇〇／〇〇</td>
+              <td>不定休</td>
+            </tr>
+            <tr>
+              <td>店舗連絡先</td>
+              <td><%= @store.store_phonenumber %></td>
             </tr>
             <tr>
               <td>対応地域</td>
-              <td></td>
+              <td>東京都</td>
             </tr>
           </tbody>
         </table>  
@@ -355,7 +326,6 @@
 
 </div>
 </section>
-
 <!-- Js Plugins -->
 <!--
 <script src="assets/js/jquery-3.3.1.min.js"></script>

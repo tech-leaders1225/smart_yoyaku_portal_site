@@ -7,5 +7,7 @@ class User::TopController < User::Base
   end
 
   def details
+    @store = Store.find(params[:id])
+    @plans = @store.plan
   end
 end
