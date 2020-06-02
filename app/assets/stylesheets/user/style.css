@@ -679,7 +679,7 @@ ol {
 	color: #ffffff;
 	right: 20px;
 	top: 13px;
-	content: "";
+	content: "";
 	font-family: FontAwesome;
 	font-size: 18px;
 }
@@ -1697,7 +1697,7 @@ ol {
 	position: absolute;
 	right: -18px;
 	top: 0px;
-	content: "";
+	content: ">";
 	font-family: "FontAwesome";
 	font-size: 16px;
 	color: #b2b2b2;
