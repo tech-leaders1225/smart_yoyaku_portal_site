@@ -21,6 +21,7 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
     @store_manager = StoreManager.new
     @store = @store_manager.build_store
     @image = @store.storeimages.build
+    @plan = @store.plan.build
   end
 
   # POST /resource
