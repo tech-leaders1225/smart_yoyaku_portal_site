@@ -88,12 +88,12 @@
 
                 <div class="field mt-3">
                   <%= pf.label :plan_time, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>単位は「分」となります。</i>
-                  <%= pf.text_field :plan_time, placeholder: "例）90", class:"form-control" %>
+                  <%= pf.number_field :plan_time, placeholder: "例）90", class:"form-control" %>
                 </div>
 
                 <div class="field mt-3">
                   <%= pf.label :plan_price, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>単位は「円（税込）」となります。</i>
-                  <%= pf.text_field :plan_price, placeholder: "例）10000", class:"form-control" %>
+                  <%= pf.number_field :plan_price, placeholder: "例）10000", class:"form-control" %>
                 </div>
                   
                 <!-- Plan画像入力欄 -->
