@@ -5,6 +5,7 @@ class Store < ApplicationRecord
   has_many :storeimages, dependent: :destroy
   accepts_nested_attributes_for :masseur
   accepts_nested_attributes_for :storeimages
+  accepts_nested_attributes_for :plan
   validates :store_name, presence: true
   validates :adress, length: { minimum: 5 }, allow_blank: true
   validates :store_phonenumber, length: { minimum: 10 }, allow_blank: true
