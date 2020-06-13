@@ -1,7 +1,8 @@
 class StoreManager::PlansController < StoreManager::Base
-  before_action :set_paln, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
   def index
+    @plans = current_store_manager.store.plans
   end
 
   def new
@@ -9,7 +10,7 @@ class StoreManager::PlansController < StoreManager::Base
   end
 
   def create
-    @plan = current_store_manager.store.plan.build(plan_params)
+    @plan = current_store_manager.store.plans.build(plan_params)
     if @plan.save
       flash[:success] = '新規作成に成功しました。'
       redirect_to store_manager_plans_url
@@ -20,7 +21,6 @@ class StoreManager::PlansController < StoreManager::Base
   end
 
   def show
-    @plan = Plan.find(params[:id])
   end
 
   def edit
@@ -40,16 +40,15 @@ class StoreManager::PlansController < StoreManager::Base
   def destroy
     if @plan.destroy
       flash[:success] = "プランを削除しました。"
-      redirect_to store_manager_plans_url(current_store_manager)
     else
       flash[:danger] = '削除に失敗しました。再度やり直してください。'
-      redirect_to store_manager_plans_url(current_store_manager)
     end
+    redirect_to store_manager_plans_url(current_store_manager)
   end
 
   private
 
-  def set_paln
+  def set_plan
     @plan = Plan.find(params[:id])
   end
 

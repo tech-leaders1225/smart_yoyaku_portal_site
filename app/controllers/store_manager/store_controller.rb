@@ -7,11 +7,11 @@ class StoreManager::StoreController < StoreManager::Base
   end
 
   def edit
-    @store = Store.find(current_store_manager.store.id)
+    @store = current_store_manager.store
   end
 
   def update
-    @store = Store.find(current_store_manager.store.id)
+    @store = current_store_manager.store
     if @store.update(store_params)
       flash[:success] = "#{@store.store_name}の情報を更新しました。"
       redirect_to store_manager_url(current_store_manager)

@@ -11,8 +11,9 @@
             <%= render "users/shared/error_messages", resource: resource %>
 
             <div class="field">
-              <%= f.label :name %>
-              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+              <%= f.label :name, class: "mr-2" %>
+              <span class="badge badge-danger">必須</span>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", required: true %>
             </div>
 
             <div class="field mt-3">
@@ -21,24 +22,25 @@
             </div>
 
             <div class="field mt-4">
+              <span class="badge badge-danger">必須</span>
               <%= f.label :gender, class: "mr-4" %>
               <%= f.label :gender, "男性" %>
               <%= f.radio_button :gender, "male", class: "mr-3" %>
               <%= f.label :gender, "女性" %>
               <%= f.radio_button :gender, "female", class: "mr-3" %>
               <%= f.label :gender, "その他" %>
-              <%= f.radio_button :gender, "other" %>      
+              <%= f.radio_button :gender, "other" %>
             </div>
 
             <div class="field mt-3">
-              <%= f.label :email %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+              <%= f.label :email, class: "mr-2" %><span class="badge badge-danger">必須</span>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
             </div>
 
             <div class="field mt-3">
-              <%= f.label :address %>
+              <%= f.label :address, class: "mr-2" %><span class="badge badge-danger">必須</span>
               <%= f.text_field :address, autofocus: true, autocomplete: "address",
-              placeholder: "例）東京都墨田区押上１丁目１−２", class: "form-control" %>
+              placeholder: "例）東京都墨田区押上１丁目１−２", class: "form-control", required: true %>
             </div>
 
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -57,10 +59,10 @@
             </div>
 
             <div class="field mt-3">
-              <%= f.label :current_password, class:"mr-1" %>
+              <%= f.label :current_password, class:"mr-2" %>
               <span class="badge badge-danger">必須</span>
               <%= f.password_field :current_password, placeholder: "現在のパスワードは必須です",
-              autocomplete: "current-password", class: "form-control" %>
+              autocomplete: "current-password", class: "form-control", required: true %>
             </div>
 
             <div class="actions text-center">
