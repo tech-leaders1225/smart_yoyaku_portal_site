@@ -25,12 +25,12 @@
             </i>
             <div class="field mt-4">
               <%= f.label :name, class:"mr-2"%><span class="badge badge-danger">必須</span>
-              <%= f.text_field :name, class:"form-control " %>
+              <%= f.text_field :name, autofocus: true, class:"form-control", required: true %>
             </div>
 
             <div class="field mt-3">
               <%= f.label :email, class:"mr-2" %><span class="badge badge-danger">必須</span>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+              <%= f.email_field :email, autocomplete: "email", class:"form-control", required: true %>
             </div>
 
             <div class="field mt-3">
@@ -38,7 +38,7 @@
               <% if @minimum_password_length %>
                 <i>(<%= @minimum_password_length %>文字以上)</i>
               <% end %><br />
-              <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+              <%= f.password_field :password, autocomplete: "new-password", class:"form-control", required: true %>
             </div>
             <div class="field mt-3">
               <%= f.label :password_confirmation, class:"mr-2" %><span class="badge badge-danger">必須</span><br />
@@ -49,7 +49,7 @@
             <%= f.fields_for :store do |sf| %>
               <div class="field mt-3">
                 <%= sf.label :store_name, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>店舗がない方は名前を入力してください。</i>
-                <%= sf.text_field :store_name, class:"form-control" %>
+                <%= sf.text_field :store_name, class:"form-control", required: true %>
               </div>
 
               <div class="field mt-3">
@@ -72,37 +72,37 @@
                     <%= sif.file_field :image, multiple: true %>
                   </div>
                 <% end %>-->
-            
-              <h5 class="mt-5 mb-3">【施術コース】</h5>
-              <i>コースは後ほど追加登録することができます。</i>
-              <%= sf.fields_for :plan do |pf| %>
+
+              <h5 class="mt-5 mb-3">【施術プラン】</h5>
+              <i>プランは後ほど追加登録することができます。</i>
+              <%= sf.fields_for :plans do |pf| %>
                 <div class="field mt-4">
                   <%= pf.label :plan_name, class:"mr-2"%><span class="badge badge-danger">必須</span>
-                  <%= pf.text_field :plan_name, placeholder: "例）リラクゼーションボディケア", class:"form-control" %>
+                  <%= pf.text_field :plan_name, placeholder: "例）リラクゼーションボディケア", class:"form-control", required: true %>
                 </div>
 
                 <div class="field mt-3">
                   <%= pf.label :plan_content, class:"mr-2"%><span class="badge badge-danger">必須</span>
-                  <%= pf.text_area :plan_content, placeholder: "例）着衣の上からお身体のほぐしとヘッドマッサージを行います。", class:"form-control" %>
+                  <%= pf.text_area :plan_content, placeholder: "例）着衣の上からお身体のほぐしとヘッドマッサージを行います。", class:"form-control", required: true %>
                 </div>
 
                 <div class="field mt-3">
                   <%= pf.label :plan_time, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>単位は「分」となります。</i>
-                  <%= pf.number_field :plan_time, placeholder: "例）90", class:"form-control" %>
+                  <%= pf.number_field :plan_time, placeholder: "例）90", class:"form-control", required: true %>
                 </div>
 
                 <div class="field mt-3">
                   <%= pf.label :plan_price, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>単位は「円（税込）」となります。</i>
-                  <%= pf.number_field :plan_price, placeholder: "例）10000", class:"form-control" %>
+                  <%= pf.number_field :plan_price, placeholder: "例）10000", class:"form-control", required: true %>
                 </div>
-                  
+
                 <!-- Plan画像入力欄 -->
-          
+
               <% end %>
             <% end %>
           <div class="actions mt-5 text-center">
             <%= f.submit "登録する", class:"btn btn-primary w-75"%>
-          </div> 
+          </div>
         <% end %>
         </div>
       </div>

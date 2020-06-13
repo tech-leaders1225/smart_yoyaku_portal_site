@@ -19,7 +19,7 @@
           <div class="field mt-3">
             <%= f.label Masseur.human_attribute_name(:email), class: "mr-2" %>
             <span class="badge badge-danger">必須</span>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
           </div>
 
           <div class="field mt-3">

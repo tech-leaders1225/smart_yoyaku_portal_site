@@ -1,9 +1,9 @@
 class StoreManager::TopPageController < StoreManager::Base
   def top
-    @store_manager = StoreManager.find_by(id: current_store_manager)
-    store = Store.find_by(store_manager_id: @store_manager.id)
+    @store_manager = current_store_manager
+    store = @store_manager.store
     masseur = Masseur.find_by(store_id: store.id)
-    if masseur == nil
+    if masseur.blank?
       Masseur.create(masseur_name: @store_manager.name,
                      email: @store_manager.email,
                      password: "password",
