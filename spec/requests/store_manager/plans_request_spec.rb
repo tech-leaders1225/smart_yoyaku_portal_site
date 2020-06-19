@@ -70,7 +70,7 @@ RSpec.describe "StoreManager::Plans", type: :request do
     context "store_managerがログイン中の場合" do
       it "同じstoreを持つplanのshowが表示されること" do
         sign_in @store_manager
-        get store_manager_plan_path(@store_manager)
+        get store_manager_plan_path(@plan)
         expect(response).to have_http_status(:success)
         expect(response).to render_template :show
         expect(response.status).to eq 200
@@ -82,7 +82,7 @@ RSpec.describe "StoreManager::Plans", type: :request do
     context "store_managerがログイン中の場合" do
       it "同じstoreを持つplanのeditが表示されること" do
         sign_in @store_manager
-        get edit_store_manager_plan_path(@store_manager)
+        get edit_store_manager_plan_path(@plan)
         expect(response).to have_http_status(:success)
         expect(response).to render_template :edit
         expect(response.status).to eq 200
