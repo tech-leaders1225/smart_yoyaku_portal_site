@@ -53,8 +53,6 @@ jobs: # ステップの集合
           command: |
             bin/bundle exec rake db:create db:schema:load --trace
             bin/bundle exec rake db:migrate
-          environment:
-             DATABASE_URL: "postgres://postgres@localhost:5432/myproject_test"
 
       - run:
           name: RSpec を並列実行
