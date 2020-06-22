@@ -14,7 +14,7 @@ jobs: # ステップの集合
       - image: circleci/postgres:12.2-postgis # データベースイメージ
         environment: # データベースの環境変数
           POSTGRES_USER: postgres
-          POSTGRES_DB: myproject_development
+          POSTGRES_DB: myproject_test
           POSTGRES_HOST_AUTH_METHOD: "trust"
     steps: # 実行可能コマンドの集合
       - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ
@@ -54,7 +54,7 @@ jobs: # ステップの集合
             bin/bundle exec rake db:create db:schema:load --trace
             bin/bundle exec rake db:migrate
           environment:
-             DATABASE_URL: "postgres://postgres@localhost:5432/myproject_development"
+             DATABASE_URL: "postgres://postgres@localhost:5432/myproject_test"
 
       - run:
           name: RSpec を並列実行
