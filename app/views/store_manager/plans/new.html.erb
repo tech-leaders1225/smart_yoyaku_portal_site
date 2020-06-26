@@ -15,16 +15,16 @@
         </div>
         <div class="right">
           <%= f.label "プラン名", class: "" %><span class="necessary-label">必須</span><br>
-          <%= f.text_field :plan_name, class: "form-control" %>
-  
+          <%= f.text_field :plan_name, class: "form-control", required: true %>
+
           <%= f.label "プラン内容", class: "" %><span class="necessary-label">必須</span><br>
-          <%= f.text_area :plan_content, class: "form-control" %>
-  
+          <%= f.text_area :plan_content, class: "form-control", required: true %>
+
           <%= f.label "プラン時間(単位/分)", class: "" %><span class="necessary-label">必須</span><br>
-          <%= f.number_field :plan_time, class: "form-control" %>
-  
-          <%= f.label "プラン料金(税別)", class: "" %><span class="necessary-label">必須</span><br>
-          <%= f.number_field :plan_price, class: "form-control" %>
+          <%= f.number_field :plan_time, class: "form-control", required: true %>
+
+          <%= f.label "プラン料金(税込)", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.number_field :plan_price, class: "form-control", required: true %>
         </div>
       </div>
       <div class="create-button-center">

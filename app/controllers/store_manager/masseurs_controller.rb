@@ -19,8 +19,8 @@ class StoreManager::MasseursController < StoreManager::Base
   #end
 
   def index
-    @masseurs = Masseur.where(store_id: current_store_manager.store.id)
     @store = current_store_manager.store
+    @masseurs = Masseur.where(store_id: @store.id)
   end
 
   def edit
@@ -74,7 +74,7 @@ class StoreManager::MasseursController < StoreManager::Base
 
     # current_store_managerと紐づいていないmasseurの操作は不可
     def corrrect_store_manager
-      unless current_store_manager.store.masseur.ids.include?params[:id].to_i
+      unless current_store_manager.store.masseurs.ids.include?params[:id].to_i
         flash[:danger] = "アクセス権限がありません。"
         redirect_to store_manager_url(current_store_manager)
       end

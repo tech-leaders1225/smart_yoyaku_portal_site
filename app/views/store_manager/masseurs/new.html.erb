@@ -13,13 +13,13 @@
           <div class="field">
             <%= f.label Masseur.human_attribute_name(:masseur_name), class: "mt-4 mr-2" %>
             <span class="badge badge-danger">必須</span>
-            <%= f.text_field :masseur_name, autofocus: true, autocomplete: "masseur_name", class: "form-control" %>
+            <%= f.text_field :masseur_name, autofocus: true, autocomplete: "masseur_name", class: "form-control", required: true %>
           </div>
 
           <div class="field mt-3">
             <%= f.label Masseur.human_attribute_name(:email), class: "mr-2" %>
             <span class="badge badge-danger">必須</span>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
           </div>
 
           <div class="field mt-3">
@@ -37,13 +37,13 @@
           <div class="field mt-3">
             <%= f.label Masseur.human_attribute_name(:password), class: "mr-2" %>
             <span class="badge badge-danger">必須</span>
-            <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control" %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control", required: true %>
           </div>
 
           <div class="field mt-3">
             <%= f.label Masseur.human_attribute_name(:password_confirmation), class: "mr-2" %>
             <span class="badge badge-danger">必須</span>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true %>
           </div>
 
           <div class="actions text-center">
