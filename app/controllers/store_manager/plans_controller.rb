@@ -1,10 +1,7 @@
 class StoreManager::PlansController < StoreManager::Base
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
-<<<<<<< HEAD
   require "uri"
   require "net/http"
-=======
->>>>>>> 102613fe7422f7d4f543469d2a795f0cf8abee5e
 
   def index
     @plans = current_store_manager.store.plans
@@ -15,7 +12,6 @@ class StoreManager::PlansController < StoreManager::Base
   end
 
   def create
-<<<<<<< HEAD
     @plan = current_store_manager.store.plan.build(plan_params)
     ActiveRecord::Base.transaction do
       response_parse = SmartYoyakuApi::Task.task_create(@plan)
@@ -33,13 +29,6 @@ class StoreManager::PlansController < StoreManager::Base
       # redirect_to store_manager_plans_url
     end
     rescue StandardError
-=======
-    @plan = current_store_manager.store.plans.build(plan_params)
-    if @plan.save
-      flash[:success] = '新規作成に成功しました。'
-      redirect_to store_manager_plans_url
-    else
->>>>>>> 102613fe7422f7d4f543469d2a795f0cf8abee5e
       flash.now[:danger] = '入力情報に誤りがありました。もう一度入力情報を確認して下さい。'
       render :new
   end
@@ -92,11 +81,7 @@ class StoreManager::PlansController < StoreManager::Base
     else
       flash[:danger] = '削除に失敗しました。再度やり直してください。'
     end
-<<<<<<< HEAD
   redirect_to store_manager_plans_url(current_store_manager)
-=======
-    redirect_to store_manager_plans_url(current_store_manager)
->>>>>>> 102613fe7422f7d4f543469d2a795f0cf8abee5e
   end
 
   private
