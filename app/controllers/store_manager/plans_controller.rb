@@ -1,5 +1,7 @@
 class StoreManager::PlansController < StoreManager::Base
-  before_action :set_paln, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  require "uri"
+  require "net/http"
 
   def index
   end
@@ -10,46 +12,80 @@ class StoreManager::PlansController < StoreManager::Base
 
   def create
     @plan = current_store_manager.store.plan.build(plan_params)
-    if @plan.save
-      flash[:success] = '新規作成に成功しました。'
-      redirect_to store_manager_plans_url
-    else
+    ActiveRecord::Base.transaction do
+      response_parse = SmartYoyakuApi::Task.task_create(@plan)
+      if response_parse['status'] == "200"
+        @plan.course_id = response_parse['data']['id']
+        @plan.save!
+        flash[:success] = '新規作成に成功しました。'
+        redirect_to store_manager_plans_url
+      else
+        flash[:danger] = "技術的な問題が発生しました管理者にエラー番号とメッセージを連絡してください。#{response_parse['status']},#{response_parse['message']}"
+        render :new
+      end
+      # @plan.update!(course_id: response_parse['data']['id'])
+      # flash[:success] = '新規作成に成功しました。'
+      # redirect_to store_manager_plans_url
+    end
+    rescue StandardError
       flash.now[:danger] = '入力情報に誤りがありました。もう一度入力情報を確認して下さい。'
       render :new
-    end
   end
 
   def show
-    @plan = Plan.find(params[:id])
   end
 
   def edit
   end
 
   def update
-    if @plan.update(plan_params)
-      flash[:success] = "#{@plan.plan_name}の情報を更新しました。"
-      redirect_to store_manager_plans_url
-    else
+    ActiveRecord::Base.transaction do
+      response_parse = SmartYoyakuApi::Task.task_update(@plan)
+      if response_parse['status'] == "200"
+        @plan.update!(plan_params)
+        flash[:success] = "#{@plan.plan_name}の情報を更新しました。"
+        redirect_to store_manager_plans_url
+      else
+        flash[:danger] = "技術的な問題が発生しました管理者にエラー番号とメッセージを連絡してください。#{response_parse['status']},#{response_parse['message']}"
+        render :edit
+      end
+      # @plan.update!(plan_params)
+      # SmartYoyakuApi::Task.task_update(@plan)
+      # flash[:success] = "#{@plan.plan_name}の情報を更新しました。"
+      # redirect_to store_manager_plans_url
+    end
+    rescue StandardError
       flash.now[:danger] = "入力内容に誤りがあったため更新できませんでした。"
       render :edit
-    end
   end
 
 
   def destroy
+    # ActiveRecord::Base.transaction do
+    #   response_parse = SmartYoyakuApi::Task.task_delete(@plan)
+    #   if response_parse['status'] == "200"
+    #     @plan.destroy
+    #     flash[:success] = "プランを削除しました。"
+    #   else
+    #     flash[:danger] = "技術的な問題が発生しました管理者にエラー番号とメッセージを連絡してください。#{response_parse['status']},#{response_parse['message']}"
+    #     redirect_to store_manager_plans_url(current_store_manager)
+    #   end
+    # rescue StandardError
+    #   flash[:danger] = '削除に失敗しました。再度やり直してください。'
+    # end
+
     if @plan.destroy
+      SmartYoyakuApi::Task.task_delete(@plan)
       flash[:success] = "プランを削除しました。"
-      redirect_to store_manager_plans_url(current_store_manager)
     else
       flash[:danger] = '削除に失敗しました。再度やり直してください。'
-      redirect_to store_manager_plans_url(current_store_manager)
     end
+  redirect_to store_manager_plans_url(current_store_manager)
   end
 
   private
 
-  def set_paln
+  def set_plan
     @plan = Plan.find(params[:id])
   end
 
