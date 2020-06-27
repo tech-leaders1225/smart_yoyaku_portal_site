@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class StoreManagers::RegistrationsController < Devise::RegistrationsController
+  include SmartYoyakuApi::User
   require 'json'
 
   before_action :sign_in_store_manager, only:[:show, :index]
@@ -33,38 +34,25 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-    resource.save
-    yield resource if block_given?
-    
-    # StoreManagerのsaveが成功した場合
-    if resource.persisted?
-      @masseur = create_masseur
-      # 予約システム側でUser, Caledar, TaskCourseを作成
-      set_store_and_plan
-      @response = create_user(@store_manager, @store, @plan)
-
-      begin
-        @parsed_json = JSON.parse(@response)
-      rescue JSON::ParserError => e
-        puts "[ERROR: No Response From ReserveApp, #{e}]"
-        system_error_response
-        return
-      end
-      if @parsed_json["status"] == "200" #レスポンスが返らない場合(予約システムのサーバーダウンなど)ここでJSON::ParserErrorが出る
-        # @responseに含まれるtokenと各idを登録
-        organize_response     
-        update_resourses
+    ActiveRecord::Base.transaction do
+      resource.save
+      yield resource if block_given?  
+      # StoreManagerのsaveが成功した場合
+      if resource.persisted?
+        @masseur = create_masseur
+        # 予約システム側でUser, Caledar, TaskCourseを作成
+        set_store_and_plan
+        @response = create_user(@store_manager, @store, @plan)    
+        # @responseに含まれるtokenと各idを登録     
+        update_resourses(@response)
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         redirect_to reserve_app_url
       else
-        # StoreManagerの登録を含め全て取り消して500エラーを出す？
-        system_error_response   
+        clean_up_passwords resource
+        set_minimum_password_length
+        respond_with resource
       end
-    else
-      clean_up_passwords resource
-      set_minimum_password_length
-      respond_with resource
     end
   end
 
@@ -126,93 +114,41 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
     store_manager_path(current_store_manager)
   end
 
-
-  private
-
-    # アクセスしたマッサージ師が現在ログインしているユーザーか確認します。
-    def correct_store_manager
-      unless StoreManager.find_by(id: params[:id]) == current_store_manager
-        flash[:danger] = "アクセス権限がありません。"
-        redirect_to store_manager_url(current_store_manager)
-      end
+  # アクセスしたマッサージ師が現在ログインしているユーザーか確認します。
+  def correct_store_manager
+    unless StoreManager.find_by(id: params[:id]) == current_store_manager
+      flash[:danger] = "アクセス権限がありません。"
+      redirect_to store_manager_url(current_store_manager)
     end
+  end
 
-    # ログインしているかどうかの判定
-    def sign_in_store_manager
-      unless store_manager_signed_in?
-        flash[:danger] = "ログインしてください。"
-        redirect_to store_manager_session_url
-      end
+  # ログインしているかどうかの判定
+  def sign_in_store_manager
+    unless store_manager_signed_in?
+      flash[:danger] = "ログインしてください。"
+      redirect_to store_manager_session_url
     end
+  end
 
-    def create_masseur
-      @store_manager.store.masseurs.create!(
-        masseur_name: @store_manager.name,
-        email: @store_manager.email,
-        password: "password"
-      )
-    end
+  def create_masseur
+    @store_manager.store.masseurs.create!(
+      masseur_name: @store_manager.name,
+      email: @store_manager.email,
+      password: "password"
+    )
+  end
 
-    # 予約システム側で保持するtoken, idをポータルサイト側で保存
-    def update_resourses
-      begin
-        @store_manager.update!(smart_token: @user_token)
-        @store.update!(calendar_id: @calendar_public_uid)
-        @plan.update!(course_id: @task_course_id)
-        @masseur.update!(staff_id: @staff_id)
-      rescue => e
-        puts "[ERROR: #{e}]"
-        system_error_response
-        return
-      end
-    end
+  def set_store_and_plan
+    @store = @store_manager.store
+    @plan = @store.plans.first
+  end
 
-    def set_store_and_plan
-      @store = @store_manager.store
-      @plan = @store.plans.first
-    end
-
-    # 予約システム側でUserの登録を行う
-    def create_user(store_manager, store, plan)
-      url = reserve_app_url + "api/v1/users"
-      `curl -v POST "#{url}" \
-      -d '{"user":{"store_manager_id":"#{store_manager.id}","name":"#{store_manager.name}","email":"#{store_manager.email}","password":"#{store_manager.password}"},\
-      "calendar":{"calendar_name":"#{store.store_name}","address":"#{store.adress}","phone":"#{store.store_phonenumber}"},\
-      "task_course":{"title":"#{plan.plan_name}","description":"#{plan.plan_content.gsub(/(\r\n|\r|\n)/, "")}","course_time":"#{plan.plan_time}","charge":"#{plan.plan_price}"}}' \
-      -H 'Accept: application/json' \
-      -H 'Content-Type:application/json'`
-    end
-    
-    # 予約システム側でUserの更新を行う
-    def update_user
-      url = reserve_app_url + "api/v1/users/#{current_store_manager.id}"
-      `curl -v -X PATCH "#{url}" \
-      -d '{"user":{"name":"#{current_store_manager.name}","email":"#{current_store_manager.email}","password":"#{current_store_manager.password}"}}' \
-      -H 'Accept: application/json' \
-      -H 'Content-Type:application/json' \
-      -H 'Authorization: Bearer #{current_store_manager.smart_token}'`
-    end
-
-    def reserve_app_url
-      reserve_app_url =
-        if Rails.env.development?
-          "http://localhost:3000/"
-        else
-          # production環境のurlが入る
-          # "http://stage-smartyoyaku-env.ap-northeast-1.elasticbeanstalk.com/"
-        end
-    end
-
-    # 受け取ったresponseからupdate_resoursesに必要な情報のみを整形
-    def organize_response
-      @user_token = @parsed_json["user"]["token"]
-      @calendar_public_uid = @parsed_json["user"]["calendars"][0]["public_uid"]
-      @task_course_id = @parsed_json["user"]["calendars"][0]["task_courses"][0]["id"]
-      @staff_id = @parsed_json["staff"]["id"]
-    end
-
-    def system_error_response
-      flash[:notice] = "システムトラブルが発生しました。大変恐れ入りますがポータルサイト管理者まで一度お問合わせくださいませ。"
-      redirect_to root_url
-    end
+  # 予約システム側で保持するtoken, idをポータルサイト側で保存
+  def update_resourses(response)
+    parsed_json = JSON.parse(response)
+    @store_manager.update!(smart_token: parsed_json["user"]["token"])
+    @store.update!(calendar_id: parsed_json["user"]["calendars"][0]["public_uid"])
+    @plan.update!(course_id: parsed_json["user"]["calendars"][0]["task_courses"][0]["id"])
+    @masseur.update!(staff_id: parsed_json["staff"]["id"])
+  end
 end
