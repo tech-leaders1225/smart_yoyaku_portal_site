@@ -5,6 +5,12 @@
 //= require moment
 //= require fullcalendar
 
+
+
+
+var test = "テストです"
+console.log(test)
+
 $('#calendar').fullCalendar({
         // ヘッダーのタイトルとボタン
         header: {
@@ -22,7 +28,7 @@ $('#calendar').fullCalendar({
             {
                 events: [
                     {
-                        title: 'event1',
+                        title: test,
                         start: '2020-06-02'
                     },
                     {
@@ -46,7 +52,10 @@ $('#calendar').fullCalendar({
             week:     '週',
             day:      '日'
         },
+        // 曜日名称
+        dayNames: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
+        // 曜日略称
+        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
         
 });
-    
-   
+
