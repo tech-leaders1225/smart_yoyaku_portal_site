@@ -8,6 +8,6 @@ class User::TopController < User::Base
 
   def details
     @store = Store.find(params[:id])
-    @plans = @store.plan
+    @plans = @store.plans
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_114411) do
+ActiveRecord::Schema.define(version: 2020_06_12_022432) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_114411) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "staff_id"
     t.index ["email"], name: "index_masseurs_on_email", unique: true
     t.index ["reset_password_token"], name: "index_masseurs_on_reset_password_token", unique: true
     t.index ["store_id"], name: "index_masseurs_on_store_id"
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_114411) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "plan_content"
     t.integer "plan_time"
+    t.integer "course_id"
     t.index ["store_id"], name: "index_plans_on_store_id"
   end
 
@@ -126,6 +128,8 @@ ActiveRecord::Schema.define(version: 2020_05_22_114411) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "smart_token"
+    t.boolean "payment_status", default: false
     t.index ["email"], name: "index_store_managers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_store_managers_on_reset_password_token", unique: true
   end
@@ -146,6 +150,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_114411) do
     t.integer "store_manager_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "calendar_id"
     t.index ["store_manager_id"], name: "index_stores_on_store_manager_id"
   end
 
