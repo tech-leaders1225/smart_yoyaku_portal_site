@@ -37,7 +37,6 @@ class StoreManager::PlansController < StoreManager::Base
     ActiveRecord::Base.transaction do
       response_parse = SmartYoyakuApi::Task.task_update(@plan)
       if response_parse['status'] == "200"
-        debugger
         if @plan.update(plan_params)
           flash[:success] = "#{@plan.plan_name}の情報を更新しました。"
           redirect_to store_manager_plans_url
