@@ -30,3 +30,71 @@
 
 <div id="details" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <%= render template: "layouts/store_managers"%>
+
+
+  <%= @event["tasks"][0]["request"] %>
+ <!-- var test = @event["tasks"][0]["request"] -->
+ 
+<script>
+
+var uri = `curl -v -X GET "https://smartyoyaku-staging.herokuapp.com/api/v1/tasks" \
+          -H "Authorization: Bearer zW7L6rzrFcqMCAJ64fQcBYJx"`
+var event = JSON.parse(uri)
+
+var events_data=[
+{
+title: 'All Day Event',
+start: '2016-09-01',
+},
+{
+title: 'Long Event',
+start: '2016-09-07',
+end: '2016-09-10',
+},
+];
+
+
+
+$('#calendar').fullCalendar({
+        // ヘッダーのタイトルとボタン
+        header: {
+            // title, prev, next, prevYear, nextYear, today
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month agendaWeek agendaDay'
+        },
+        dayClick: function () {
+            //ここにモーダルで詳細表示
+            alert('日付クリックイベント');
+        },
+        events:events_data,
+        // イベントソース(ここにAPI情報を記載)
+        eventSources: [
+            {
+                events: [
+                    {
+                        title: 'event1',
+                        start: '2020-06-01'
+                    },
+                    {
+                        title:  "event2",
+                        start: '2020-06-02',
+                        end: '2020-06-02'
+                    },
+                ]
+            }
+        ],
+        // ボタン文字列
+        buttonText: {
+            today:    '今日',
+            month:    '月',
+            week:     '週',
+            day:      '日'
+        },
+        // 曜日名称
+        dayNames: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
+        // 曜日略称
+        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+        
+});
+</script>
