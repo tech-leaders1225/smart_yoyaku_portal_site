@@ -1,0 +1,21 @@
+<div class="text_width">
+  <h1 class="left_logo">Smart Potal</h1>
+  <div class="right_bottun">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-warning btn_space" %>
+  </div>
+  <div class="hader_space">
+    <div class="">
+      <ul class="header_ul_space ">
+        <li>
+          <a class="header_line_a" herf="#">マイページ</a>
+        </li>
+        <li>
+          <%= link_to "予約の確認", store_managers_index_path(current_store_manager),  class:"header_line no_nuderline" %>
+        </li>
+        <li>
+          <%= link_to "登録内容の編集", store_managers_show_path(current_store_manager),  class:"header_line no_nuderline" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

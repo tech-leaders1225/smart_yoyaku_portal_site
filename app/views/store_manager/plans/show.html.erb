@@ -1,0 +1,28 @@
+<div class="col-md-8 offset-2">
+  <h3 class="my-5 text-center">プラン詳細</h3>
+    <div class="outer-frame">
+      <div class="flex-parent-show-page">
+        <div class="left-image">
+          <img src="" height="200" width="200">
+        </div>
+        <div class="right-side">
+          <div class="title-frame">
+            <div class="plan-title">
+              <strong><%= @plan.plan_name %></strong>
+            </div>
+          </div>
+          <div class="content-frame">
+            <div class="plan-content">
+              <%= @plan.plan_content %>
+            </div>
+          </div>
+          <div class="price-frame">
+            <div class="price-time">
+              <span class="time-required">所要時間　<%= @plan.plan_time %>分</span><span class="time_price">　<%= @plan.plan_price %>円(税込)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="return-btn-show"><%= link_to "登録内容の一覧に戻る", store_manager_plans_path %></div>
+</div>

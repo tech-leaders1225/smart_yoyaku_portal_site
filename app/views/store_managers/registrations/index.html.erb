@@ -1,0 +1,124 @@
+<div class="text_width">
+  <h1 class="left_logo">Smart Potal</h1>
+  <div class="right_bottun">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-warning btn_space" %>
+  </div>
+  <div class="hader_space">
+    <div class="">
+      <ul class="header_ul_space ">
+        <li>
+          <%= link_to "マイページ", store_manager_path(current_store_manager),  class:"header_line no_nuderline" %>
+        </li>
+        <li>
+          <a class="header_line_a">予約の管理</a>
+        </li>
+        <li>
+          <%= link_to "登録内容の編集", store_managers_show_path(current_store_manager),  class:"header_line no_nuderline" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="top_space">
+  <div class="text_width text_left">
+    <h1 class="top_space bottom_space">予約の管理</h1>
+  </div>
+  <div class="text_width" >
+  <table class="table_text_aligin_c">
+    <tr class="table_height ">
+      <td class="table_width"></td>
+      <td class="table_width">xx/xx</td>
+      <td class="table_width">xx/xx</td>
+      <td class="table_width">xx/xx</td>
+      <td class="table_width">xx/xx</td>
+      <td class="table_width">xx/xx</td>
+      <td class="table_width">xx/xx</td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">9:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">10:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">11:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border back_color_g"><%= link_to "大鷹11:00~13:00", store_managers_detales_path(current_store_manager),
+                                                        remote: true, class:"no_nuderline index_space" %>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">12:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border back_color_g"><%= link_to "", store_managers_detales_path(current_store_manager),
+                                                        remote: true, class:"no_nuderline index_space" %></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">13:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border back_color_g"><%= link_to "", store_managers_detales_path(current_store_manager),
+                                                        remote: true, class:"no_nuderline index_space" %></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">14:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">15:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">16:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+    <tr class="table_height">
+      <td class="table_width table_text_aligin_r">17:00</td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+      <td class="table_width table_border"></td>
+    </tr>
+  </table>
+</div>
+<div id="details" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<%= render template: "layouts/store_managers"%>

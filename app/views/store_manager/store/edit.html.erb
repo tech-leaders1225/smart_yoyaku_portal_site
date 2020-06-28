@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <h3 class="mt-5 mb-4 text-center"><%= @store.store_name %>の編集</h3>
+        <hr>
+        <div class="jumbotron">
+          <div class="form_group">
+            <%= form_with(model: @store, url: store_manager_store_path(@store), method: :patch, local: true) do |sf| %>
+              <%= render "shared/error_messages", object: sf.object %>
+              <div class="field mt-3">
+                <%= sf.label :store_name, class:"mr-2"%><span class="badge badge-danger">必須</span>
+                <%= sf.text_field :store_name, class:"form-control" %>
+              </div>
+
+              <div class="field mt-3">
+                <%= sf.label :adress, class:"mr-2" %>
+                <%= sf.text_field :adress,placeholder: "例）東京都墨田区押上１丁目１−２", class:"form-control" %>
+              </div>
+
+              <div class="field mt-3">
+                <%= sf.label :store_phonenumber, class:"mr-2" %>
+                <%= sf.text_field :store_phonenumber, placeholder: "例）012-3456-7890", class:"form-control" %>
+              </div>
+
+              <div class="field mt-3">
+                <%= sf.label :store_description, class:"mr-2" %>
+                <%= sf.text_area :store_description, class:"form-control" %>
+              </div>
+              <!--<%= sf.fields_for :storeimages do |sif| %>
+                <%= @store.storeimages.each do |image| %>
+                <div class="field mt-3">
+                  <%= sif.label :image, class:"mr-2" %><br>
+                  <%= sif.file_field :image, multiple: true %>
+                  <%= sif.check_box :remove_image %>
+                </div>
+                <% end %>
+              <% end %>-->
+            <div class="actions mt-5 text-center">
+              <%= sf.submit "更新", class:"btn btn-primary btn_width" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      <%= link_to "キャンセル", store_manager_path(current_store_manager), class:"top_space" %>
+    </div>
+  </div>
+</div>

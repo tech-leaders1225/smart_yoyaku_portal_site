@@ -32,6 +32,16 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
+gem 'devise-i18n'
+gem 'rails-i18n'
+gem 'enum_help'
+gem 'activeadmin'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-line'
+gem 'dotenv-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -45,6 +55,10 @@ group :development, :test do
   gem 'rspec-rails', '4.0.0'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
+end
+
+group :test do
+  gem 'rspec_junit_formatter'
 end
 
 group :development do

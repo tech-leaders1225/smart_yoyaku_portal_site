@@ -1,0 +1,132 @@
+// Place all the styles related to the plans controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+//index_page↓
+
+.showpage-title {
+    padding: 50px 0px 10px 0px;
+}
+
+.new-btn-show {
+    text-align: right;
+    padding: 15px 30px 15px 15px;
+    overflow: hidden;
+}
+
+.align-middle {
+   
+}
+
+
+
+//new_page↓
+
+
+.title {
+    font-size: 23px;
+    margin: 40px 0px 0px 270px;
+}
+
+.file-button {
+    margin: 20px;
+}
+
+.entrust-label {
+    background: red;
+    color: white;
+    border-radius: 3px;
+    font-size: 15px;
+    margin-left: 7px;
+    
+}
+
+.necessary-label {
+    background: red;
+    color: white;
+    border-radius: 3px;
+    font-size: 15px;
+    margin-left: 7px;
+}
+
+.form-2 {  
+  margin: 20px;
+  border: 1px solid silver;}
+  
+.flex-parent-new-page2 {
+  display:flex;
+  justify-content: center;
+  text-align: center;
+  
+}
+
+.left-side {
+  padding: 20px;
+}
+
+.right {
+  width: 320px;
+  padding: 20px;
+}
+
+.create-button-center {
+  text-align: center;
+}
+
+
+.create-button {
+   display: inline;
+   color: white;
+   background: orange;
+   padding: 5px 30px 5px 30px;
+   margin-bottom: 20px;
+}
+
+.return-btn {
+    margin-left: 100px;
+}
+
+//show_page↓
+
+.outer-frame {
+    border: 2px solid silver;
+    padding: 15px;
+}
+
+.flex-parent-show-page {
+    display: flex;
+    justify-content: jspace-evenly;
+}
+
+.left-image {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.right-side {
+    padding: 10px;
+}
+
+.plan-title {
+    padding: 5px;
+    font-size: 18px;
+    color: #0099FF;
+}
+
+.plan-content {
+    padding: 5px;
+    height: 130px;
+    overflow: auto;
+}
+
+.price-time {
+    padding: 5px;
+    color: #FF9900;	
+    font-size: 18px;
+}
+
+.return-btn-show {
+    padding: 10px 20px 10px 40px;
+    margin: 10px;
+}
+

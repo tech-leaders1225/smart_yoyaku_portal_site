@@ -1,0 +1,2 @@
+module StoreManager::PlansHelper
+end

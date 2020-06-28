@@ -11,44 +11,13 @@
 </head>
     <!-- Header Section Begin -->
     <header class="header-section">
-        <div class="header-top">
-            <div class="container">
-                <div class="ht-left">
-                    <div class="mail-service">
-                        <i class=" fa fa-envelope"></i>
-                        hello.colorlib@gmail.com
-                    </div>
-                    <div class="phone-service">
-                        <i class=" fa fa-phone"></i>
-                        +65 11.188.888
-                    </div>
-                </div>
-                <div class="ht-right">
-                    <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                    <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="images/flag-1.jpg" data-imagecss="flag yt"
-                                data-title="English">English</option>
-                            <option value='yu' data-image="images/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
-                        </select>
-                    </div>
-                    <div class="top-social">
-                        <a href="#"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="inner-header">
                 <div class="row">
-                    <div class="col-lg-2 col-md-2">
+                    <div class="col-lg-3 col-md-3">
                         <div class="logo">
-                            <a href="./index.html">
-                                <img src="images/logo.png" alt="">
+                            <a href="./">
+                                <img src="/images/logo1.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -61,60 +30,9 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-3 text-right col-md-3">
-                        <ul class="nav-right">
-                            <li class="heart-icon"><a href="#">
-                                    <i class="icon_heart_alt"></i>
-                                    <span>1</span>
-                                </a>
-                            </li>
-                            <li class="cart-icon"><a href="#">
-                                    <i class="icon_bag_alt"></i>
-                                    <span>3</span>
-                                </a>
-                                <div class="cart-hover">
-                                    <div class="select-items">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="si-pic"><img src="images/select-product-1.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="si-pic"><img src="images/select-product-2.jpg" alt=""></td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>$60.00 x 1</p>
-                                                            <h6>Kabino Bedside Table</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="select-total">
-                                        <span>total:</span>
-                                        <h5>$120.00</h5>
-                                    </div>
-                                    <div class="select-button">
-                                        <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                        <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="cart-price">$150.00</li>
-                        </ul>
+                    <!-- mobile menu表示時用 -->
+                    <div class="col-lg-2 col-md-2">
+                        <p>&emsp;</p>
                     </div>
                 </div>
             </div>
@@ -126,34 +44,53 @@
                         <i class="ti-menu"></i>
                         <span>カテゴリ一覧</span>
                         <ul class="depart-hover">
-                            <li class="active"><a href="#">あ</a></li>
-                            <li><a href="#">い</a></li>
-                            <li><a href="#">う</a></li>
-                            <li><a href="#">え</a></li>
-                            <li><a href="#">お</a></li>
-                            <li><a href="#">か</a></li>
-                            <li><a href="#">き</a></li>
-                            <li><a href="#">く</a></li>
+                            <li class="active"><%= link_to "出張マッサージ", "#"%></li>
+                            <li><%= link_to "要国家資格のケア", "#"%></li>
+                            <li><%= link_to "アロマセラピー", "#"%></li>
+                            <li><%= link_to "リラクゼーションケア", "#"%></li>
+                            <li><%= link_to "骨盤矯正", "#"%></li>
+                            <li><%= link_to "リフレクソロジー", "#"%></li>
+                            <li><%= link_to "タイ古式マッサージ", "#"%></li>
+                            <li><%= link_to "指圧", "#"%></li>
+                            <li><%= link_to "オイルマッサージ", "#"%></li>
+                            <li><%= link_to "アーユルヴェーダ", "#"%></li>
+                            <li><%= link_to "スポーツマッサージ", "#"%></li>
                         </ul>
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><%= link_to "トップページ", root_path %></li>
-                        <li><%= link_to "一覧ページ", user_shop_path %></li>
-                        <li><%= link_to "詳細ページ", user_details_path %></li>
+                        <li><%= link_to "トップ", root_path %></li>
+                        <li><%= link_to "一覧ページ", shop_path %></li>
+                        <li><%= link_to "詳細", "#" %></li>
                         <li><a href="./blog.html">Blog</a></li>
                         <li><a href="./contact.html">Contact</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./blog-details.html">Blog Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                <li><a href="./check-out.html">Checkout</a></li>
-                                <li><a href="./faq.html">Faq</a></li>
-                                <li><a href="./register.html">Register</a></li>
-                                <li><a href="./login.html">Login</a></li>
-                            </ul>
-                        </li>
+                        <!-- 以下は(仮)Decorator導入の際に整える -->
+                        <% if user_signed_in? %>
+                            <li><%= link_to "#{current_user.name}", "#" %>
+                                <ul class="dropdown">
+                                    <li><%= link_to "マイページ", user_path(current_user) %></li>
+                                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                                </ul>
+                            </li>
+                        <% elsif store_manager_signed_in? %>
+                            <li><%= link_to "#{current_store_manager.name}", "#" %>
+                                <ul class="dropdown">
+                                    <li><%= link_to "マイページ", store_manager_path(current_store_manager) %>
+                                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                                </ul>
+                            </li>
+                        <% else  %>
+                            <li><a href="#">アカウント</a>
+                                <ul class="dropdown">
+                                    <li><%= link_to "ログイン", new_user_session_path %></li>
+                                    <li><%= link_to "新規会員登録", new_user_registration_path %></li>
+                                    <li><%= link_to "マッサージ師として新規会員登録", new_store_manager_registration_path %>
+                                    <li><%= link_to "マッサージ師としてログイン", new_store_manager_session_path %></li>
+                                </ul>
+                            </li>
+                        <% end %>
+                        
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
@@ -161,14 +98,14 @@
         </div>
     </header>
     <!-- Header End -->
-
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery-ui.min.js"></script>
-    <script src="assets/js/jquery.countdown.min.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <script src="assets/js/jquery.zoom.min.js"></script>
-    <script src="assets/js/jquery.dd.min.js"></script>
-    <script src="assets/js/jquery.slicknav.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- 以下を消すとスマホ用のメニューが表示されなくなる -->
+    <script src="/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <script src="/assets/js/jquery.countdown.min.js"></script>
+    <script src="/assets/js/jquery.nice-select.min.js"></script>
+    <script src="/assets/js/jquery.zoom.min.js"></script>
+    <script src="/assets/js/jquery.dd.min.js"></script>
+    <script src="/assets/js/jquery.slicknav.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="/assets/js/main.js"></script>

@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .box29 {
   margin: 2em 0;
   background: #C0C0C0;
@@ -73,7 +74,7 @@
   padding-top: 30px;
 }
 .s_top_space {
-  padding-top: 15px;
+  padding-top: 10px;
 }
 .posted_text {
   padding-left: 20px;
@@ -183,4 +184,19 @@ i.icon-l.ctg-icon_aircon {
 .box-content{
   line-height: 1.5;
   margin: 10px 10px 20px 10px;
+}
+
+// detailsページ //
+
+.csr-btn {
+  float: right;
+}
+
+.area-action {
+  float: right;
+}
+
+// shopページ //
+.width_660 {
+  width: 660px;
 }

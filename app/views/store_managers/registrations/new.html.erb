@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <h3 class="mt-5 mb-4 text-center">
+        Smart Portalサイト<br>
+        新規掲載用ご登録画面
+      </h3>
+      <hr>
+      <p>
+        スマートポータルサイトに掲載する情報を入力し、「登録する」ボタンを押してください。<br>
+        入力した内容は後から変更することができます。
+      </p>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-success mt-5 text_left"><%= message %></div>
+      <% end %>
+      <div class="jumbotron">
+        <div class="form_group">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <h5 class="mb-3">【店舗管理者の情報】</h5>
+            <i>
+              店舗の代表者様や施術者の方についての入力欄です。<br>
+              ご登録いただいた情報は管理画面にログインする際に必要となります。
+            </i>
+            <div class="field mt-4">
+              <%= f.label :name, class:"mr-2"%><span class="badge badge-danger">必須</span>
+              <%= f.text_field :name, autofocus: true, class:"form-control", required: true %>
+            </div>
+
+            <div class="field mt-3">
+              <%= f.label :email, class:"mr-2" %><span class="badge badge-danger">必須</span>
+              <%= f.email_field :email, autocomplete: "email", class:"form-control", required: true %>
+            </div>
+
+            <div class="field mt-3">
+              <%= f.label :password, class:"mr-2" %><span class="badge badge-danger">必須</span>&nbsp;
+              <% if @minimum_password_length %>
+                <i>(<%= @minimum_password_length %>文字以上)</i>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password", class:"form-control", required: true %>
+            </div>
+            <div class="field mt-3">
+              <%= f.label :password_confirmation, class:"mr-2" %><span class="badge badge-danger">必須</span><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+            </div>
+
+            <h5 class="mt-5 mb-4">【店舗情報】</h5>
+            <%= f.fields_for :store do |sf| %>
+              <div class="field mt-3">
+                <%= sf.label :store_name, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>店舗がない方は名前を入力してください。</i>
+                <%= sf.text_field :store_name, class:"form-control", required: true %>
+              </div>
+
+              <div class="field mt-3">
+                <%= sf.label :adress, class:"mr-2" %>
+                <%= sf.text_field :adress,placeholder: "例）東京都墨田区押上１丁目１−２", class:"form-control" %>
+              </div>
+
+              <div class="field mt-3">
+                <%= sf.label :store_phonenumber, class:"mr-2" %>
+                <%= sf.text_field :store_phonenumber,placeholder: "例）012-3456-7890", class:"form-control" %>
+              </div>
+
+              <div class="field mt-3">
+                <%= sf.label :store_description, class:"mr-2" %>
+                <%= sf.text_area :store_description, class:"form-control" %>
+              </div>
+              <!--<%= sf.fields_for :storeimages do |sif| %>
+                  <div class="field mt-3">
+                    <%= sif.label :image, class:"mr-2" %><br>
+                    <%= sif.file_field :image, multiple: true %>
+                  </div>
+                <% end %>-->
+
+              <h5 class="mt-5 mb-3">【施術プラン】</h5>
+              <i>プランは後ほど追加登録することができます。</i>
+              <%= sf.fields_for :plans do |pf| %>
+                <div class="field mt-4">
+                  <%= pf.label :plan_name, class:"mr-2"%><span class="badge badge-danger">必須</span>
+                  <%= pf.text_field :plan_name, placeholder: "例）リラクゼーションボディケア", class:"form-control", required: true %>
+                </div>
+
+                <div class="field mt-3">
+                  <%= pf.label :plan_content, class:"mr-2"%><span class="badge badge-danger">必須</span>
+                  <%= pf.text_area :plan_content, placeholder: "例）着衣の上からお身体のほぐしとヘッドマッサージを行います。", class:"form-control", required: true %>
+                </div>
+
+                <div class="field mt-3">
+                  <%= pf.label :plan_time, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>単位は「分」となります。</i>
+                  <%= pf.number_field :plan_time, placeholder: "例）90", class:"form-control", required: true %>
+                </div>
+
+                <div class="field mt-3">
+                  <%= pf.label :plan_price, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>単位は「円（税込）」となります。</i>
+                  <%= pf.number_field :plan_price, placeholder: "例）10000", class:"form-control", required: true %>
+                </div>
+
+                <!-- Plan画像入力欄 -->
+
+              <% end %>
+            <% end %>
+          <div class="actions mt-5 text-center">
+            <%= f.submit "登録する", class:"btn btn-primary w-75"%>
+          </div>
+        <% end %>
+        </div>
+      </div>
+      <div class="text_width">
+        <%= render "store_managers/shared/links" %>
+      </div>
+      <%= render template: "layouts/store_managers"%>
+    </div>
+  </div>
+</div>

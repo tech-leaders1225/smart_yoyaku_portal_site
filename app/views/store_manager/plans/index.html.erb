@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <% flash.each do |message_type, msg| %>
+        <div class="mt-4 alert alert-<%= message_type %>"><%= msg %></div>
+      <% end %>
+        <h3 class="showpage-title text-center"><%= current_store_manager.store.store_name %>の登録プラン一覧</h3>
+        <div class="new-btn-show">
+          <span class="btn btn-outline-primary"><%= link_to "新規登録", new_store_manager_plan_path %></span>
+        </div>
+         <% @plans.each do |plan| %>
+           <table class="table">
+              <tbody>
+                <tr>
+                  <td class="align-middle"><%= link_to plan.plan_name.truncate(15), store_manager_plan_path(plan)  %></td>
+                  <td class="text-right">
+                    <%= link_to "編集", edit_store_manager_plan_path(plan), class:"btn btn-outline-primary" %>
+                    <%= link_to "削除", store_manager_plan_path(plan), method: :delete,
+                    data: { confirm: "#{plan.plan_name} を削除しますか？" } , class:"btn btn-outline-danger" %>
+                  </td>
+                </tr>
+              </tbody>
+           </table>
+         <% end %>
+       <br><br><%= link_to "登録内容の編集に戻る", store_managers_show_path(current_store_manager) %><br><br><br>
+    </div>
+  </div>
+</div>
+
+

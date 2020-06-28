@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  # layout 'user' <- 有効にするとheaderとfotterが3回表示されレイアウトが崩れる
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+
+  # before_action :authenticate_user!, only: [:show] <- 動作しなかったのでs代わりにigned_in_userを作成
+  before_action :signed_in_user, only: [:show]
+  before_action :correct_user, only: [:show]
+
+  def show
+  end
 
   # GET /resource/sign_up
   # def new
@@ -38,7 +47,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected 
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -59,4 +68,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  # userのログイン後の画面を指定
+  # users/registrations_controllerに移すと動作しなくなる
+
+  # user情報の更新後の画面を指定
+  def after_update_path_for(users)
+    user_path(current_user)
+  end
+
+  # ログイン中ユーザーの有無を確認
+  def signed_in_user
+    unless user_signed_in?
+      flash[:alert] = "ログインしてください。"
+      redirect_to new_user_session_url
+    end
+  end
+
+  # アクセスしたユーザーが現在ログインしているユーザーか確認します。
+  def correct_user
+    unless (params[:id]) == current_user.id.to_s
+      flash[:notice] = "アクセス権限がありません。"
+      redirect_to root_url
+    end
+  end
 end
