@@ -146,8 +146,9 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # 予約システム側で保持するtoken, idをポータルサイト側で保存
   def update_resourses(response)
     parsed_json = JSON.parse(response)
+    debugger
     @store_manager.update!(smart_token: parsed_json["user"]["token"])
-    @store.update!(calendar_id: parsed_json["user"]["calendars"][0]["public_uid"])
+    @store.update!(calendar_id: parsed_json["user"]["calendars"][0]["public_uid"], calendar_secret_id: parsed_json["user"]["calendars"][0]["id"])
     @plan.update!(course_id: parsed_json["user"]["calendars"][0]["task_courses"][0]["id"])
     @masseur.update!(staff_id: parsed_json["staff"]["id"])
   end
