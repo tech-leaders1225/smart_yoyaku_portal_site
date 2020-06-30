@@ -21,7 +21,7 @@ module SmartYoyakuApi::Task
     request = Net::HTTP::Patch.new(url)
     request["Authorization"] = "Bearer #{plan.store.store_manager.smart_token}"
     request["Content-Type"] = "application/json"
-    request.body = "{\n\t\"title\": \"#{plan.plan_name}\",\n\t\"description\":\"#{plan.plan_content}\",\n\t\"course_time\": #{plan.plan_time} ,\n\t\"calendar_id\": #{plan.store.calendar_secret_id},\n\t\"charge\": #{plan.plan_price}\n}"
+    request.body = "{\n\t\"title\": \"#{plan.plan_name}\",\n\t\"description\":\"#{plan.plan_content.gsub(/\R/, "")}\",\n\t\"course_time\": #{plan.plan_time} ,\n\t\"calendar_id\": #{plan.store.calendar_secret_id},\n\t\"charge\": #{plan.plan_price}\n}"
     response = http.request(request)
     JSON.parse(response.body)
   end
