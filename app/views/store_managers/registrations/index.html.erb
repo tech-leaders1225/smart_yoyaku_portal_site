@@ -32,28 +32,28 @@
 <%= render template: "layouts/store_managers"%>
 
 
-  <%= @event["tasks"][0]["request"] %>
+  <% @test["tasks"].each do |task| %>
+    <%= task["request"] %>
+    <%= task["start_at"] %>
+    <%= task["end_at"] %>
+  <% end %>
  <!-- var test = @event["tasks"][0]["request"] -->
  
 <script>
 
-var uri = `curl -v -X GET "https://smartyoyaku-staging.herokuapp.com/api/v1/tasks" \
-          -H "Authorization: Bearer zW7L6rzrFcqMCAJ64fQcBYJx"`
-var event = JSON.parse(uri)
-
 var events_data=[
 {
 title: 'All Day Event',
-start: '2016-09-01',
+start: '2020-06-28',
 },
 {
 title: 'Long Event',
-start: '2016-09-07',
-end: '2016-09-10',
+start: '2020-06-28',
+end: '2020-06-28',
 },
 ];
 
-
+console.log(events_data);
 
 $('#calendar').fullCalendar({
         // ヘッダーのタイトルとボタン
@@ -67,7 +67,7 @@ $('#calendar').fullCalendar({
             //ここにモーダルで詳細表示
             alert('日付クリックイベント');
         },
-        events:events_data,
+        events: events_data,
         // イベントソース(ここにAPI情報を記載)
         eventSources: [
             {
