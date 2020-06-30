@@ -16,7 +16,7 @@ class StoreManager::PlansController < StoreManager::Base
   def create
     @plan = current_store_manager.store.plans.build(plan_params)
     ActiveRecord::Base.transaction do
-      response_parse = SmartYoyakuApi::Task.task_create(@plan)
+      response_parse = SmartYoyakuApi::TaskCourse.task_course_create(@plan)
       @plan.course_id = response_parse['data']['id']
       @plan.save
       if @plan.persisted?
@@ -37,17 +37,18 @@ class StoreManager::PlansController < StoreManager::Base
 
   def update
     ActiveRecord::Base.transaction do
-      response_parse = SmartYoyakuApi::Task.task_update(@plan)
-      if response_parse['status'] == "200"
-        if @plan.update(plan_params)
+      if @plan.valid?
+        response_parse = SmartYoyakuApi::TaskCourse.task_course_update(@plan)
+        if response_parse['status'] == "200"
+          @plan.update(plan_params)
           flash[:success] = "#{@plan.plan_name}の情報を更新しました。"
           redirect_to store_manager_plans_url
         else
-          flash.now[:danger] = "入力内容に誤りがあったため更新できませんでした。"
-          render :edit
+          raise RuntimeError
         end
       else
-        raise RuntimeError
+        flash.now[:danger] = "入力内容に誤りがあったため更新できませんでした。"
+        render :edit
       end
     end
   end
@@ -55,7 +56,7 @@ class StoreManager::PlansController < StoreManager::Base
 
   def destroy
     ActiveRecord::Base.transaction do
-      response_parse = SmartYoyakuApi::Task.task_delete(@plan)
+      response_parse = SmartYoyakuApi::TaskCourse.task_course_delete(@plan)
       if response_parse['status'] == "200"
         if @plan.destroy
           flash[:success] = "プランを削除しました。"

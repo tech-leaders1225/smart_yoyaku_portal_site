@@ -1,6 +1,6 @@
-module SmartYoyakuApi::Task
+module SmartYoyakuApi::TaskCourse
 
-  def task_create(plan)
+  def task_course_create(plan)
     #アクセスするURLの指定 localなので現在であるとhttp本番ではhttpsになる
     url = URI(reserve_app_url + "api/v1/task_courses")
     #httpリクエストの開始
@@ -15,7 +15,7 @@ module SmartYoyakuApi::Task
     JSON.parse(response.body)
   end
 
-  def task_update(plan)
+  def task_course_update(plan)
     url = URI(reserve_app_url + "api/v1/task_courses/#{plan.course_id}")
     http = Net::HTTP.new(url.host, url.port);
     request = Net::HTTP::Patch.new(url)
@@ -26,7 +26,7 @@ module SmartYoyakuApi::Task
     JSON.parse(response.body)
   end
 
-  def task_delete(plan)
+  def task_course_delete(plan)
     url = URI(reserve_app_url + "api/v1/task_courses/#{plan.course_id}")
     http = Net::HTTP.new(url.host, url.port);
     request = Net::HTTP::Delete.new(url)
@@ -39,5 +39,5 @@ module SmartYoyakuApi::Task
     Rails.env.development? ? "http://localhost:3000/" : "https://smartyoyaku-staging.herokuapp.com/"
   end
 
-  module_function :task_create, :task_update, :task_delete, :reserve_app_url
+  module_function :task_course_create, :task_course_update, :task_course_delete, :reserve_app_url
 end
