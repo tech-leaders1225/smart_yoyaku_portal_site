@@ -37,10 +37,9 @@ class StoreManager::PlansController < StoreManager::Base
 
   def update
     ActiveRecord::Base.transaction do
-      if @plan.valid?
-        response_parse = SmartYoyakuApi::TaskCourse.task_course_update(@plan)
+      if @plan.update(plan_params)
+      response_parse = SmartYoyakuApi::TaskCourse.task_course_update(@plan)
         if response_parse['status'] == "200"
-          @plan.update(plan_params)
           flash[:success] = "#{@plan.plan_name}の情報を更新しました。"
           redirect_to store_manager_plans_url
         else
@@ -56,17 +55,17 @@ class StoreManager::PlansController < StoreManager::Base
 
   def destroy
     ActiveRecord::Base.transaction do
-      response_parse = SmartYoyakuApi::TaskCourse.task_course_delete(@plan)
-      if response_parse['status'] == "200"
-        if @plan.destroy
+      if @plan.destroy
+        response_parse = SmartYoyakuApi::TaskCourse.task_course_delete(@plan)
+        if response_parse['status'] == "200"
           flash[:success] = "プランを削除しました。"
         else
-          flash[:danger] = '削除に失敗しました。再度やり直してください。'
+          raise RuntimeError
         end
       else
-        raise RuntimeError
+        flash[:danger] = '削除に失敗しました。再度やり直してください。'
       end
-      redirect_to store_manager_plans_url(current_store_manager)
+    redirect_to store_manager_plans_url(current_store_manager)
     end
   end
 
