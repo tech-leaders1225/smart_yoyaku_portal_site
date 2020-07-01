@@ -12,6 +12,7 @@ Admin.create!(email: "admin@email.com",
 
 User.create!(name: "tester",
             email: "tester@email.com",
+            address: "japan-aichi-nagoya",
             password: "password",
             password_confirmation: "password",
             nickname: "tester",
@@ -33,6 +34,7 @@ Store.create!(store_name: "abc_store",
 
 Masseur.create!(masseur_name: "cororo",
                email: "cororo@email.com",
+               adress: "japan-aichi-nagoya",
                password: "password",
                password_confirmation: "password",
                store_id: 1
