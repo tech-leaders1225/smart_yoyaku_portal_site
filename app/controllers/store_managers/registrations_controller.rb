@@ -6,7 +6,6 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
 
   before_action :sign_in_store_manager, only:[:show, :index]
   before_action :correct_store_manager, only:[:show, :index]
-  after_action :update_user, only: [:update]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -63,9 +62,30 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+    ActiveRecord::Base.transaction do
+      resource_updated = update_resource(resource, account_update_params)
+      yield resource if block_given?
+      if resource_updated
+        set_flash_message_for_update(resource, prev_unconfirmed_email)
+        bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
+
+        respond_with resource, location: after_update_path_for(resource)
+        # 予約システム側のUser情報を更新
+        set_arguments
+        @response = update_user(@name, @email, @password)
+        unless JSON.parse(@response)["status"] == "200"
+          raise StandardError, "予約システムでuserのupdateに失敗しました。"
+        end   
+      else
+        clean_up_passwords resource
+        set_minimum_password_length
+        respond_with resource
+      end
+    end  
+  end
 
   # DELETE /resource
   # def destroy
@@ -150,5 +170,11 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
     @store.update!(calendar_id: parsed_json["user"]["calendars"][0]["public_uid"])
     @plan.update!(course_id: parsed_json["user"]["calendars"][0]["task_courses"][0]["id"])
     @masseur.update!(staff_id: parsed_json["staff"]["id"])
+  end
+
+  def set_arguments
+    @name = params[:store_manager][:name]
+    @email = params[:store_manager][:email]
+    @password = params[:store_manager][:password]
   end
 end

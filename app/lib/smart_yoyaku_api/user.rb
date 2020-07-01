@@ -19,12 +19,12 @@ module SmartYoyakuApi::User
   end
 
   # 予約システム側でUserの更新を行う
-  def update_user(reserve_app_url)
-    url = reserve_app_url + "api/v1/users/#{current_store_manager.id}"
+  def update_user(name, email, password)
+    url = reserve_app_url + "api/v1/users"
     `curl -v -X PATCH "#{url}" \
-    -d '{"user":{"name":"#{current_store_manager.name}","email":"#{current_store_manager.email}","password":"#{current_store_manager.password}"}}' \
+    -d '{"user":{"name":"#{name}","email":"#{email}","password":"#{password}","password_confirmation":"#{password}"}}' \
     -H 'Accept: application/json' \
     -H 'Content-Type:application/json' \
-    -H 'Authorization: Bearer #{current_store_manager.smart_token}'`
+    -H 'Authorization: Bearer "#{current_store_manager.smart_token}"'`
   end
 end
