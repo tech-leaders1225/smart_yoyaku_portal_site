@@ -33,27 +33,40 @@
 
 
   <% @test["tasks"].each do |task| %>
-    <%= task["request"] %>
-    <%= task["start_at"] %>
-    <%= task["end_at"] %>
+    <!--<%= task["request"] %>-->
+    <!--<%= task["start_at"] %>-->
+    <!--<%= task["end_at"] %> -->
+        <%= task %>
+        
+   <div id="title" data-title-id="<%= task["request"] %>"></div>
+   <div id="start" data-start-id="<%= task["start_at"] %>"></div>
+   <div id="end" data-end-id="<%= task["end_at"] %>"></div>
+   <div id="name" data-name-id="<%= task["store_member"]["name"] %>"></div>
+   <div id="course" data-course-id="<%= task["task_course"]["title"] %>"></div>
   <% end %>
+  
+  
  <!-- var test = @event["tasks"][0]["request"] -->
- 
+
 <script>
+var title = $('#title').data('title-id');
+var start = $('#start').data('start-id');
+var end = $('#end').data('end-id');
+var name = $('#name').data('name-id');
+var course = $('#course').data('course-id');
+
 
 var events_data=[
 {
-title: 'All Day Event',
+title: name + "様:" + course,
 start: '2020-06-28',
 },
 {
-title: 'Long Event',
-start: '2020-06-28',
-end: '2020-06-28',
+title: "aa",
+start: '2020-07-02',
+end: '2020-07-02',
 },
 ];
-
-console.log(events_data);
 
 $('#calendar').fullCalendar({
         // ヘッダーのタイトルとボタン

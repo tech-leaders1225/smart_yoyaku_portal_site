@@ -15,8 +15,8 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
     uri = `curl -v -X GET "https://smartyoyaku-staging.herokuapp.com/api/v1/tasks" \
           -H "Authorization: Bearer zW7L6rzrFcqMCAJ64fQcBYJx"`
     @test = JSON.parse(uri)
+    @datas = "aaaaaaa"
     
-  
   end
 
   def details
