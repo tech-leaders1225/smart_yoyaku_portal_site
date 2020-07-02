@@ -52,63 +52,30 @@
 
 
 
-
-
-<% @test["tasks"].each do |task| %>
-  <!--<%= task["request"] %>-->
-  <!--<%= task["start_at"] %>-->
-      <%= Time.at(task["end_at"] + 32400) %>
-        <p>予約者名、予約日時、予約メニュー、所要時間、価格、予約者の電話番号、予約者の住所、予約者の要望</p>
-  <div id="title" data-title-id="<%= task["request"] %>"></div>
-  <div id="start" data-start-id="<%= Time.at(task["start_at"] + 32400) %>"></div>
-   <div id="end" data-end-id="<%= Time.at(task["end_at"] + 32400) %>"></div>
-   <div id="name" data-name-id="<%= task["store_member"]["name"] %>"></div>
-   <div id="phone" data-phone-id="<%= task["store_member"]["phone"] %>"></div>
-   <div id="address" data-address-id="<%= task["store_member"]["address"] %>"></div>
-   <div id="course" data-course-id="<%= task["task_course"]["title"] %>"></div>
-   <div id="course_time" data-course-time-id="<%= task["task_course"]["course_time"] %>"></div>
-   <div id="charge" data-charge-id="<%= task["task_course"]["charge"] %>"></div>
-   <div id="request" data-request-id="<%= task["request"] %>"></div>
-   
-   <div id="task" data-task-id="<%= task %>"></div>
-<% end %>
-  
-  
- <!-- var test = @event["tasks"][0]["request"] -->
-
 <script>
 
-// 予約サイトのそれぞれの情報を変数に代入
-var task = $('#task').data('task-id');
-var title = $('#title').data('title-id');
-var start = $('#start').data('start-id');
-var end = $('#end').data('end-id');
-var name = $('#name').data('name-id');
-var phone = $('#phone').data('phone-id');
-var address = $('#address').data('address-id');
-var course = $('#course').data('course-id');
-var course_time = $('#course-time').data('course-time-id');
-var charge = $('#charge').data('charge-id');
-var request = $('#request').data('request-id');
-// カレンダーに表示するデータ
-var events_data=[
-{
-title: name + "様:" + course,
-start: '2020-06-28',
-// start: start,
-// end: end,
-name: name,
-phone: phone,
-address: address,
-course: course,
-course_time: course_time,
-charge: charge,
-request: request,
-}
-];
 
-console.log(task);
-$('#calendar').fullCalendar({
+Object.keys(gon.events).forEach(function (key) {
+  
+  var id = (gon.events[key]["id"])
+  var request = (gon.events[key]["request"])
+  var start = (moment.unix(gon.events[key]["start_at"]).format());
+  var end = (moment.unix(gon.events[key]["end_at"]).format());
+  var title = (gon.events[key]["task_course"]["title"])
+  var course_time = (gon.events[key]["task_course"]["course_time"])
+  var charge = (gon.events[key]["task_course"]["charge"])
+  var name = (gon.events[key]["store_member"]["name"])
+  var phone = (gon.events[key]["store_member"]["phone"])
+  var address = (gon.events[key]["store_member"]["address"])
+  
+  var data = [
+    {"title": title}, 
+    {"start": start}, 
+    {"end": end}
+  ]
+  
+  
+  $('#calendar').fullCalendar({
         // ヘッダーのタイトルとボタン
         header: {
             // title, prev, next, prevYear, nextYear, today
@@ -126,7 +93,7 @@ $('#calendar').fullCalendar({
             
             alert('日付クリックイベント');
         },
-        events: events_data,
+        events: data,
         
         // ボタン文字列
         buttonText: {
@@ -141,4 +108,15 @@ $('#calendar').fullCalendar({
         dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
         
 });
+});
+
+var events_data=[
+      {
+      title: "event",
+      start: "2020-07-07",
+      }
+  ];
+
+
+
 </script>
