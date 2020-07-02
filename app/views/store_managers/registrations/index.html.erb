@@ -32,34 +32,76 @@
 <%= render template: "layouts/store_managers"%>
 
 
-  <% @test["tasks"].each do |task| %>
-    <!--<%= task["request"] %>-->
-    <!--<%= task["start_at"] %>-->
+
+<div id="calendarModal" class="modal fade">
+  <div class="modal-dialog modal-dialog-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">close</span>
+        </button>
+        <span id="modalTitle" class="modal-title"></span>
+      </div>
+      <div id="modalBody" class="modal-body">あああ</div>
+      <div id="modalFooter" class="modal-footer"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<% @test["tasks"].each do |task| %>
+  <!--<%= task["request"] %>-->
+  <!--<%= task["start_at"] %>-->
     <!--<%= task["end_at"] %> -->
-        <%= task %>
-        
-   <div id="title" data-title-id="<%= task["request"] %>"></div>
-   <div id="start" data-start-id="<%= task["start_at"] %>"></div>
+        <%= task["request"] %>
+        <p>予約者名、予約日時、予約メニュー、所要時間、価格、予約者の電話番号、予約者の住所、予約者の要望</p>
+  <div id="title" data-title-id="<%= task["request"] %>"></div>
+  <div id="start" data-start-id="<%= task["start_at"] %>"></div>
    <div id="end" data-end-id="<%= task["end_at"] %>"></div>
    <div id="name" data-name-id="<%= task["store_member"]["name"] %>"></div>
+   <div id="phone" data-phone-id="<%= task["store_member"]["phone"] %>"></div>
+   <div id="address" data-address-id="<%= task["store_member"]["address"] %>"></div>
    <div id="course" data-course-id="<%= task["task_course"]["title"] %>"></div>
-  <% end %>
+   <div id="course_time" data-course-time-id="<%= task["task_course"]["course_time"] %>"></div>
+   <div id="charge" data-charge-id="<%= task["task_course"]["charge"] %>"></div>
+   <div id="request" data-request-id="<%= task["request"] %>"></div>
+<% end %>
   
   
  <!-- var test = @event["tasks"][0]["request"] -->
 
 <script>
+
+// 予約サイトのそれぞれの情報を変数に代入
 var title = $('#title').data('title-id');
 var start = $('#start').data('start-id');
 var end = $('#end').data('end-id');
 var name = $('#name').data('name-id');
+var phone = $('#phone').data('phone-id');
+var address = $('#address').data('address-id');
 var course = $('#course').data('course-id');
-
-
+var course_time = $('#course-time').data('course-time-id');
+var charge = $('#charge').data('charge-id');
+var request = $('#request').data('request-id');
+// カレンダーに表示するデータ
 var events_data=[
 {
 title: name + "様:" + course,
 start: '2020-06-28',
+// start: start,
+// end: end,
+name: name,
+phone: phone,
+address: address,
+course: course,
+course_time: course_time,
+charge: charge,
+request: request,
 },
 {
 title: "aa",
@@ -76,8 +118,14 @@ $('#calendar').fullCalendar({
             center: 'title',
             right: 'month agendaWeek agendaDay'
         },
+        eventClick: function(calEvent, jsEvent, view) {
+           // 予定が入っている日をクリックするとモーダル表示
+           $('#modalTitle').html(calEvent.title); // モーダルのタイトルをセット
+           $('#modalBody').html([calEvent.request ]); // モーダルの本文をセット
+           $('#calendarModal').modal(); // モーダル着火
+        },
         dayClick: function () {
-            //ここにモーダルで詳細表示
+            
             alert('日付クリックイベント');
         },
         events: events_data,
