@@ -41,7 +41,10 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
         @masseur = create_masseur
         # 予約システム側でUser, Caledar, TaskCourseを作成
         set_store_and_plan
-        @response = create_user(@store_manager, @store, @plan)    
+        @response = create_user(@store_manager, @store, @plan)
+        unless JSON.parse(@response)["status"] == "200"
+          raise StandardError, "予約システムでuserのcreateに失敗しました。"
+        end
         # @responseに含まれるtokenと各idを登録     
         update_resourses(@response)
         set_flash_message! :notice, :signed_up

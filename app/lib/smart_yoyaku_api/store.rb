@@ -1,6 +1,8 @@
 module SmartYoyakuApi::Store
   include SmartYoyakuApi::User
 
+  private
+
   # 予約システム側でCalendarの更新を行う    
   def update_calendar(store)
     url = reserve_app_url + "api/v1/calendars"

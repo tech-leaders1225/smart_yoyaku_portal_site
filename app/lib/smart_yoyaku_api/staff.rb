@@ -1,6 +1,8 @@
 module SmartYoyakuApi::Staff
   include SmartYoyakuApi::User
 
+  private
+
   # 予約システム側のStaff情報を更新    
   def update_staff(masseur)
     url = reserve_app_url + "api/v1/staffs/#{masseur.staff_id}"
