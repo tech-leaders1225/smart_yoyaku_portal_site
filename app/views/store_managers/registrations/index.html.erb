@@ -57,12 +57,11 @@
 <% @test["tasks"].each do |task| %>
   <!--<%= task["request"] %>-->
   <!--<%= task["start_at"] %>-->
-    <!--<%= task["end_at"] %> -->
-        <%= task["request"] %>
+      <%= Time.at(task["end_at"] + 32400) %>
         <p>予約者名、予約日時、予約メニュー、所要時間、価格、予約者の電話番号、予約者の住所、予約者の要望</p>
   <div id="title" data-title-id="<%= task["request"] %>"></div>
-  <div id="start" data-start-id="<%= task["start_at"] %>"></div>
-   <div id="end" data-end-id="<%= task["end_at"] %>"></div>
+  <div id="start" data-start-id="<%= Time.at(task["start_at"] + 32400) %>"></div>
+   <div id="end" data-end-id="<%= Time.at(task["end_at"] + 32400) %>"></div>
    <div id="name" data-name-id="<%= task["store_member"]["name"] %>"></div>
    <div id="phone" data-phone-id="<%= task["store_member"]["phone"] %>"></div>
    <div id="address" data-address-id="<%= task["store_member"]["address"] %>"></div>
@@ -70,6 +69,8 @@
    <div id="course_time" data-course-time-id="<%= task["task_course"]["course_time"] %>"></div>
    <div id="charge" data-charge-id="<%= task["task_course"]["charge"] %>"></div>
    <div id="request" data-request-id="<%= task["request"] %>"></div>
+   
+   <div id="task" data-task-id="<%= task %>"></div>
 <% end %>
   
   
@@ -78,6 +79,7 @@
 <script>
 
 // 予約サイトのそれぞれの情報を変数に代入
+var task = $('#task').data('task-id');
 var title = $('#title').data('title-id');
 var start = $('#start').data('start-id');
 var end = $('#end').data('end-id');
@@ -102,14 +104,10 @@ course: course,
 course_time: course_time,
 charge: charge,
 request: request,
-},
-{
-title: "aa",
-start: '2020-07-02',
-end: '2020-07-02',
-},
+}
 ];
 
+console.log(task);
 $('#calendar').fullCalendar({
         // ヘッダーのタイトルとボタン
         header: {
@@ -129,22 +127,7 @@ $('#calendar').fullCalendar({
             alert('日付クリックイベント');
         },
         events: events_data,
-        // イベントソース(ここにAPI情報を記載)
-        eventSources: [
-            {
-                events: [
-                    {
-                        title: 'event1',
-                        start: '2020-06-01'
-                    },
-                    {
-                        title:  "event2",
-                        start: '2020-06-02',
-                        end: '2020-06-02'
-                    },
-                ]
-            }
-        ],
+        
         // ボタン文字列
         buttonText: {
             today:    '今日',
