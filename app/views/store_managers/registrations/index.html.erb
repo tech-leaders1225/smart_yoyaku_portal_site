@@ -43,7 +43,9 @@
         </button>
         <span id="modalTitle" class="modal-title"></span>
       </div>
-      <div id="modalBody" class="modal-body">あああ</div>
+      <div id="modalBody" class="modal-body">
+        kakakakak
+      </div>
       <div id="modalFooter" class="modal-footer"></div>
     </div>
   </div>
@@ -51,32 +53,17 @@
 
 
 
-
 <script>
-
-
-Object.keys(gon.events).forEach(function (key) {
-  
-  var id = (gon.events[key]["id"])
-  var request = (gon.events[key]["request"])
-  var start = (moment.unix(gon.events[key]["start_at"]).format());
-  var end = (moment.unix(gon.events[key]["end_at"]).format());
-  var title = (gon.events[key]["task_course"]["title"])
-  var course_time = (gon.events[key]["task_course"]["course_time"])
-  var charge = (gon.events[key]["task_course"]["charge"])
-  var name = (gon.events[key]["store_member"]["name"])
-  var phone = (gon.events[key]["store_member"]["phone"])
-  var address = (gon.events[key]["store_member"]["address"])
-  
-  var data = [
-    {"title": title}, 
-    {"start": start}, 
-    {"end": end}
-  ]
-  
-  
-  $('#calendar').fullCalendar({
-        // ヘッダーのタイトルとボタン
+var test = "あああ"
+console.log(test);
+$('#calendar').fullCalendar({
+        
+        events: '/events.json',
+        //カレンダー上部を年月で表示させる
+        titleFormat: 'YYYY年 M月',
+        //曜日を日本語表示
+        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+        //ボタンのレイアウト
         header: {
             // title, prev, next, prevYear, nextYear, today
             left: 'prev,next today',
@@ -86,37 +73,27 @@ Object.keys(gon.events).forEach(function (key) {
         eventClick: function(calEvent, jsEvent, view) {
            // 予定が入っている日をクリックするとモーダル表示
            $('#modalTitle').html(calEvent.title); // モーダルのタイトルをセット
-           $('#modalBody').html([calEvent.request ]); // モーダルの本文をセット
+           $('#modalBody').html(calEvent.description); // モーダルの本文をセット
+           console.log(jsEvent);
            $('#calendarModal').modal(); // モーダル着火
         },
-        dayClick: function () {
-            
-            alert('日付クリックイベント');
-        },
-        events: data,
+        events: '/store_managers/<%= @id %>/reservations.json',
         
-        // ボタン文字列
         buttonText: {
-            today:    '今日',
-            month:    '月',
-            week:     '週',
-            day:      '日'
+            prev: '前',
+            next: '次',
+            prevYear: '前年',
+            nextYear: '翌年',
+            today: '今日',
+            month: '月',
+            week: '週',
+            day: '日'
         },
-        // 曜日名称
-        dayNames: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
-        // 曜日略称
-        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+        // Drag & Drop & Resize
+        editable: true,
+        //イベントの時間表示を２４時間に
+        timeFormat: "HH:mm",
         
 });
-});
-
-var events_data=[
-      {
-      title: "event",
-      start: "2020-07-07",
-      }
-  ];
-
-
 
 </script>
