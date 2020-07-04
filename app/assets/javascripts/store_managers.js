@@ -4,11 +4,3 @@
 //= require_tree ./store_managers
 //= require moment
 //= require fullcalendar
-
-
-
-
-
-
-
-
