@@ -16,10 +16,11 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
 
   # 予約の確認
   def index
-    # uri = curl -v -X GET 'http://localhost:3000/api/v1/tasks' \ -H 'Authorization: Bearer kWgU5AEFzMgvcuBLKSD8PaUL' \
     uri = `curl -v -X GET "https://smartyoyaku-staging.herokuapp.com/api/v1/tasks" \
           -H "Authorization: Bearer zW7L6rzrFcqMCAJ64fQcBYJx"`
     @api = JSON.parse(uri)["tasks"]
+    
+    # current_store_managerではidが取得できなかった為下記コードを記載
     @id = StoreManager.find_by(id: params[:id]).id
   end
 
