@@ -13,3 +13,7 @@
 <%= render template: "layouts/application" %>
 </body>
 </html>
+ <!-- body タグに data-turbolinks 属性を追加 -->
+  <body data-turbolinks="false">
+    <%= yield %>
+  </body>

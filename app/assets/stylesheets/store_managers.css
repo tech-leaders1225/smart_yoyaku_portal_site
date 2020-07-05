@@ -12,4 +12,5 @@
  *
  *= require_tree ./store_managers
  *= require_tree ./share
+ *= require fullcalendar
  */
