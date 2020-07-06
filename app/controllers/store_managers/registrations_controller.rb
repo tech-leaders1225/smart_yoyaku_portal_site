@@ -16,6 +16,9 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
 
   # 予約の確認
   def index
+    url = reserve_app_url + "api/v1/users"
+    url = `curl -v -X GET "#{url}" \
+    -H 'Authorization: Bearer "#{current_store_manager.smart_token}"'`
     uri = `curl -v -X GET "https://smartyoyaku-staging.herokuapp.com/api/v1/tasks" \
           -H "Authorization: Bearer zW7L6rzrFcqMCAJ64fQcBYJx"`
     @api = JSON.parse(uri)["tasks"]

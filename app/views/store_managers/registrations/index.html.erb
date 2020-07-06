@@ -21,7 +21,7 @@
 </div>
 <div class="top_space">
   <div class="text_width text_left">
-    <h1 class="top_space bottom_space">予約の管理</h1>
+    <h1 class="top_space bottom_space">予約の管理<%= @user %></h1>
   </div>
   <div class="text_width">
     <br><div id="calendar"></div>
@@ -107,6 +107,7 @@ $('#calendar').fullCalendar({
             center: 'title',
             right: 'month agendaWeek agendaDay'
         },
+        
         eventClick: function(event, jsEvent, view) {
           if ( event.end == null ){
             event.end = event.start;
@@ -150,9 +151,13 @@ $('#calendar').fullCalendar({
             week: '週',
             day: '日'
         },
+        defaultView: 'agendaWeek',
         // Drag & Drop & Resize
         editable: true,
         //イベントの時間表示を２４時間に
         timeFormat: "HH:mm",
+        displayEventTime: true,
+        displayEventEnd: true,
+        
 });
 </script>
