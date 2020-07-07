@@ -90,6 +90,8 @@
     </div>
 </div>
 
+
+
 <div id="details" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <%= render template: "layouts/store_managers"%>
 
@@ -140,7 +142,32 @@ $('#calendar').fullCalendar({
           $('#fullCalModal').modal('show');
         },
         events: '/store_managers/<%= @id %>/reservations.json',
-        
+        // header表示切替
+        viewRender : function(view, element) {
+          // 月表示の時
+          if (view.type == "month") {
+            document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前月"
+            document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "次月"
+          }
+          // 週表示の時
+          if (view.type == "agendaWeek") {
+            document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前週"
+            document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "次週"
+          }
+          // 日表示の時
+          if (view.type == "agendaDay") {
+            document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前日"
+            document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "翌日"
+          }
+        },
+        defaultView: 'agendaWeek',
+        // Drag & Drop & Resize
+        editable: true,
+        //イベントの時間表示を２４時間に
+        timeFormat: "HH:mm",
+        displayEventTime: true,
+        displayEventEnd: true,
+        //ヘッダーボタンの名前
         buttonText: {
             prev: '前',
             next: '次',
@@ -151,13 +178,6 @@ $('#calendar').fullCalendar({
             week: '週',
             day: '日'
         },
-        defaultView: 'agendaWeek',
-        // Drag & Drop & Resize
-        editable: true,
-        //イベントの時間表示を２４時間に
-        timeFormat: "HH:mm",
-        displayEventTime: true,
-        displayEventEnd: true,
         
 });
 </script>
