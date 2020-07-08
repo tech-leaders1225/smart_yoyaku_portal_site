@@ -96,7 +96,13 @@
 <%= render template: "layouts/store_managers"%>
 
 <script>
+
+
+
+
+
 $('#calendar').fullCalendar({
+        defaultView: 'agendaWeek',
         events: '/events.json',
         //カレンダー上部を年月で表示させる
         titleFormat: 'YYYY年 M月',
@@ -143,7 +149,10 @@ $('#calendar').fullCalendar({
         },
         events: '/store_managers/<%= @id %>/reservations.json',
         // header表示切替
+        
         viewRender : function(view, element) {
+          time = document.getElementsByClassName('fc-axis fc-time fc-widget-content')
+          
           // 月表示の時
           if (view.type == "month") {
             document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前月"
@@ -151,21 +160,36 @@ $('#calendar').fullCalendar({
           }
           // 週表示の時
           if (view.type == "agendaWeek") {
+            timeSet = ["am12",,"am1",,"am2",,"am3",,"am4",,"am5",,"am6",,"am7",,"am8",,"am9",,"am10",,"am11",,"pm12",,"pm1",,"pm2",,"pm3",,"pm4",,"pm5",,"pm6",,"pm7",,"pm8",,"pm9",,"pm10",,"pm11"]
+            for (var i = 0; i < 47; i=i+2){
+              
+              time[i].textContent = timeSet[i]
+              
+              
+            }
+            
             document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前週"
             document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "次週"
           }
           // 日表示の時
           if (view.type == "agendaDay") {
+            timeSet = ["am12",,"am1",,"am2",,"am3",,"am4",,"am5",,"am6",,"am7",,"am8",,"am9",,"am10",,"am11",,"pm12",,"pm1",,"pm2",,"pm3",,"pm4",,"pm5",,"pm6",,"pm7",,"pm8",,"pm9",,"pm10",,"pm11"]
+            for (var i = 0; i < 47; i=i+2){
+              
+              time[i].textContent = timeSet[i]
+              
+              
+            }
+            
             document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前日"
             document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "翌日"
           }
         },
-        defaultView: 'agendaWeek',
+        
         // Drag & Drop & Resize
         editable: true,
         // allDayの有無
         allDaySlot: false,
-        
         //イベントの時間表示を２４時間に
         timeFormat: "HH:mm",
         displayEventTime: true,
@@ -182,5 +206,8 @@ $('#calendar').fullCalendar({
             day: '日'
         },
         
+    	
+    	
+    
 });
 </script>

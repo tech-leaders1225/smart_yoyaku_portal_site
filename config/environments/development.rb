@@ -1,4 +1,5 @@
 Rails.application.configure do
+  config.hosts << "86e27ac50f6f411e8272c68cd7196bcd.vfs.cloud9.us-east-2.amazonaws.com"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -7,7 +8,6 @@ Rails.application.configure do
   config.cache_classes = false
   # Do not eager load code on boot.
   config.eager_load = false
-  config.hosts << "4e4f46ca4b3a4ef899198d33ffe60ac0.vfs.cloud9.us-east-2.amazonaws.com"
 
   # Show full error reports.
   config.consider_all_requests_local = true
