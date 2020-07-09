@@ -56,5 +56,10 @@ Rails.application.routes.draw do
       resources :masseurs, except: :show
       resources :plans
     end
+
+    # SmartYoyaku webhook↓==========================================================================
+    namespace :smart_yoyaku do
+      post "webhook", to: 'webhook#update_order_plan'
+    end
     
 end
