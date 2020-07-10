@@ -66,12 +66,13 @@
                 <%= sf.label :store_description, class:"mr-2" %>
                 <%= sf.text_area :store_description, class:"form-control" %>
               </div>
-              <!--<%= sf.fields_for :storeimages do |sif| %>
+
+              <%= sf.fields_for :store_images do |sif| %>
                   <div class="field mt-3">
-                    <%= sif.label :image, class:"mr-2" %><br>
-                    <%= sif.file_field :image, multiple: true %>
+                    <%= sif.label :store_image, class:"mr-2" %><br>
+                    <%= sif.file_field :store_image, multiple: true %>
                   </div>
-                <% end %>-->
+                <% end %>
 
               <h5 class="mt-5 mb-3">【施術プラン】</h5>
               <i>プランは後ほど追加登録することができます。</i>
@@ -95,9 +96,14 @@
                   <%= pf.label :plan_price, class:"mr-2"%><span class="badge badge-danger">必須</span>&ensp;<i>単位は「円（税込）」となります。</i>
                   <%= pf.number_field :plan_price, placeholder: "例）10000", class:"form-control", required: true %>
                 </div>
-
                 <!-- Plan画像入力欄 -->
 
+                <%= pf.fields_for :plan_images do |pif| %>
+                  <div class="field mt-3">
+                    <%= pif.label :plan_image, class:"mr-2" %><br>
+                    <%= pif.file_field :plan_image, multiple: true %>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
           <div class="actions mt-5 text-center">

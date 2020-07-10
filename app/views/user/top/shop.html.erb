@@ -52,10 +52,13 @@
             <div class="row">
               <div class="col-lg-12">
                <div class="s_top_space">
-                <%= link_to store.store_name, details_path(store), class:"bottom_space_10 white-space_n" %>
+                &emsp;<%= link_to store.store_name, details_path(store), class:"bottom_space_10 white-space_n" %>
                 <div class="posted-by">
                   <div class="pb-pic list-mgr-img-box">
-                    <img src="images/blog/post-by.png" alt="">
+                    <%  store_images = StoreImage.find_by(store_id: store) %>
+                    <% unless store_images.nil? %>
+                      <img src="<%= store_images.store_image[0].url %>" alt="" class="all_store_store_image">
+                    <% end %>
                   </div>
                   <div class="pb-text ">
                     <p class="posted_text "><%= store.store_description %></p>
