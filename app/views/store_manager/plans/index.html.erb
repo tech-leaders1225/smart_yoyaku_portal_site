@@ -15,8 +15,7 @@
                   <td class="align-middle"><%= link_to plan.plan_name.truncate(15), store_manager_plan_path(plan)  %></td>
                   <td class="text-right">
                     <%= link_to "編集", edit_store_manager_plan_path(plan), class:"btn btn-outline-primary" %>
-                    <%= link_to "削除", store_manager_plan_path(plan), method: :delete,
-                    data: { confirm: "#{plan.plan_name} を削除しますか？" } , class:"btn btn-outline-danger" %>
+                    <%= delete_plan_btn(plan, @plans) %>
                   </td>
                 </tr>
               </tbody>

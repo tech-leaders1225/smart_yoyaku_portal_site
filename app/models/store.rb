@@ -10,6 +10,7 @@ class Store < ApplicationRecord
   validates :adress, length: { minimum: 5 }, allow_blank: true
   validates :store_phonenumber, length: { minimum: 10 }, allow_blank: true
   validates :store_description, length: { minimum: 10 }, allow_blank: true
+  enum calendar_status: { "released": 0, "private": 1 }, _prefix: true
 
   scope :active, -> { includes(:store_manager).where.not(store_managers: {order_plan: nil}) }
 end
