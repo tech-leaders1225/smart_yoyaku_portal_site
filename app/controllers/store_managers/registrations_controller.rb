@@ -23,6 +23,12 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
 
   # 予約の確認
   def index
+    url = reserve_app_url + "api/v1/tasks"
+    uri = `curl -v -X GET "#{url}" \
+    -H 'Authorization: Bearer "#{current_store_manager.smart_token}"'`
+    @api = JSON.parse(uri)["tasks"]
+    
+    @id = current_store_manager.id
   end
 
   # 予約の詳細
