@@ -52,9 +52,14 @@ $('#calendar').fullCalendar({
         events: '/store_managers/<%= @id %>/reservations.json',
         
         eventClick: function(calEvent, jsEvent, view) {
-           // 予定が入っている日をクリックするとモーダル表示
-           $('#modalTitle').html(calEvent.title); // モーダルのタイトルをセット
-           $('#modalBody').html(calEvent.task); // モーダルの本文をセット
+          console.log(calEvent)
+          // 予定が入っている日をクリックするとモーダル表示
+           $('#modalTitle').html(calEvent.name); // モーダルのタイトルをセット
+           $('#modalBody .name span').html(calEvent.name);
+           $('#modalBody .email span').html(calEvent.email);
+           $('#modalBody .phone span').html(calEvent.phone);
+           $('#modalBody .start_at span').html(calEvent.start);
+           $('#modalBody .end_at span').html(calEvent.end);
            $('#calendarModal').modal(); // モーダル着火
         },
         
@@ -72,7 +77,6 @@ $('#calendar').fullCalendar({
         editable: true,
         //イベントの時間表示を２４時間に
         timeFormat: "HH:mm",
- 
         
         
 });
@@ -91,59 +95,55 @@ $('#calendar').fullCalendar({
       </div>
       <div id="modalBody" class="modal-body">
         
-        <!--<table class="table table-sm">-->
-        <!--    <tbody>-->
+        <table class="table table-sm">
+            <tbody>
               
-        <!--        <tr>-->
-        <!--          <th scope="row">名前</th>-->
-        <!--          <td>山田太郎</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <th scope="row">メールアドレス</th>-->
-        <!--          <td>yamada@email.com</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <th scope="row">電話番号</th>-->
-        <!--          <td>09098765432</td>-->
-        <!--        </tr>-->
+                <tr>
+                    <th scope="row">予約者</th>
+                    <td class="name"><span></span>様</td>
+                  </tr>
+                <tr>
+                    <th scope="row">メールアドレス</th>
+                    <td class="email"><span></span></td>
+                  </tr>
+                <tr>
+                  <th scope="row">電話番号</th>
+                  <td class="phone"><span></span></td>
+                </tr>
               
-        <!--        <tr>-->
-        <!--          <th scope="row">予約開始時間</th>-->
-        <!--          <td>-->
-        <!--            <td>09:00</td>-->
-        <!--          </td>-->
-        <!--        </tr>-->
+                <tr>
+                  <th scope="row">予約開始時間</th>
+                  <td class="start_at"><span></span></td>
+                </tr>
                 
-        <!--        <tr>-->
-        <!--          <th scope="row">予約開始時間</th>-->
-        <!--          <td>-->
-        <!--            <td>12:00</td>-->
-        <!--          </td>-->
-        <!--        </tr>-->
+                <tr>
+                  <th scope="row">予約終了時間</th>
+                  <td class="end_at"><span></span></td>
+                </tr>
                 
-        <!--        <tr>-->
-        <!--          <th scope="row">予約コース</th>-->
-        <!--          <td>足つぼ</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <th scope="row">担当者名</th>-->
-        <!--          <td>staffA</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <th scope="row">ご要望</th>-->
-        <!--          <td>ご要望スペース</td>-->
-        <!--        </tr>-->
-        <!--        <tr>-->
-        <!--          <th scope="row">メモ</th>-->
-        <!--          <td>メモスペース</td>-->
-        <!--        </tr>-->
+                <tr>
+                  <th scope="row">予約コース</th>
+                  <td>足つぼ</td>
+                </tr>
+                <tr>
+                  <th scope="row">担当者名</th>
+                  <td>staffA</td>
+                </tr>
+                <tr>
+                  <th scope="row">ご要望</th>
+                  <td>ご要望スペース</td>
+                </tr>
+                <tr>
+                  <th scope="row">メモ</th>
+                  <td>メモスペース</td>
+                </tr>
                 
-        <!--    </tbody>-->
-        <!--  </table>-->
+            </tbody>
+          </table>
       </div>
       
       <div id="modalFooter" class="modal-footer"></div>
     </div>
   </div>
 </div>
-<%= @event %>
+<%= @events %>
