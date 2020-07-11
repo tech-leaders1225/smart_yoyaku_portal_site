@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_07_04_051215) do
+=======
+ActiveRecord::Schema.define(version: 2020_07_05_082752) do
+>>>>>>> 58e890a4b6cc3603cfac50e89bd0b18abaf64768
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -137,7 +141,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_051215) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "smart_token"
-    t.boolean "payment_status", default: false
+    t.integer "order_plan"
     t.index ["email"], name: "index_store_managers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_store_managers_on_reset_password_token", unique: true
   end

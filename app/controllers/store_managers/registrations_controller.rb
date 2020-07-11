@@ -12,6 +12,13 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # 登録内容の編集
   def show
     @store = current_store_manager.store
+    # 「ご契約中のシステムプランの確認」の遷移先
+    @order_plan_url = 
+      if current_store_manager.order_plan.nil?
+        reserve_app_url + "pay/choice_plan"
+      else  
+        reserve_app_url + "order_plan/#{current_store_manager.order_plan}"
+      end
   end
 
   # 予約の確認

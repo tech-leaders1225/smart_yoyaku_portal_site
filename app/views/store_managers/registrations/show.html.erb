@@ -35,12 +35,13 @@
     <div class="over_flow_h top_space_10">
       <a class="registered_content right_logo no_nuderline" href="/store_manager/masseurs">
         <div class="bottom_space">マッサージ師の登録情報変更</div>
-        <div class="black_color ">登録情報の変更／新規登録／削除</div>
+        <div class="black_color ">登録情報の変更</div>
       </a>
-      <a data-confirm="本当にいいですか？" data-method="delete" href="/store_managers" class="registered_content left_logo no_nuderline" href="#">
-        <div class="bottom_space">退会</div>
-        <div class="black_color ">退会したい場合はこちら</div>
-      </a>
+      <%= link_to "#{@order_plan_url}", class: "registered_content left_logo no_nuderline",
+          data: { confirm: "予約システムへ移動します。移動後にログインが必要な場合がございます。" } do %>
+        <div class="bottom_space">ご契約中のシステムプランの確認</div>
+        <div class="black_color ">ご契約内容の変更／解約</div>
+      <% end %>
       <a class="registered_content left_logo no_nuderline" href="/store_manager/plans" >
         <div class="bottom_space">プランの管理</div>
         <div class="black_color ">プラン内容の変更/新規登録/削除</div>
