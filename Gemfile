@@ -42,6 +42,8 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-line'
 gem 'dotenv-rails'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
