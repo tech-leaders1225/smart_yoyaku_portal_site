@@ -11,6 +11,7 @@ class StoreManager::PlansController < StoreManager::Base
 
   def new
     @plan = Plan.new
+    @plan_image = @plan.plan_images.build
   end
 
   def create
@@ -30,6 +31,10 @@ class StoreManager::PlansController < StoreManager::Base
   end
 
   def show
+    @plan_images = PlanImage.find_by(plan_id: @plan)
+    unless @plan_images.nil?
+      @count_plan_image = @plan_images.plan_image.count
+    end
   end
 
   def edit
@@ -51,7 +56,6 @@ class StoreManager::PlansController < StoreManager::Base
       end
     end
   end
-
 
   def destroy
     ActiveRecord::Base.transaction do
@@ -76,7 +80,7 @@ class StoreManager::PlansController < StoreManager::Base
   end
 
   def plan_params
-    params.require(:plan).permit(:store_id, :plan_name, :plan_content, :plan_time, :plan_price)
+    params.require(:plan).permit(:store_id, :plan_name, :plan_content, :plan_time, :plan_price, plan_images_attributes:[:id, {plan_image: []},:remove_plan_image ])
   end
 
   def sign_in_store_manager

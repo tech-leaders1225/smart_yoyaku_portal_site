@@ -196,7 +196,49 @@ i.icon-l.ctg-icon_aircon {
   float: right;
 }
 
+.width_image {
+  width: 430px;
+  max-width: 100%;
+  height: 300px;
+  max-height: 100%;
+}
+
+.smole_image{
+  width: 50px;
+  max-width: 100%;
+  height: 40px;
+  max-height: 100%;
+  border: 0.5px solid;
+  border-color: #388aaa;
+}
+.smole_image:hover {
+  opacity: 0.5 ;
+  border: 0.5px solid;
+  border-color: #9aa137;
+}
+.p_top {
+  margin-top: 20px;
+}
+
+.right_width {
+  max-width: 35%;
+}
+
+.top_space_m_10 {
+  margin-top: 10px;
+}
 // shopページ //
 .width_660 {
   width: 660px;
+}
+
+
+.all_store_store_image{
+  width: 100px;
+  max-width: 100%;
+  height: 100px;
+  max-height: 100%;
+  border-radius: 50%;
+  border: 1px solid #efefef;
+  margin-top: 10px;
 }

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_store_parameters
     added_store_attrs = [:name, :email, :password, :password_confirmation,
                          store_attributes:[:id, :store_name, :adress, :store_phonenumber, :store_description,
-                         storeimages_attributes:[:id , { image: [] }],
+                         store_images_attributes:[:id , { store_image: [] }],
                          plans_attributes:[:plan_name, :plan_content, :plan_time, :plan_price]]]
     devise_parameter_sanitizer.permit :sign_up, keys: added_store_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_store_attrs

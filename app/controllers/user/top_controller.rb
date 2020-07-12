@@ -10,6 +10,10 @@ class User::TopController < User::Base
 
   def details
     @plans = @store.plans
+    @store_images = StoreImage.find_by(store_id: @store)
+    unless @store_images.nil?
+      @count_store_image = @store_images.store_image.count
+    end
   end
 
   private
