@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   # Store_manager↓========================================================================================
     namespace :store_manager do
       get "/:id/top", to: 'top_page#top'
+      patch "update_calendar_status", to: 'top_page#update_calendar_status'
       resources :store
       resources :masseurs, except: :show
       resources :plans
