@@ -51,15 +51,33 @@ $('#calendar').fullCalendar({
         },
         events: '/store_managers/<%= @id %>/reservations.json',
         
+        viewRender : function(view, element) {
+          // 月表示の時
+          if (view.type == "month") {
+           
+            document.getElementsByClassName('fc-prev-button')[0].textContent = "前月"
+            document.getElementsByClassName('fc-next-button')[0].textContent = "次月"
+          }
+          // 週表示の時
+          if (view.type == "agendaWeek") {
+            
+            document.getElementsByClassName('fc-prev-button')[0].textContent = "前週"
+            document.getElementsByClassName('fc-next-button')[0].textContent = "次週"
+          }
+          // 日表示の時
+          if (view.type == "agendaDay") {
+            document.getElementsByClassName('fc-prev-button')[0].textContent = "前日"
+            document.getElementsByClassName('fc-next-button')[0].textContent = "翌日"
+          }
+        },
         eventClick: function(calEvent, jsEvent, view) {
-          console.log(calEvent)
           // 予定が入っている日をクリックするとモーダル表示
-           $('#modalTitle').html(calEvent.name); // モーダルのタイトルをセット
+           $('#modalTitle').html(calEvent.title); // モーダルのタイトルをセット
            $('#modalBody .name span').html(calEvent.name);
            $('#modalBody .email span').html(calEvent.email);
            $('#modalBody .phone span').html(calEvent.phone);
-           $('#modalBody .start_at span').html(calEvent.start);
-           $('#modalBody .end_at span').html(calEvent.end);
+           $('#modalBody .start_at span').html(calEvent.start_time);
+           $('#modalBody .end_at span').html(calEvent.end_time);
            $('#calendarModal').modal(); // モーダル着火
         },
         
@@ -77,6 +95,11 @@ $('#calendar').fullCalendar({
         editable: true,
         //イベントの時間表示を２４時間に
         timeFormat: "HH:mm",
+        allDaySlot: false,
+         slotLabelFormat : 'H:mm',
+        views: {
+            week: {columnFormat: 'M/D[(]ddd[)]',},
+        },
         
         
 });
@@ -146,4 +169,4 @@ $('#calendar').fullCalendar({
     </div>
   </div>
 </div>
-<%= @events %>
+<!--<%= @events %>-->
