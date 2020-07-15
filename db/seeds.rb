@@ -49,15 +49,6 @@ Review.create!(review: "so good",
                user_id: 1,
                masseur_id: 1
                )
-
-Category.create!(category_name: "オステオパシー"
-               )
-
-MasseurCategory.create!(
-                       masseur_id: 1,
-                       category_id: 1,
-                      )
-
             
 5.times do |n|
   Plan.create!(plan_name: "プラン#{n+1}",
@@ -66,3 +57,17 @@ MasseurCategory.create!(
                plan_price: 4500,
                store_id: 1)
 end
+
+# 実際にカテゴリとして使用するデータ
+Category.create!(category_name: "整体")
+Category.create!(category_name: "骨格矯正")
+Category.create!(category_name: "アロマセラピー")
+Category.create!(category_name: "指圧")
+Category.create!(category_name: "按摩")
+Category.create!(category_name: "鍼灸")
+Category.create!(category_name: "スポーツマッサージ")
+Category.create!(category_name: "足つぼマッサージ")
+Category.create!(category_name: "オイルマッサージ")
+Category.create!(category_name: "その他")
+
+MasseurCategory.create!(masseur_id: 1, category_id: 1)

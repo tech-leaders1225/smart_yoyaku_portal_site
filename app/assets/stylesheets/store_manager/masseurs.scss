@@ -7,7 +7,13 @@
   }
 }
 
-//↓↓↓効かない
-#error_explanation {
-  color: dd0000;
+.category-list input[type="checkbox"] {
+  display: inline-block;
+  width: 10%;
+}
+
+.category-list input[type="checkbox"] + label {
+  display: inline-block;
+  margin-left: 1%;
+  width: 80%;
 }

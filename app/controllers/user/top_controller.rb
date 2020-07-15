@@ -1,11 +1,17 @@
 class User::TopController < User::Base
+  before_action :set_categories
   before_action :not_found, only: :details
 
   def index
   end
 
   def shop
-    @all_store = Store.active
+    if params[:category_id].present?
+      @category = Category.find(params[:category_id])
+      @all_store = Store.categorized(params[:category_id]).active
+    else
+      @all_store = Store.active
+    end
   end
 
   def details
@@ -17,6 +23,10 @@ class User::TopController < User::Base
   end
 
   private
+
+    def set_categories
+      @categories = Category.all
+    end
 
     # @storeのstore_managerが無料プラン契約中の場合404エラーを表示
     def not_found
