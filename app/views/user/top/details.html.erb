@@ -10,11 +10,11 @@
   <div class="service-content01">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <div class="change-photo">
-            <div class="left-image">
-              <% unless @store_images.nil? %>
-                <% unless @count_store_image == 0 %>
+        <% unless @store_images.nil? %>
+          <% unless @count_store_image == 0 %>
+            <div class="col-md-6">
+              <div class="change-photo">
+                <div class="left-image">
                   <div id="cover">
                     <div class="main-frame">
                       <img id="main-img" class="width_image" src="<%= @store_images.store_image[0].url %>">
@@ -23,11 +23,11 @@
                       <img class="thumbnails smole_image p_top " src="<%= @store_images.store_image[n].url %>" data-imagesrc="<%= @store_images.store_image[n].url %>" >
                     <% end %>
                   </div>
-                <% end %>
-              <% end %>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          <% end %>
+        <% end %>
 
         <div class="col-md-6">
           <div class="wrap-service-info">
@@ -81,7 +81,7 @@
               <!--<span>首・肩集中コース</span>
               <span>〇〇円(税込)</span>-->
             </p>
-            <!--<a><%= link_to "予約日時を入力する", "#", class:"btn btn-warning btn-lg"%></a>-->
+            <a><%= link_to "予約可能時間の確認", "#{@reserve_app_url}calendars/#{@store.calendar_id}/tasks", class:"btn btn-warning btn-lg"%></a>
           </div>
         </div>
       </div>
@@ -119,6 +119,7 @@
               <td><%= plan.plan_name %></td>
               <td><%= plan.plan_time %>分</td>
               <td class="js-price"><%= plan.plan_price %>円(税込)</td>
+              <td><%= link_to "このプランを予約する", "#{@reserve_app_url}calendars/#{@store.calendar_id}/tasks?course_id=#{plan.course_id}", class:"btn btn-primary" %></td>
             </tr>
             <% end %>
           </tbody>
@@ -176,7 +177,7 @@
       <p><%= link_to "予約日時を入力する", "#", class:"btn btn-warning btn-lg "%></p>
     </div>-->
 
-    <div id="storecommit" class="service-price">
+    <!--<div id="storecommit" class="service-price">
       <h2 class="content-h2">施術内容</h2>
       <div class="box-content">
         <% @plans.each do |plan| %>
@@ -186,7 +187,7 @@
         </p>
         <% end %>
       </div>
-    </div>
+    </div>-->
 
     <!--<div id="step" class="service-step">
       <h2 class="content-h2">施術までの流れ</h2>

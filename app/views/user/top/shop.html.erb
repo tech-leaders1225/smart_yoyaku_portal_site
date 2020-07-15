@@ -56,8 +56,10 @@
                 <div class="posted-by">
                   <div class="pb-pic list-mgr-img-box">
                     <%  store_images = store.store_images.first %>
-                    <% if store_images.store_image.present? %>
-                      <img src="<%= store_images.store_image[0].url %>" alt="" class="all_store_store_image">
+                    <% unless store_images.nil? %>
+                      <% if store_images.store_image.present? %>
+                        <img src="<%= store_images.store_image[0].url %>" alt="" class="all_store_store_image">
+                      <% end %>
                     <% end %>
                   </div>
                   <div class="pb-text ">
