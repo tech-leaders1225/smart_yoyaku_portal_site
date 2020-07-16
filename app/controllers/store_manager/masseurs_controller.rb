@@ -1,4 +1,6 @@
 class StoreManager::MasseursController < StoreManager::Base
+  include SmartYoyakuApi::Staff
+
   before_action :authenticate_store_manager!
   before_action :corrrect_store_manager, only: [:edit, :update, :destroy]
   before_action :set_masseur, only: [:edit, :update, :destroy] 
@@ -20,19 +22,27 @@ class StoreManager::MasseursController < StoreManager::Base
 
   def index
     @store = current_store_manager.store
-    @masseurs = Masseur.where(store_id: @store.id)
+    @masseurs = @store.masseurs
   end
 
   def edit
   end
 
   def update
-    if @masseur.update_attributes(masseur_update_params)
-      flash[:success] = "#{@masseur.masseur_name}の情報を更新しました。"
-      redirect_to store_manager_masseurs_url
-    else
-      flash[:danger] = "入力内容に誤りがあったため更新できませんでした。"
-      render :edit
+    ActiveRecord::Base.transaction do
+      if @masseur.update_attributes(masseur_update_params)
+        flash[:success] = "#{@masseur.masseur_name}の情報を更新しました。"
+        redirect_to store_manager_masseurs_url
+        # 予約システムのStaff情報を更新
+        @response = update_staff(@masseur)
+        unless JSON.parse(@response)["status"] == "200"
+          # 例外を発生させる
+          raise StandardError, "予約システムでstaffのupdateに失敗しました。"
+        end 
+      else
+        flash[:danger] = "入力内容に誤りがあったため更新できませんでした。"
+        render :edit
+      end
     end
   end
 

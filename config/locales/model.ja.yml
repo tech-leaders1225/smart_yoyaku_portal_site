@@ -32,6 +32,7 @@ ja:
           adress: 住所
           store_phonenumber: 電話番号
           store_description: 店舗についての説明
+        store_image:
           store_image: 店舗画像
         store_manager:
           name: 名前
@@ -40,6 +41,8 @@ ja:
           plan_content: プラン内容
           plan_time: プラン時間
           plan_price: プラン料金
+        plan_image:
+          plan_image: プラン画像
         store/plan:
           plan_name: プラン名
           plan_content: プラン内容

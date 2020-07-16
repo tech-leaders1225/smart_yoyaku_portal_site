@@ -8,11 +8,6 @@
     <%= render "shared/error_messages", object: f.object %>
     <div class="form-2">
       <div class="flex-parent-new-page2">
-        <div class="left-side">
-          プラン写真<span class="entrust-label">任意</span><br>
-          <img src="" height="220" width="220"><br>
-          <button class="file-button" disabled>ファイルを選択</button>
-        </div>
         <div class="right">
           <%= f.label "プラン名", class: "" %><span class="necessary-label">必須</span><br>
           <%= f.text_field :plan_name, class: "form-control", required: true %>
@@ -25,6 +20,12 @@
 
           <%= f.label "プラン料金(税込)", class: "" %><span class="necessary-label">必須</span><br>
           <%= f.number_field :plan_price, class: "form-control", required: true %>
+        <!--<div class="left-side">-->
+          <%= f.fields_for :plan_images do |pif| %>
+            <%= pif.label :plan_image, class:"mr-2" %><br>
+            <%= pif.file_field :plan_image, multiple: true %>
+          <% end %>
+        <!--</div>-->
         </div>
       </div>
       <div class="create-button-center">

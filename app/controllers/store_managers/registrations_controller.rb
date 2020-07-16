@@ -6,13 +6,19 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
 
   before_action :sign_in_store_manager, only:[:show, :index]
   before_action :correct_store_manager, only:[:show, :index]
-  after_action :update_user, only: [:update]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # 登録内容の編集
   def show
     @store = current_store_manager.store
+    # 「ご契約中のシステムプランの確認」の遷移先
+    @order_plan_url = 
+      if current_store_manager.order_plan.nil?
+        reserve_app_url + "pay/choice_plan"
+      else  
+        reserve_app_url + "order_plan/#{current_store_manager.order_plan}"
+      end
   end
 
   # 予約の確認
@@ -33,8 +39,9 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   def new
     @store_manager = StoreManager.new
     @store = @store_manager.build_store
-    @image = @store.storeimages.build
+    @store_image = @store.store_images.build
     @plan = @store.plans.build
+    @plan_image = @plan.plan_images.build
   end
 
   # POST /resource
@@ -48,7 +55,10 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
         @masseur = create_masseur
         # 予約システム側でUser, Caledar, TaskCourseを作成
         set_store_and_plan
-        @response = create_user(@store_manager, @store, @plan)    
+        @response = create_user(@store_manager, @store, @plan)
+        unless JSON.parse(@response)["status"] == "200"
+          raise StandardError, "予約システムでuserのcreateに失敗しました。"
+        end
         # @responseに含まれるtokenと各idを登録     
         update_resourses(@response)
         set_flash_message! :notice, :signed_up
@@ -69,9 +79,30 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+    ActiveRecord::Base.transaction do
+      resource_updated = update_resource(resource, account_update_params)
+      yield resource if block_given?
+      if resource_updated
+        set_flash_message_for_update(resource, prev_unconfirmed_email)
+        bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
+
+        respond_with resource, location: after_update_path_for(resource)
+        # 予約システム側のUser情報を更新
+        set_arguments
+        @response = update_user(@name, @email, @password)
+        unless JSON.parse(@response)["status"] == "200"
+          raise StandardError, "予約システムでuserのupdateに失敗しました。"
+        end   
+      else
+        clean_up_passwords resource
+        set_minimum_password_length
+        respond_with resource
+      end
+    end  
+  end
 
   # DELETE /resource
   # def destroy
@@ -156,5 +187,11 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
     @store.update!(calendar_id: parsed_json["user"]["calendars"][0]["public_uid"], calendar_secret_id: parsed_json["user"]["calendars"][0]["id"])
     @plan.update!(course_id: parsed_json["user"]["calendars"][0]["task_courses"][0]["id"])
     @masseur.update!(staff_id: parsed_json["staff"]["id"])
+  end
+
+  def set_arguments
+    @name = params[:store_manager][:name]
+    @email = params[:store_manager][:email]
+    @password = params[:store_manager][:password]
   end
 end

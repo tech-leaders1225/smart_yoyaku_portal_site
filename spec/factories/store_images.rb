@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :storeimage do
+  factory :store_image do
     
   end
 end
