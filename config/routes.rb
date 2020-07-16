@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   # Admin↓========================================================================================
     namespace :admin do
     #  get '/top', to: 'admins#top'
+      resources :admins
     end
 
   # Masseur↓========================================================================================
