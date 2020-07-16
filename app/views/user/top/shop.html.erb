@@ -55,9 +55,11 @@
                 &emsp;<%= link_to store.store_name, details_path(store), class:"bottom_space_10 white-space_n" %>
                 <div class="posted-by">
                   <div class="pb-pic list-mgr-img-box">
-                    <% store_image = store.store_images.first %>
-                    <% if store_image.present? %>
-                      <img src="<%= store_image.store_image[0].url %>" alt="" class="all_store_store_image">  
+                    <%  store_images = store.store_images.first %>
+                    <% unless store_images.nil? %>
+                      <% if store_images.store_image.present? %>
+                        <img src="<%= store_images.store_image[0].url %>" alt="" class="all_store_store_image">
+                      <% end %>
                     <% end %>
                   </div>
                   <div class="pb-text ">

@@ -1,4 +1,6 @@
 class User::TopController < User::Base
+  include SmartYoyakuApi::User
+  
   before_action :set_categories
   before_action :not_found, only: :details
 
@@ -15,6 +17,7 @@ class User::TopController < User::Base
   end
 
   def details
+    @reserve_app_url = reserve_app_url
     @plans = @store.plans
     @store_images = StoreImage.find_by(store_id: @store)
     unless @store_images.nil?
