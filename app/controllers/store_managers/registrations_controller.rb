@@ -18,10 +18,11 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # 予約の確認
   def index
     #↓引用↓
-    uri = `curl -v -X GET "https://smartyoyaku-staging.herokuapp.com/api/v1/tasks" \
-          -H "Authorization: Bearer Hf6z8pa9qZv34yxmku1HJ2Z3"`
+    url = reserve_app_url + "api/v1/tasks"
+    uri = `curl -v -X GET "#{url}" \
+    -H 'Authorization: Bearer "#{current_store_manager.smart_token}"'`
     @events = JSON.parse(uri)["tasks"]
-    @id = StoreManager.find_by(id: params[:id]).id
+    @id = StoreManager.find(params[:id]).id
   end
 
   # 予約の詳細
@@ -152,7 +153,7 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   def update_resourses(response)
     parsed_json = JSON.parse(response)
     @store_manager.update!(smart_token: parsed_json["user"]["token"])
-    @store.update!(calendar_id: parsed_json["user"]["calendars"][0]["public_uid"])
+    @store.update!(calendar_id: parsed_json["user"]["calendars"][0]["public_uid"], calendar_secret_id: parsed_json["user"]["calendars"][0]["id"])
     @plan.update!(course_id: parsed_json["user"]["calendars"][0]["task_courses"][0]["id"])
     @masseur.update!(staff_id: parsed_json["staff"]["id"])
   end

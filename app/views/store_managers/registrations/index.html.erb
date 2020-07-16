@@ -99,6 +99,7 @@ $('#calendar').fullCalendar({
          slotLabelFormat : 'H:mm',
         views: {
             week: {columnFormat: 'M/D[(]ddd[)]',},
+            day: {columnFormat: 'D日 ddd曜日',},
         },
         
         
@@ -169,4 +170,5 @@ $('#calendar').fullCalendar({
     </div>
   </div>
 </div>
-<!--<%= @events %>-->
+<%= @events %>
+<%=Time.now%>
