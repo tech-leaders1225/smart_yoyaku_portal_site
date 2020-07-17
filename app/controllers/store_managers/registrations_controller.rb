@@ -12,6 +12,9 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
   # 登録内容の編集
   def show
     @store = current_store_manager.store
+    unless @store.masseurs.first.categories.present?
+      flash.now[:notice] = "「マッサージ師の登録情報変更」から施術カテゴリの登録を行ってください."
+    end
     # 「ご契約中のシステムプランの確認」の遷移先
     @order_plan_url = 
       if current_store_manager.order_plan.nil?

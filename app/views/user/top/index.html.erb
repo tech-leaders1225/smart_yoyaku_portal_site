@@ -23,39 +23,12 @@
         <div class="filter-widget">
           <h4 class="fw-title">カテゴリ一覧</h4>
           <ul class="filter-catagories">
-            <li>
-              <%= link_to "出張マッサージ", "#"%>
-            </li>
-            <li>
-              <%= link_to "国家資格を持つマッサージ師", "#"%>
-            </li>
-            <li>
-              <%= link_to "アロマセラピー", "#"%>
-            </li>
-            <li>
-              <%= link_to "リラクゼーションケア", "#"%>
-            </li>
-            <li>
-              <%= link_to "骨盤矯正", "#"%>
-            </li>
-            <li>
-              <%= link_to "リフレクソロジー", "#"%>
-            </li>
-            <li>
-              <%= link_to "タイ古式マッサージ", "#"%>
-            </li>
-            <li>
-              <%= link_to "指圧", "#"%>
-            </li>
-            <li>
-              <%= link_to "オイルマッサージ", "#"%>
-            </li>
-            <li>
-              <%= link_to "アーユルヴェーダ", "#"%>
-            </li>
-            <li>
-              <%= link_to "スポーツマッサージ", "#"%>
-            </li>
+            <% @categories.each do |category| %>
+              <li>
+                <%= link_to "#{category.category_name}", shop_path(category_id: category.id) %>
+              </li>
+            <% end %>
+            <li><%= link_to "全てのカテゴリ", shop_path %></li>
           </ul>
         </div>
       </div>
@@ -63,18 +36,18 @@
       <!-- 特集 -->
       <div class="col-lg-9 order-1 order-lg-2">
         <div class="product-show-option">
-          <h4 class="fw-title"> 【特集】出張マッサージ </h4>
+          <h4 class="fw-title"> 出張マッサージ専用スマートポータルサイト </h4>
         </div>
         <div class="product-list">
           <div class="row">
             <div class="col-lg-12 col-sm-12">
               <div class="product-item">
-                <div class="pi-pic"> <img src="https://picsum.photos/300/200" alt="">
+                <div class="pi-pic"> <img src="images/categories/category-0.jpg" alt="">
                   <div class="sale pp-sale">Pick Up</div>
                 </div>
                 <div class="pi-text">
-                  <a href="#" class="stretched-link">
-                    <h5>〜自宅や出張先まで来てくれるなんて楽ちん！出張マッサージ特集〜</h5>
+                  <a href="/shop" class="stretched-link">
+                    <h5>〜自宅や宿泊先まで来てくれるなんて楽ちん！出張／訪問マッサージ〜</h5>
                   </a>
                 </div>
               </div>
@@ -90,10 +63,10 @@
           <!-- カテゴリ 1 -->
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-7.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-1.jpg" alt=""> </div>
               <div class="pi-text">
-                <a href="#" class="mb-5 stretched-link">
-                  <h5>出張マッサージ</h5>
+                <a href="/shop?category_id=1" class="mb-5 stretched-link">
+                  <h5>整体</h5>
                 </a>
               </div>
             </div>
@@ -101,10 +74,10 @@
           <!-- カテゴリ 2 -->
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-8.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-2.jpg" alt=""> </div>
               <div class="pi-text">
-                <a href="#" class="mb-5 stretched-link">
-                  <h5>国家資格を持つマッサージ師</h5>
+                <a href="/shop?category_id=2" class="mb-5 stretched-link">
+                  <h5>骨格矯正</h5>
                 </a>
               </div>
             </div>
@@ -112,10 +85,10 @@
           <!-- カテゴリ 3 -->
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-9.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-3.jpg" alt=""> </div>
               <div class="pi-text">
-                <a href="#" class="mb-5 stretched-link">
-                  <h5>アロマセラピー</h5>
+                <a href="/shop?category_id=3" class="mb-5 stretched-link">
+                  <h5>スポーツマッサージ</h5>
                 </a>
               </div>
             </div>
@@ -123,10 +96,10 @@
           <!-- カテゴリ 4 -->
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-9.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-4.jpg" alt=""> </div>
               <div class="pi-text">
-                <a href="#" class="mb-5 stretched-link">
-                  <h5>指圧</h5>
+                <a href="/shop?category_id=4" class="mb-5 stretched-link">
+                  <h5>アロマセラピー</h5>
                 </a>
               </div>
             </div>
@@ -134,10 +107,10 @@
           <!-- カテゴリ 5 -->
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-9.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-5.jpg" alt=""> </div>
               <div class="pi-text">
-                <a href="#" class="mb-5 stretched-link">
-                  <h5>骨盤矯正</h5>
+                <a href="/shop?category_id=6" class="mb-5 stretched-link">
+                  <h5>按摩</h5>
                 </a>
               </div>
             </div>
@@ -145,9 +118,9 @@
           <!-- カテゴリ 6 -->
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-9.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-6.jpg" alt=""> </div>
               <div class="pi-text">
-                <a href="#" class="mb-5 stretched-link">
+                <a href="/shop?category_id=9" class="mb-5 stretched-link">
                   <h5>リフレクソロジー</h5>
                 </a>
               </div>
@@ -161,7 +134,7 @@
           <h4 style="width: 100%; height: 30px;" class="pl-4 mb-4 mt-5">最近利用した施術</h4>
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-7.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-0.jpg" alt=""> </div>
               <div class="pi-text">
                 <a href="#" class="mb-2 stretched-link">
                   <h5>出張ケア 90分コース</h5>
@@ -172,7 +145,7 @@
           </div>
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-8.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-4.jpg" alt=""> </div>
               <div class="pi-text">
                 <a href="#" class="mb-2 stretched-link">
                   <h5>アロマセラピー120分全身</h5>
@@ -183,7 +156,7 @@
           </div>
           <div class="col-lg-4 col-sm-6">
             <div class="product-item">
-              <div class="pi-pic"> <img src="images/products/product-9.jpg" alt=""> </div>
+              <div class="pi-pic"> <img src="images/categories/category-4.jpg" alt=""> </div>
               <div class="pi-text">
                 <a href="#" class="mb-2 stretched-link">
                   <h5>アロマセラピー120分全身</h5>
