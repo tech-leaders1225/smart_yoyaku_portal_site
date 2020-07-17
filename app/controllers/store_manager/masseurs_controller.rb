@@ -30,7 +30,7 @@ class StoreManager::MasseursController < StoreManager::Base
 
   def update
     ActiveRecord::Base.transaction do
-      if @masseur.update_attributes(masseur_update_params)
+      if @masseur.update(masseur_update_params)
         flash[:success] = "#{@masseur.masseur_name}の情報を更新しました。"
         redirect_to store_manager_masseurs_url
         # 予約システムのStaff情報を更新
@@ -38,9 +38,9 @@ class StoreManager::MasseursController < StoreManager::Base
         unless JSON.parse(@response)["status"] == "200"
           # 例外を発生させる
           raise StandardError, "予約システムでstaffのupdateに失敗しました。"
-        end 
+        end
       else
-        flash[:danger] = "入力内容に誤りがあったため更新できませんでした。"
+        flash.now[:danger] = "入力内容に誤りがあったため更新できませんでした。"
         render :edit
       end
     end
@@ -75,7 +75,7 @@ class StoreManager::MasseursController < StoreManager::Base
         params[:masseur].delete(:password)
         params[:masseur].delete(:password_confirmation)
       end
-        params.require(:masseur).permit(:masseur_name, :email, :adress, :phone_number, :password, :password_confirmation)
+      params.require(:masseur).permit(:masseur_name, :email, :adress, :phone_number, :password, :password_confirmation, category_ids: [])
     end
 
     def set_masseur

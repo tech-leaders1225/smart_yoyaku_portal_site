@@ -44,17 +44,10 @@
                         <i class="ti-menu"></i>
                         <span>カテゴリ一覧</span>
                         <ul class="depart-hover">
-                            <li class="active"><%= link_to "出張マッサージ", "#"%></li>
-                            <li><%= link_to "要国家資格のケア", "#"%></li>
-                            <li><%= link_to "アロマセラピー", "#"%></li>
-                            <li><%= link_to "リラクゼーションケア", "#"%></li>
-                            <li><%= link_to "骨盤矯正", "#"%></li>
-                            <li><%= link_to "リフレクソロジー", "#"%></li>
-                            <li><%= link_to "タイ古式マッサージ", "#"%></li>
-                            <li><%= link_to "指圧", "#"%></li>
-                            <li><%= link_to "オイルマッサージ", "#"%></li>
-                            <li><%= link_to "アーユルヴェーダ", "#"%></li>
-                            <li><%= link_to "スポーツマッサージ", "#"%></li>
+                            <% @categories.each do |category| %>
+                                <li><%= link_to "#{category.category_name}", shop_path(category_id: category.id) %></li>
+                            <% end %>
+                            <li><%= link_to "全てのカテゴリ", shop_path %></li>
                         </ul>
                     </div>
                 </div>
