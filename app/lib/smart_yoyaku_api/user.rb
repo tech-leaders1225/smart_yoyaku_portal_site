@@ -11,7 +11,7 @@ module SmartYoyakuApi::User
   def create_user(store_manager, store, plan)
     url = reserve_app_url + "api/v1/users"
     `curl -v POST "#{url}" \
-    -d '{"user":{"store_manager_id":"#{store_manager.id}","name":"#{store_manager.name}","email":"#{store_manager.email}","password":"#{store_manager.password}"},\
+    -d '{"user":{"name":"#{store_manager.name}","email":"#{store_manager.email}","password":"#{store_manager.password}"},\
     "calendar":{"calendar_name":"#{store.store_name}","address":"#{store.adress}","phone":"#{store.store_phonenumber}"},\
     "task_course":{"title":"#{plan.plan_name}","description":"#{plan.plan_content.gsub(/(\r\n|\r|\n)/, "")}","course_time":"#{plan.plan_time}","charge":"#{plan.plan_price}"}}' \
     -H 'Accept: application/json' \

@@ -1,6 +1,5 @@
 class User::TopController < User::Base
   include SmartYoyakuApi::User
-  
   before_action :set_categories
   before_action :not_found, only: :details
 
@@ -27,6 +26,7 @@ class User::TopController < User::Base
 
   private
 
+    # ヘッダーとトップページのカテゴリ一覧表示用
     def set_categories
       @categories = Category.all
     end

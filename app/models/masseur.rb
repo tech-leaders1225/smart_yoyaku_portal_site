@@ -19,8 +19,6 @@ class Masseur < ApplicationRecord
 
   # masseur更新時、登録済カテゴリのチェックが外れていた場合、該当するmasseur_categoryを削除
   def reject_masseur_category(attributes)
-    if attributes[:id].present? && (params[:masseur][:category_ids].include?attributes[:id] == false)
-      attributes.merge!(_destroy: 1)
-    end
+    attributes.merge!(_destroy: 1) if attributes[:id].present? && attributes[:category_id].blank?
   end
 end

@@ -48,7 +48,7 @@
             <div class="field mt-3">
               <%= f.label "施術カテゴリー", class: "mb-3" %><i>(複数選択可)</i>
               <div class="category-list">
-                <%= f.collection_check_boxes :category_ids, Category.all, :id, :category_name, include_hidden: false %>
+                <%= f.collection_check_boxes :category_ids, Category.all, :id, :category_name %>
               </div>
             </div>
 
