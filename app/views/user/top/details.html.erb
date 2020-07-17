@@ -17,16 +17,20 @@
                 <div class="left-image">
                   <div id="cover">
                     <div class="main-frame">
-                      <img id="main-img" class="width_image" src="<%= @store_images.store_image[0].url %>">
+                      <img id="main-img" class="width_image image_solid" src="<%= @store_images.store_image[0].url %>">
                     </div>
                     <% @count_store_image.times do |n| %>
-                      <img class="thumbnails smole_image p_top " src="<%= @store_images.store_image[n].url %>" data-imagesrc="<%= @store_images.store_image[n].url %>" >
+                      <img class="thumbnails smole_image p_top image_solid" src="<%= @store_images.store_image[n].url %>" data-imagesrc="<%= @store_images.store_image[n].url %>" >
                     <% end %>
                   </div>
                 </div>
               </div>
             </div>
+          <% else %>
+            <img src="../images/no_image.jpg" alt="" class="image_solid width_image m-bottom-10">
           <% end %>
+        <% else %>
+          <img src="../images/no_image.jpg" alt="" class="image_solid width_image m-bottom-10">
         <% end %>
 
         <div class="col-md-6">
@@ -119,7 +123,7 @@
               <td><%= plan.plan_name %></td>
               <td><%= plan.plan_time %>分</td>
               <td class="js-price"><%= plan.plan_price %>円(税込)</td>
-              <td><%= link_to "このプランを予約する", "#{@reserve_app_url}calendars/#{@store.calendar_id}/tasks?course_id=#{plan.course_id}", class:"btn btn-primary" %></td>
+              <td><%= link_to "プランを予約する", "#{@reserve_app_url}calendars/#{@store.calendar_id}/tasks?course_id=#{plan.course_id}", class:"btn btn-success" %></td>
             </tr>
             <% end %>
           </tbody>
@@ -177,18 +181,40 @@
       <p><%= link_to "予約日時を入力する", "#", class:"btn btn-warning btn-lg "%></p>
     </div>-->
 
-    <!--<div id="storecommit" class="service-price">
-      <h2 class="content-h2">施術内容</h2>
+    <div id="storecommit" class="service-price">
+      <h2 class="content-h2">プラン詳細</h2>
       <div class="box-content">
-        <% @plans.each do |plan| %>
-        <p>
-        <%= plan.plan_name%><br>
-          <%= plan.plan_content %><br>
-        </p>
-        <% end %>
+        <table class="table">
+          <% @plans.each do |plan| %>
+            <tr>
+              <% plan_images =  plan.plan_images.first %>
+              <% unless plan_images.nil? %>
+                <% plan_image_count = plan_images.plan_image.count %>
+                <% unless plan_image_count == 0 %>
+                  <td>
+                    <div class="change-photo">
+                      <div id="cover">
+                        <div class="main-frame">
+                          <img id="plan-img" class="width_image image_solid" src="<%= plan_images.plan_image[0].url %>">
+                        </div>
+                        <% plan_image_count.times do |n| %>
+                          <img class="plan_images smole_image p_top image_solid" src="<%= plan_images.plan_image[n].url %>" data-imagesrc="<%= plan_images.plan_image[n].url %>" >
+                        <% end %>
+                      </div>
+                    </div>
+                  </td>
+                <% else %>
+                  <td><img src="../images/no_image.jpg" alt="" class="image_solid width_image"></td>
+                <% end %>
+              <% else %>
+                <td><img src="../images/no_image.jpg" alt="" class="image_solid width_image"></td>
+              <% end %>
+            <td><h3><%= plan.plan_name%></h3><br><%= plan.plan_content %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
-    </div>-->
-
+    </div>
     <!--<div id="step" class="service-step">
       <h2 class="content-h2">施術までの流れ</h2>
       <div class="box-content">
@@ -345,6 +371,12 @@
   for (var i =0 ; i < thumbs.length; i++ ) {
   thumbs[i].onclick = function() {
   document.getElementById('main-img').src = this.dataset.imagesrc;
+  };
+}
+  var plan_images =document.querySelectorAll('.plan_images');
+  for (var i =0 ; i < plan_images.length; i++ ) {
+  plan_images[i].onclick = function() {
+  document.getElementById('plan-img').src = this.dataset.imagesrc;
   };
 }
 </script>
