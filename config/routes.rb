@@ -59,6 +59,7 @@ Rails.application.routes.draw do
       # 出張範囲のrouting↓========================================================================================
       get "/masseurs/business_trip_ranges", :to => "/store_manager/business_trip_ranges#index"
       get "/masseurs/:masseur_id/business_trip_ranges/edit", :to => "/store_manager/business_trip_ranges#edit", as: "business_trip_ranges_edit"
+      get "/masseurs/:masseur_id/business_trip_ranges/show", :to => "/store_manager/business_trip_ranges#show", as: "business_trip_ranges_show"
       patch "/masseurs/:masseur_id/business_trip_ranges/update", :to => "/store_manager/business_trip_ranges#update", as: "business_trip_ranges_update"
     end
 
