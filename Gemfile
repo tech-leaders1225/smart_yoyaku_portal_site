@@ -61,6 +61,8 @@ end
 
 group :test do
   gem 'rspec_junit_formatter'
+  gem 'selenium-webdriver'
+  gem 'webdriver'
 end
 
 group :development do
