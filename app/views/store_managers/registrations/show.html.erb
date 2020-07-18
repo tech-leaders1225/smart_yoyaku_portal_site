@@ -21,6 +21,9 @@
 </div>
 <div class="top_space">
   <div class="text_width text_left">
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-success mt-5 text_left"><%= message %></div>
+    <% end %>
     <h1 class="top_space bottom_space">登録内容</h1>
     <div class="over_flow_h top_space">
       <a class="registered_content left_logo no_nuderline" href="/store_managers/edit" >
@@ -35,7 +38,7 @@
     <div class="over_flow_h top_space_10">
       <a class="registered_content right_logo no_nuderline" href="/store_manager/masseurs">
         <div class="bottom_space">マッサージ師の登録情報変更</div>
-        <div class="black_color ">登録情報の変更</div>
+        <div class="black_color ">登録情報の変更／施術カテゴリの登録変更</div>
       </a>
       <%= link_to "#{@order_plan_url}", class: "registered_content left_logo no_nuderline",
           data: { confirm: "予約システムへ移動します。移動後にログインが必要な場合がございます。" } do %>
