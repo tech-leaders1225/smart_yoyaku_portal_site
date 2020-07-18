@@ -60,8 +60,6 @@ jobs: # ステップの集合
           name: データベースをセットアップ
           command: bin/rails db:create db:schema:load --trace
 
-      - run: bundle exec bin/webpack
-
       - run:
           name: RSpec を並列実行
           command: |
