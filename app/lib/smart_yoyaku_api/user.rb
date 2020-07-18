@@ -4,7 +4,7 @@ module SmartYoyakuApi::User
  
   # 開発中は各自中身を書き換えて使用してください
   def reserve_app_url
-    Rails.env.development? ? "https://smartyoyaku-staging.herokuapp.com/" : "https://smartyoyaku-staging.herokuapp.com/"
+    Rails.env.development? ? "http://localhost:3000/" : "https://smartyoyaku-staging.herokuapp.com/"
   end
   
   # 予約システム側でUserの登録を行う
