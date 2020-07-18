@@ -24,7 +24,7 @@ module StoreManager::BusinessTripRangesHelper
     # 現在のマッサージ師に紐づく出張範囲が登録されていなかった場合、都道府県のデータを作成
     if @current_masseur.business_trip_ranges.blank?
       ActiveRecord::Base.transaction do
-        Prefecture.all.each { |prefecture| @current_masseur.business_trip_ranges.create!(prefecture_id: prefecture.id, prefecture_name: prefecture.name) }
+        # Prefecture.all.each { |prefecture| @current_masseur.business_trip_ranges.create!(prefecture_id: prefecture.id, prefecture_name: prefecture.name) }
         # 東京に紐づげられた市/区のデータを作成
         City.all.each { |city| @current_masseur.business_trip_ranges.find(13).business_trip_range_cities.create!(city_name: city.name) }
       end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_115840) do
+ActiveRecord::Schema.define(version: 2020_07_18_151154) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_07_18_115840) do
     t.integer "city_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "city_judge", default: false
     t.index ["city_id"], name: "index_business_trip_ranges_on_city_id"
     t.index ["masseur_id"], name: "index_business_trip_ranges_on_masseur_id"
   end
