@@ -9,7 +9,7 @@ jobs: # ステップの集合
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
-          DATABASE_URL: postgres://postgres:password@localhost:5432/tech_cast_test
+          DATABASE_URL: postgres://postgres:password@localhost:5432/myapp_test
           RAILS_ENV: test
       - image: circleci/postgres:12.2-postgis # データベースイメージ
         environment:
