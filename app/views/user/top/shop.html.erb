@@ -59,7 +59,11 @@
                     <% unless store_images.nil? %>
                       <% if store_images.store_image.present? %>
                         <img src="<%= store_images.store_image[0].url %>" alt="" class="all_store_store_image">
+                      <% else %>
+                        <img src="../images/no_image.jpg" alt="" class="all_store_store_image">
                       <% end %>
+                    <% else %>
+                      <img src="../images/no_image.jpg" alt="" class="all_store_store_image">
                     <% end %>
                   </div>
                   <div class="pb-text ">
