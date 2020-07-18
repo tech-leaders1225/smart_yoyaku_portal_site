@@ -9,12 +9,10 @@ jobs: # ステップの集合
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
-          PGUSER: root
+          DATABASE_URL: postgres://postgres:password@localhost:5432/tech_cast_test
           RAILS_ENV: test
       - image: circleci/postgres:12.2-postgis # データベースイメージ
         environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: myapp_test
           POSTGRES_HOST_AUTH_METHOD: trust
     steps: # 実行可能コマンドの集合
       - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ
@@ -49,11 +47,6 @@ jobs: # ステップの集合
           key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-
-      - restore_cache:
-          keys:
-            - rails-demo-yarn-{{ checksum "yarn.lock" }}
-            - rails-demo-yarn-
 
       - run:
           name: Yarnをinstall
