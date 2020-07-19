@@ -7,21 +7,32 @@
       <h3 class="my-5 text-center"><%= @current_masseur.masseur_name %>の出張範囲登録</h3>
       
       <%= form_with(model: @current_masseur, url: store_manager_business_trip_ranges_update_path(@current_masseur), method: :patch, local: true) do |f| %>
-        <% Prefecture.all.each do |prefecture|%>
-        
-          <%= prefecture.name %>
-        
-        <% end %>
-      　
-        <% @ranges.each do |range| %>
-          <%= f.fields_for "business_trip_ranges[]", range, method: :patch do |r| %>
-            <%= r.check_box :city_judge, {}, "true", "false" %>
-            <%= range.city_name %>
-          <% end %>
-        <% end %>
-        
+        <table class="prefecture table table-hover">
+          <thead>
+            <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name do |p| %>
+            <tr>
+              <th>
+                <%= p.check_box + p.text %>
+              </th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr>
+              <td class="city-check-boxes">
+                <%= f.collection_check_boxes :city_ids, City.all, :id, :name do |c| %>
+                <ul class="city-check-box">
+                  <% if p.object.id == c.object.prefecture_id %>
+                    <li class="city-check-box-item"><%= c.check_box + c.text %></li>
+                  <% end %>
+                </ul>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
         <%= f.submit "登録する" %>
-        
       <% end %>
       <br><br>
       <%= link_to "登録内容の編集に戻る", store_managers_show_path(current_store_manager) %><br><br><br>

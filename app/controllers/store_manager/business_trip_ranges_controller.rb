@@ -4,7 +4,7 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   
   # before_action :corrrect_store_manager, only: [:edit, :update, :destroy]
   before_action :set_masseur, only: [:edit, :update]
-  before_action :set_prefectures, only: [:edit]
+  # before_action :set_prefectures, only: [:edit]
   
   def index
     @store = current_store_manager.store
