@@ -61,6 +61,7 @@ end
 # 実際にカテゴリとして使用するデータ
 Category.create!(category_name: "整体")
 Category.create!(category_name: "骨格矯正")
+Category.create!(category_name: "ストレッチ")
 Category.create!(category_name: "アロマセラピー")
 Category.create!(category_name: "指圧")
 Category.create!(category_name: "按摩")
