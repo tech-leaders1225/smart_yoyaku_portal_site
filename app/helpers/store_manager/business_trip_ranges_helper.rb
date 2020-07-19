@@ -26,7 +26,7 @@ module StoreManager::BusinessTripRangesHelper
       ActiveRecord::Base.transaction do
         # Prefecture.all.each { |prefecture| @current_masseur.business_trip_ranges.create!(prefecture_id: prefecture.id, prefecture_name: prefecture.name) }
         # 東京に紐づげられた市/区のデータを作成
-        City.all.each { |city| @current_masseur.business_trip_ranges.find(13).business_trip_range_cities.create!(city_name: city.name) }
+        City.all.each { |city| @current_masseur.business_trip_ranges.create!(city_name: city.name, city_id: city.id) }
       end
     end
 
