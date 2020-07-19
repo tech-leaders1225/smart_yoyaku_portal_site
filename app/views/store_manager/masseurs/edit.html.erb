@@ -49,21 +49,15 @@
               <%= f.label "施術カテゴリー", class: "mb-3" %><i>(複数選択可)</i>
               <div class="category-list">
                 <%= collection_check_boxes :country, :country_ids, Country.all, :id, :name do |c| %>
-                  <li class="mt-3">
-                    <%# <a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"> %>
-                      【<%= c.label { c.text }%>】
-                    <%# </a> %>
-                  </li>
-                  <%# <div class="collapse" id="collapseExample"> %>
-                    
-                      <%= f.collection_check_boxes :category_ids, Category.all, :id, :category_name do |cc| %>
-                        <% if c.object.id == cc.object.country_id %>
-                          <li><%= cc.label { cc.check_box + cc.text }%></li>
-                        <% end %>
-                      <% end %>             
-                    
-                  <%# </div> %>
-                <% end %> 
+                  <ul class="mt-3">
+                    <%= c.label { c.check_box + c.text }%>
+                  </ul>
+                  <%= f.collection_check_boxes :category_ids, Category.all, :id, :category_name do |cc| %>
+                    <% if c.object.id == cc.object.country_id %>
+                      <li><%= cc.label { cc.check_box + cc.text }%></li>
+                    <% end %>
+                  <% end %>
+                <% end %>           
               </div>
             </div>
 
