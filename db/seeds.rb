@@ -58,17 +58,21 @@ Review.create!(review: "so good",
                store_id: 1)
 end
 
+Country.create!(name: "日本式")
+Country.create!(name: "フランス式")
+Country.create!(name: "中国式")
+
 # 実際にカテゴリとして使用するデータ
-Category.create!(category_name: "整体")
-Category.create!(category_name: "骨格矯正")
-Category.create!(category_name: "ストレッチ")
-Category.create!(category_name: "アロマセラピー")
-Category.create!(category_name: "指圧")
-Category.create!(category_name: "按摩")
-Category.create!(category_name: "鍼灸")
-Category.create!(category_name: "スポーツマッサージ")
-Category.create!(category_name: "足つぼマッサージ")
-Category.create!(category_name: "オイルマッサージ")
-Category.create!(category_name: "その他")
+Category.create!(category_name: "整体", country_id: 1)
+Category.create!(category_name: "骨格矯正", country_id: 1)
+Category.create!(category_name: "ストレッチ", country_id: 1)
+Category.create!(category_name: "アロマセラピー", country_id: 2)
+Category.create!(category_name: "指圧", country_id: 1)
+Category.create!(category_name: "按摩", country_id: 1)
+Category.create!(category_name: "鍼灸", country_id: 1)
+Category.create!(category_name: "スポーツマッサージ", country_id: 2)
+Category.create!(category_name: "足つぼマッサージ", country_id: 3)
+Category.create!(category_name: "オイルマッサージ", country_id: 2)
+Category.create!(category_name: "その他", country_id: 1)
 
 MasseurCategory.create!(masseur_id: 1, category_id: 1)

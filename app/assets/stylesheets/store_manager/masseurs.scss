@@ -7,12 +7,12 @@
   }
 }
 
-.category-list input[type="checkbox"] {
+.category-list ul li input[type="checkbox"] {
   display: inline-block;
   width: 10%;
 }
 
-.category-list input[type="checkbox"] + label {
+.category-list ul li input[type="checkbox"] + label {
   display: inline-block;
   margin-left: 1%;
   width: 80%;
