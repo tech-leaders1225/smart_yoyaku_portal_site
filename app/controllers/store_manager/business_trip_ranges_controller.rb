@@ -6,6 +6,8 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   before_action :set_masseur, only: [:edit, :update]
   # before_action :set_prefectures, only: [:edit]
   
+  attr_accessor :city_ids
+  
   def index
     @store = current_store_manager.store
     @masseurs = @store.masseurs
@@ -17,11 +19,8 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   end
   
   def update
-    # トランザクションで条件分岐予定/全てのチェックボックスを一括更新
-    business_trip_range_params.each do |id, item|
-      business_trip_range = BusinessTripRange.find(id)
-      business_trip_range.update_attributes!(item)
-    end
+    # ストロングパラメーターの方法
+    @current_masseur.update(city_business_trip_range_params)
     flash[:success] = "出張範囲を更新しました。"
     redirect_to store_manager_masseurs_business_trip_ranges_url
   end
@@ -32,7 +31,12 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
     @current_masseur = Masseur.find(params[:masseur_id])
   end
   
-  def business_trip_range_params
-    params.require(:masseur).permit(business_trip_ranges: [:prefecture_name, :city_judge])[:business_trip_ranges]
+  def prefecture_business_trip_range_params
+    params.require(:prefecture).permit(prefecture_ids: [])
   end
+  
+  def city_business_trip_range_params
+    params.require(:masseur).permit(city_ids: [])
+  end
+
 end
