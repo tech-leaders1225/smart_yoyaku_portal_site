@@ -19,11 +19,10 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   end
   
   def update
-    params[:masseur][:city_ids].each {|id| @current_masseur.business_trip_ranges.create(city_id: id)}
+    # ストロングパラメーターの方法
+    @current_masseur.business_trip_ranges.update(city_business_trip_range_params)
     flash[:success] = "出張範囲を更新しました。"
     redirect_to store_manager_masseurs_business_trip_ranges_url
-    
-    
     
     # if params[:prefecture][:prefecture_ids].present? && 
     #   city_ids = params[:prefecture][:prefecture_ids].each {|id| Prefecture.find_by(id: id).cities.ids}
