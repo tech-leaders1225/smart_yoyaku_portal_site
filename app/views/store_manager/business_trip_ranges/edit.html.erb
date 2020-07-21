@@ -12,7 +12,7 @@
             <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name, include_hidden: false do |p| %>
             <tr>
               <th>
-                <%= p.check_box + p.text %></label>
+                <%= p.check_box + p.text %>
               </th>
             </tr>
           </thead>
@@ -34,10 +34,14 @@
             <% end %>
           </tbody>
         </table>
-        <%= f.submit "登録する" %>
+        
+        <div class="actions text-center">
+          <%= f.submit "登録する", class: "btn btn-primary mt-5 w-50" %>
+        </div>
+        
       <% end %>
       <br><br>
-      <%= link_to "登録内容の編集に戻る", store_managers_show_path(current_store_manager) %><br><br><br>
+      <a href="/store_manager/masseurs/business_trip_ranges">スタッフ一覧画面へ戻る</a><br><br><br>
     </div>
   </div>
 </div>

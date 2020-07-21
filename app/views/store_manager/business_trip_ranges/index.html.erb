@@ -4,7 +4,8 @@
       <% flash.each do |message_type, msg| %>
         <div class="mt-4 alert alert-<%= message_type %>"><%= msg %></div>
       <% end %>
-      <h3 class="my-5 text-center"><%= "#{@store.store_name} " %>の出張範囲一覧</h3>    
+      <h3 class="staff-index text-center"><%= "#{@store.store_name} " %>のスタッフ一覧</h3>
+      <h6 class="staff-ranges text-center">＊出張範囲を編集したいスタッフを選んでください</h5>   
       
       <table class="table">
         <% @masseurs.each do |masseur| %>
