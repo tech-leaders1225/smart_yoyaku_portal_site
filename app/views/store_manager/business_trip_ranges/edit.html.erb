@@ -19,17 +19,7 @@
           
           <tbody>
             <tr>
-              <td class="city-check-boxes">
-                <%= f.collection_check_boxes :city_ids, City.all, :id, :name, include_hidden: false do |c| %>
-                <ul class="city-check-box">
-                  <% if p.object.id == c.object.prefecture_id %>
-                    <div id="boxes">
-                      <li class="city-check-box-item"><%= c.check_box + c.text %></li>
-                    </div>
-                  <% end %>
-                </ul>
-                <% end %>
-              </td>
+              <%= render partial: 'cities', locals: { prefecture_id: Prefecture.first.id, f: f, p: p } %>
             </tr>
             <% end %>
           </tbody>
