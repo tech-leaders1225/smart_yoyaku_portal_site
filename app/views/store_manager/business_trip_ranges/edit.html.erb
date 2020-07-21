@@ -1,3 +1,6 @@
+<!--ネット上のjQueryにリンクを貼って使用する方法-->
+<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-2">
@@ -9,10 +12,10 @@
       <%= form_with(model: @current_masseur, url: store_manager_business_trip_ranges_update_path(@current_masseur), method: :patch, local: true) do |f| %>
         <table class="prefecture table table-hover">
           <thead>
-            <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name do |p| %>
+            <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name, include_hidden: false do |p| %>
             <tr>
               <th>
-                <%= p.check_box + p.text %>
+                <%= p.check_box + p.text %></label>
               </th>
             </tr>
           </thead>
@@ -20,10 +23,12 @@
           <tbody>
             <tr>
               <td class="city-check-boxes">
-                <%= f.collection_check_boxes :city_ids, City.all, :id, :name do |c| %>
+                <%= f.collection_check_boxes :city_ids, City.all, :id, :name, include_hidden: false do |c| %>
                 <ul class="city-check-box">
                   <% if p.object.id == c.object.prefecture_id %>
-                    <li class="city-check-box-item"><%= c.check_box + c.text %></li>
+                    <div id="boxes">
+                      <li class="city-check-box-item"><%= c.check_box + c.text %></li>
+                    </div>
                   <% end %>
                 </ul>
                 <% end %>
@@ -40,3 +45,28 @@
   </div>
 </div>
 
+<button id="button">ボタン</button>
+<!--<a onclick="alert('hello, world')">クリックしてください</p>-->
+
+<script>
+
+// ↓今のところ東京とそれに紐づく市町村の処理のみ
+$(function() {
+    // 1. 「全選択」する
+    $('#prefecture_prefecture_ids_13').on('click', function() {
+      $("input[name='masseur[city_ids][]']").prop('checked', this.checked);
+    });
+    // 2. 「全選択」以外のチェックボックスがクリックされたら、
+    $("input[name='masseur[city_ids][]']").on('click', function() {
+      if ($('#boxes :checked').length == $('#boxes :input').length) {
+        // 全てのチェックボックスにチェックが入っていたら、「全選択」 = checked
+        $('#prefecture_prefecture_ids_13').prop('checked', true);
+      } else {
+        // 1つでもチェックが入っていたら、「全選択」 = checked
+        $('#prefecture_prefecture_ids_13').prop('checked', false);
+      }
+    });
+})
+
+
+</script>

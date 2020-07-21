@@ -20,19 +20,19 @@ module StoreManager::BusinessTripRangesHelper
     result = JSON.parse(json)
   end
   
-  def set_prefectures
-    # 現在のマッサージ師に紐づく出張範囲が登録されていなかった場合、都道府県のデータを作成
-    if @current_masseur.business_trip_ranges.blank?
-      ActiveRecord::Base.transaction do
-        # Prefecture.all.each { |prefecture| @current_masseur.business_trip_ranges.create!(prefecture_id: prefecture.id, prefecture_name: prefecture.name) }
-        # 東京に紐づげられた市/区のデータを作成
-        City.all.each { |city| @current_masseur.business_trip_ranges.create!(city_name: city.name, city_id: city.id) }
-      end
-    end
+  # def set_prefectures
+  #   # 現在のマッサージ師に紐づく出張範囲が登録されていなかった場合、都道府県のデータを作成
+  #   if @current_masseur.business_trip_ranges.blank?
+  #     ActiveRecord::Base.transaction do
+  #       # Prefecture.all.each { |prefecture| @current_masseur.business_trip_ranges.create!(prefecture_id: prefecture.id, prefecture_name: prefecture.name) }
+  #       # 東京に紐づげられた市/区のデータを作成
+  #       City.all.each { |city| @current_masseur.business_trip_ranges.create!(city_name: city.name, city_id: city.id) }
+  #     end
+  #   end
 
-  rescue ActiveRecord::RecordInvalid
-    flash[:danger] = "ページ情報の取得に失敗しました、再アクセスしてください。"
-    redirect_to new_store_manager_masseur_business_trip_range_url
-  end
+  # rescue ActiveRecord::RecordInvalid
+  #   flash[:danger] = "ページ情報の取得に失敗しました、再アクセスしてください。"
+  #   redirect_to new_store_manager_masseur_business_trip_range_url
+  # end
   
 end

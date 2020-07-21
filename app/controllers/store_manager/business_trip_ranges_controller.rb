@@ -2,9 +2,8 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   
   include StoreManager::BusinessTripRangesHelper
   
-  # before_action :corrrect_store_manager, only: [:edit, :update, :destroy]
+  # before_action :corrrect_store_manager, only: [:edit, :update]
   before_action :set_masseur, only: [:edit, :update]
-  # before_action :set_prefectures, only: [:edit]
   
   attr_accessor :city_ids
   
@@ -19,10 +18,16 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   end
   
   def update
-    # ストロングパラメーターの方法
-    @current_masseur.update(city_business_trip_range_params)
-    flash[:success] = "出張範囲を更新しました。"
-    redirect_to store_manager_masseurs_business_trip_ranges_url
+    # チェックがあった場合
+    if params[:masseur].present?
+      @current_masseur.update(city_business_trip_range_params)
+      flash[:success] = "出張範囲を更新しました。"
+      redirect_to store_manager_masseurs_business_trip_ranges_url
+    # 一つもチェックがなかった場合
+    else
+      flash[:success] = "出張範囲を選択してください。"
+      redirect_to store_manager_masseurs_business_trip_ranges_url
+    end
   end
   
   private
@@ -31,12 +36,10 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
     @current_masseur = Masseur.find(params[:masseur_id])
   end
   
-  def prefecture_business_trip_range_params
-    params.require(:prefecture).permit(prefecture_ids: [])
-  end
-  
   def city_business_trip_range_params
-    params.require(:masseur).permit(city_ids: [])
+    if params[:masseur].present?
+      params.require(:masseur).permit(city_ids: [])
+    end
   end
 
 end
