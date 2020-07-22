@@ -38,6 +38,10 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
     @city_ids = @current_masseur.business_trip_ranges.pluck(:city_id)
   end
   
+  def city_select
+    init(params[:prefecture_id].to_i)
+  end
+  
   private
   
   def set_masseur

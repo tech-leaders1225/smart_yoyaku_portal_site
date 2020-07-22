@@ -26,9 +26,9 @@
         </table>
         
         <div class="actions text-center">
+          <h1 id="result">結果</h1>
           <%= f.submit "登録する", class: "btn btn-primary mt-5 w-50" %>
         </div>
-        
       <% end %>
       <br><br>
       <a href="/store_manager/masseurs/business_trip_ranges">スタッフ一覧画面へ戻る</a><br><br><br>
@@ -58,5 +58,13 @@ $(function() {
       }
     });
 })
+
+$(function(){
+    $('#prefecture_id').change(function(){
+        var pref_id = $("#prefecture_id").val();
+        $.get("city_select?prefecture_id=" + prefecture_id);
+    })
+});
+
 
 </script>
