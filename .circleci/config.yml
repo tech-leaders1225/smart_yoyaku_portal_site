@@ -19,9 +19,6 @@ jobs: # ステップの集合
           POSTGRES_HOST_AUTH_METHOD: "trust"
     steps: # 実行可能コマンドの集合
       - checkout # ソースコードを作業ディレクトリにチェックアウトする特別なステップ
-      - run:
-          name: Yarnをinstall
-          command: yarn install --cache-folder ~/.cache/yarn
       # Bundler のバージョンを指定します
 
       - run:
@@ -51,6 +48,10 @@ jobs: # ステップの集合
           key: web-app-bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+
+      - run:
+          name: Yarnをinstall
+          command: yarn install --cache-folder ~/.cache/yarn
 
       - run:
           name: DB を待機
