@@ -22,13 +22,10 @@ jobs: # ステップの集合
       # Bundler のバージョンを指定します
 
       - run:
-          name: bundlerを指定
+          name: Bundlerをインストール
           command: |
-            sudo gem update --system
-            sudo gem uninstall bundler
-            sudo rm /usr/local/bin/bundle
-            sudo rm /usr/local/bin/bundler
-            sudo gem install bundler
+            gem update --system
+            gem install bundler
 
       # バンドルキャッシュを復元します
       # 依存関係キャッシュについては https://circleci.com/docs/ja/2.0/caching/ をお読みください
