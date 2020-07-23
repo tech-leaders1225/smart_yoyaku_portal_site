@@ -1,5 +1,5 @@
 class StoreManager::TopPageController < StoreManager::Base
-  include SmartYoyakuApi::Store
+  include SmartYoyakuApi::Calendar
   before_action :set_store_manager_and_store
 
   def top   
