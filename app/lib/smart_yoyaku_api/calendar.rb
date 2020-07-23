@@ -1,4 +1,4 @@
-module SmartYoyakuApi::Store
+module SmartYoyakuApi::Calendar
   include SmartYoyakuApi::User
 
   private
