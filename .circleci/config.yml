@@ -52,7 +52,7 @@ jobs: # ステップの集合
 
       - run:
           name: DB を待機
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
 
       - run:
           name: データベースをセットアップ
