@@ -1,6 +1,7 @@
 version: 2 # CircleCI 2.0 を使用します
 jobs: # ステップの集合
   build: # Workflows を使用しない実行では、エントリポイントとして `build` ジョブが必要
+    working_directory: ~/webapp
     parallelism: 3 # このジョブのインスタンスを 3つ並列実行します
     docker: # Docker でステップを実行します
       - image: circleci/ruby:2.6.3-stretch-node # このイメージをすべての `steps` が実行されるプライマリコンテナとして使用します
