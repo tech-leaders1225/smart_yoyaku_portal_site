@@ -6,31 +6,29 @@
       <% end %>
       <h3 class="my-5 text-center"><%= "#{@current_masseur.masseur_name}" %>の出張範囲一覧</h3><hr>
         <% if @business_trip_ranges.present? %>
-          <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name, include_hidden: false do |p| %>
-          
+          <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name, include_hidden: false do |prefecture| %>
             <% @prefecture_ids.uniq.each do |prefecture_id| %>
-              <% if p.value == prefecture_id %>
-                  <div class="prefecture_name"><%= "＜" + p.text + "＞" %></div>
+              <% if prefecture.value == prefecture_id %>
+                  <div class="prefecture_name"><%= "＜" + prefecture.text + "＞" %></div>
               <% end %>
             <% end %>
-            
-            <%= collection_check_boxes :city, :city_ids, City.all, :id, :name, include_hidden: false do |c| %>
-              <% if p.object.id == c.object.prefecture_id %>
+            <%= collection_check_boxes :city, :city_ids, City.all, :id, :name, include_hidden: false do |city| %>
+              <% if prefecture.object.id == city.object.prefecture_id %>
                 <% @city_ids.each do |city_id| %>
-                  <% if c.value == city_id %>
-                    <%= c.text %>
+                  <% if city.value == city_id %>
+                    <%= city.text %>
                   <% end %>
                 <% end %>
               <% end %>
             <% end %>
-            
           <% end %>
         <% else %>
           <h5 class="no-business_trip_ranges">＊出張範囲が登録されていません</h5>
         <% end %>
         <hr>
-      <br><br>
-      <a href="/store_manager/masseurs/business_trip_ranges">スタッフ一覧画面へ戻る</a><br><br><br>
+        <div class="btn-index">
+          <a href="/store_manager/masseurs/business_trip_ranges">スタッフ一覧画面へ戻る</a>
+        </div>
     </div>
   </div>
 </div>

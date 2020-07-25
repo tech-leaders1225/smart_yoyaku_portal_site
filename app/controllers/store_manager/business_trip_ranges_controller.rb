@@ -25,7 +25,7 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
       redirect_to store_manager_masseurs_business_trip_ranges_url
     # 一つもチェックがなかった場合
     else
-      flash[:success] = "出張範囲を選択してください。"
+      flash[:danger] = "出張範囲を選択してください。"
       render :edit
     end
   end

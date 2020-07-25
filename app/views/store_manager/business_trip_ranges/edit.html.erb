@@ -10,10 +10,10 @@
         <table class="prefecture table table-hover">
           <thead>
             <!--今は東京のみを表示しているがDBには全都道府県が入っている-->
-            <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all.where(id: 13), :id, :name, include_hidden: false do |p| %>
+            <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all.where(id: 13), :id, :name, include_hidden: false do |prefecture| %>
             <tr>
               <th>
-                <%= p.check_box + p.text %>
+                <%= prefecture.check_box + prefecture.text %>
               </th>
             </tr>
           </thead>
@@ -21,7 +21,7 @@
           <tbody>
             <tr>
               <td class="city-check-boxes">
-                <div id="city-list"><%= render partial: 'cities', locals: { prefecture_id: Prefecture.first.id, f: f, p: p } %></div>
+                <div id="city-list"><%= render partial: 'cities', locals: { f: f, prefecture: prefecture } %></div>
               </td>
             </tr>
             <% end %>
@@ -32,8 +32,9 @@
           <%= f.submit "登録する", class: "btn btn-primary mt-5 w-50" %>
         </div>
       <% end %>
-      <br><br>
-      <a href="/store_manager/masseurs/business_trip_ranges">スタッフ一覧画面へ戻る</a><br><br><br>
+      <div class="btn-index">
+        <a href="/store_manager/masseurs/business_trip_ranges">スタッフ一覧画面へ戻る</a>
+      </div>
     </div>
   </div>
 </div>
