@@ -1,5 +1,5 @@
 class StoreManager::StoreController < StoreManager::Base
-  include SmartYoyakuApi::Store
+  include SmartYoyakuApi::Calendar
   
   before_action :correct_store, only: [:edit]
 

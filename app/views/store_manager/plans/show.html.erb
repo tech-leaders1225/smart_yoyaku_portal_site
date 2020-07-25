@@ -13,7 +13,11 @@
                   <img class="thumbnails smole_image p_top " src="<%= @plan_images.plan_image[n].url %>" data-imagesrc="<%= @plan_images.plan_image[n].url %>" >
                 <% end %>
               </div>
+            <% else %>
+              <img src="/images/no_image.jpg" alt="" class="image_solid width_image">
             <% end %>
+          <% else %>
+            <img src="/images/no_image.jpg" alt="" class="image_solid width_image">
           <% end %>
         </div>
         <div class="right-side right_width">
