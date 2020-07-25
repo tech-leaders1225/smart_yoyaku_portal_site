@@ -9,7 +9,8 @@
       <%= form_with(model: @current_masseur, url: store_manager_business_trip_ranges_update_path(@current_masseur), method: :patch, local: true) do |f| %>
         <table class="prefecture table table-hover">
           <thead>
-            <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name, include_hidden: false do |p| %>
+            <!--今は東京のみを表示しているがDBには全都道府県が入っている-->
+            <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all.where(id: 13), :id, :name, include_hidden: false do |p| %>
             <tr>
               <th>
                 <%= p.check_box + p.text %>
@@ -21,7 +22,6 @@
             <tr>
               <td class="city-check-boxes">
                 <div id="city-list"><%= render partial: 'cities', locals: { prefecture_id: Prefecture.first.id, f: f, p: p } %></div>
-                <div class="more-list"><%= link_to_next_page @cities, 'もっと見る', :remote => true, id: 'more_link' %></div>
               </td>
             </tr>
             <% end %>
@@ -29,7 +29,6 @@
         </table>
         
         <div class="actions text-center">
-          <h1 id="result">結果</h1>
           <%= f.submit "登録する", class: "btn btn-primary mt-5 w-50" %>
         </div>
       <% end %>
@@ -62,7 +61,5 @@ $(function() {
       }
     });
 })
-
-
 
 </script>

@@ -1,4 +1,4 @@
-<%= f.collection_check_boxes :city_ids, @cities, :id, :name, include_hidden: false do |c| %>
+<%= f.collection_check_boxes :city_ids, City.all, :id, :name, include_hidden: false do |c| %>
   <ul class="city-check-box">
     <% if p.object.id == c.object.prefecture_id %>
       <div id="boxes">

@@ -15,7 +15,7 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   def edit
     @prefectures = Prefecture.all
     @ranges = @current_masseur.business_trip_ranges
-    @cities = City.all.page(params[:page]).per(12)
+    
     
     @pre = Prefecture.all.page(params[:page]).per(12)
   end
