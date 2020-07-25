@@ -21,7 +21,7 @@
             <tr>
               <td class="city-check-boxes">
                 <div id="city-list"><%= render partial: 'cities', locals: { prefecture_id: Prefecture.first.id, f: f, p: p } %></div>
-                <div class="more-list"><%= link_to_next_page @cities, 'もっと見る', remote: true, id: 'more_link' %></div>
+                <div class="more-list"><%= link_to_next_page @cities, 'もっと見る', :remote => true, id: 'more_link' %></div>
               </td>
             </tr>
             <% end %>
@@ -38,6 +38,7 @@
     </div>
   </div>
 </div>
+
 
 <!--ネット上のjQueryにリンクを貼って使用する方法-->
 <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
