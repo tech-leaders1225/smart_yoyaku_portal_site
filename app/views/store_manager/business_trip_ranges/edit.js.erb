@@ -1,4 +1,0 @@
-$('#city-list').append("<%= escape_javascript(render 'cities', object: @cities) %>");
-$("#more_link").replaceWith("<%= escape_javascript(
-  link_to_next_page(@cities, 'もっと見る', remote: true, id: 'more_link')
-) %>");

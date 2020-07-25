@@ -14,9 +14,6 @@
               <td class="align-middle"><%= link_to "#{masseur.masseur_name}", store_manager_business_trip_ranges_show_path(masseur) %></td>
               <td class="text-right">
                 <%= link_to "出張範囲の編集", store_manager_business_trip_ranges_edit_path(@store, masseur), class:"btn btn-outline-primary" %>
-                
-                <%#= link_to "削除", store_manager_masseur_path(masseur), method: :delete,
-                data: { confirm: "#{masseur.masseur_name} を削除しますか？" } , class:"btn btn-outline-danger" %>
               </td>
             </tr>
           </tbody>

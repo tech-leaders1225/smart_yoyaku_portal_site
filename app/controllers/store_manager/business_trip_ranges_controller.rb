@@ -2,8 +2,8 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   
   include StoreManager::BusinessTripRangesHelper
   
-  # before_action :corrrect_store_manager, only: [:edit, :update]
   before_action :set_masseur, only: [:edit, :update, :show]
+  before_action :corrrect_store_manager, only: [:edit, :update, :show]
   
   def index
     @store = current_store_manager.store
@@ -51,6 +51,13 @@ class StoreManager::BusinessTripRangesController < StoreManager::Base
   def city_business_trip_range_params
     if params[:masseur].present?
       params.require(:masseur).permit(city_ids: [])
+    end
+  end
+  
+  def corrrect_store_manager
+    unless current_store_manager.store.masseurs.ids.include?params[:masseur_id].to_i
+      flash[:danger] = "アクセス権限がありません。"
+      redirect_to store_manager_url(current_store_manager)
     end
   end
 

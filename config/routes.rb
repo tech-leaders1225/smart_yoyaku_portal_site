@@ -62,7 +62,6 @@ Rails.application.routes.draw do
       get "/masseurs/:masseur_id/business_trip_ranges/show", :to => "/store_manager/business_trip_ranges#show", as: "business_trip_ranges_show"
       patch "/masseurs/:masseur_id/business_trip_ranges/update", :to => "/store_manager/business_trip_ranges#update", as: "business_trip_ranges_update"
       get "/masseurs/:masseur_id/business_trip_ranges/cities_select", :to => "/store_manager/business_trip_ranges#cities_select", as: "cities_select_business_trip_ranges"
-      
     end
 
     # SmartYoyaku webhook↓==========================================================================
