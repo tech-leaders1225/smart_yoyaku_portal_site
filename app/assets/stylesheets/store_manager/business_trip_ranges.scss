@@ -1,0 +1,35 @@
+// Place all the styles related to the business_trip_ranges controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// index page
+.staff-index {
+  padding: 40px 0px 20px 0px;
+}
+
+.staff-ranges {
+  padding-bottom: 30px;
+}
+
+// edit page
+.city-check-box {
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+}
+
+// show page
+.prefecture_name {
+  font-weight:bold;
+}
+
+.no-business_trip_ranges {
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+}
+
+.btn-index {
+  padding: 50px 0px 50px 0px;
+  margin-bottom: 10px;
+}

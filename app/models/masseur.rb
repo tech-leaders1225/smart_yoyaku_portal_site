@@ -3,6 +3,8 @@ class Masseur < ApplicationRecord
   has_many :reviews, dependent: :delete_all
   has_many :favorites, dependent: :delete_all
   has_many :business_trip_ranges, dependent: :delete_all
+  has_many :cities, through: :business_trip_ranges
+  accepts_nested_attributes_for :business_trip_ranges, reject_if: :reject_business_trip_range, allow_destroy: true
   has_many :masseur_categories, dependent: :delete_all
   has_many :categories, through: :masseur_categories
   accepts_nested_attributes_for :masseur_categories, reject_if: :reject_masseur_category, allow_destroy: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_104918) do
+ActiveRecord::Schema.define(version: 2020_07_18_115840) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -39,10 +39,11 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
   end
 
   create_table "business_trip_ranges", force: :cascade do |t|
-    t.string "masseur_business_trip_range"
-    t.integer "masseur_id"
+    t.integer "masseur_id", null: false
+    t.integer "city_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_business_trip_ranges_on_city_id"
     t.index ["masseur_id"], name: "index_business_trip_ranges_on_masseur_id"
   end
 
@@ -50,6 +51,14 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
     t.string "category_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.integer "prefecture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -106,6 +115,12 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
     t.integer "plan_time"
     t.integer "course_id"
     t.index ["store_id"], name: "index_plans_on_store_id"
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -182,6 +197,9 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "business_trip_ranges", "cities"
+  add_foreign_key "business_trip_ranges", "masseurs"
+  add_foreign_key "cities", "prefectures"
   add_foreign_key "favorites", "masseurs"
   add_foreign_key "favorites", "users"
   add_foreign_key "masseurs", "stores"

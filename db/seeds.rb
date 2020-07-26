@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+include StoreManager::BusinessTripRangesHelper
+
 Admin.create!(email: "admin@email.com",
              password: "password",
              password_confirmation: "password"
@@ -72,3 +74,19 @@ Category.create!(category_name: "オイルマッサージ")
 Category.create!(category_name: "その他")
 
 MasseurCategory.create!(masseur_id: 1, category_id: 1)
+
+
+# 都道府県データを取得
+prefectures = prefectures_api("https://opendata.resas-portal.go.jp/api/v1/prefectures")
+# 東京都の市/区データを取得
+cities = prefectures_api("https://opendata.resas-portal.go.jp/api/v1/cities?prefCode=13")
+
+prefectures["result"].each do |value|
+  prefecture_name = value["prefName"]
+  Prefecture.find_or_create_by(name: prefecture_name)
+end
+
+cities["result"].each do |value|
+  city_name = value["cityName"]
+  City.find_or_create_by(name: city_name, prefecture_id: 13)
+end

@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <% flash.each do |message_type, msg| %>
+        <div class="mt-4 alert alert-<%= message_type %>"><%= msg %></div>
+      <% end %>
+      <h3 class="my-5 text-center"><%= @current_masseur.masseur_name %>の出張範囲登録</h3>
+      
+      <%= form_with(model: @current_masseur, url: store_manager_business_trip_ranges_update_path(@current_masseur), method: :patch, local: true) do |f| %>
+        <table class="prefecture table table-hover">
+          <thead>
+            <!--今は東京のみを表示しているがDBには全都道府県が入っている-->
+            <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all.where(id: 13), :id, :name, include_hidden: false do |prefecture| %>
+            <tr>
+              <th>
+                <%= prefecture.check_box + prefecture.text %>
+              </th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr>
+              <td class="city-check-boxes">
+                <div id="city-list"><%= render partial: 'cities', locals: { f: f, prefecture: prefecture } %></div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        
+        <div class="actions text-center">
+          <%= f.submit "登録する", class: "btn btn-primary mt-5 w-50" %>
+        </div>
+      <% end %>
+      <div class="btn-index">
+        <a href="/store_manager/masseurs/business_trip_ranges">スタッフ一覧画面へ戻る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--ネット上のjQueryにリンクを貼って使用する方法-->
+<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+
+<script>
+
+// ↓今のところ東京とそれに紐づく市町村の処理のみ
+$(function() {
+    // 1. 「全選択」する
+    $('#prefecture_prefecture_ids_13').on('click', function() {
+      $("input[name='masseur[city_ids][]']").prop('checked', this.checked);
+    });
+    // 2. 「全選択」以外のチェックボックスがクリックされたら、
+    $("input[name='masseur[city_ids][]']").on('click', function() {
+      if ($('#boxes :checked').length == $('#boxes :input').length) {
+        // 全てのチェックボックスにチェックが入っていたら、「全選択」 = checked
+        $('#prefecture_prefecture_ids_13').prop('checked', true);
+      } else {
+        // 1つでもチェックが入っていたら、「全選択」 = checked
+        $('#prefecture_prefecture_ids_13').prop('checked', false);
+      }
+    });
+})
+
+</script>
