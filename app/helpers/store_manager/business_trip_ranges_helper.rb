@@ -11,7 +11,7 @@ module StoreManager::BusinessTripRangesHelper
     https.use_ssl = true
 
     param = {}
-    param['X-API-KEY'] = '7FrTYfKCKrCfbWmBFw8OHhXBZzwpl6LURz8R3ZKp' # 自分が取得したAPI-KEY
+    param['X-API-KEY'] = ENV['RESAS_API'] # 自分が取得したAPI-KEY
 
     req = Net::HTTP::Get.new(uri.request_uri, param)
     res = https.request(req)
