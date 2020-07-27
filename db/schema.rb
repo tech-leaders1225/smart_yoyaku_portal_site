@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(version: 2020_07_18_115840) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "calendar_id"
-    t.bigint "calendar_secret_id"
+    t.integer "calendar_secret_id"
     t.integer "calendar_status", default: 0
     t.index ["store_manager_id"], name: "index_stores_on_store_manager_id"
   end
