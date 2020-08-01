@@ -22,4 +22,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: added_store_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_store_attrs
   end
+
+  # ログインした状態で新規作成ページへ行こうとするとshowページへ遷移。user新規作成したらshowページへ遷移
+  def after_sign_in_path_for(resource)
+    user_path(current_user)
+  end
 end
