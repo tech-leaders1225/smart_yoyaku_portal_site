@@ -62,7 +62,7 @@ class StoreManager::PlansController < StoreManager::Base
       if @plan.destroy
         response = task_course_delete(@plan)
         if JSON.parse(response)['status'] == "200"
-          flash[:success] = "プランを削除しました。"
+          flash[:success] = "#{@plan.plan_name}を削除しました。"
         else
           raise RuntimeError
         end
