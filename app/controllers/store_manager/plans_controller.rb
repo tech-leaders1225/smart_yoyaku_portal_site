@@ -16,11 +16,10 @@ class StoreManager::PlansController < StoreManager::Base
   def create
     @plan = current_store_manager.store.plans.build(plan_params)
     ActiveRecord::Base.transaction do
-      response = task_course_create(@plan)
-      response_parse = JSON.parse(response)
-      @plan.course_id = response_parse['data']['id']
-      @plan.save
-      if @plan.persisted?
+      if @plan.save
+        response = task_course_create(@plan)
+        response_parse = JSON.parse(response)
+        @plan.update!(course_id: response_parse['data']['id'])
         flash[:success] = '新規作成に成功しました。'
         redirect_to store_manager_plans_url
       else
