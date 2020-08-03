@@ -85,7 +85,7 @@
               <!--<span>首・肩集中コース</span>
               <span>〇〇円(税込)</span>-->
             </p>
-            <a><%= link_to "予約可能時間の確認", "#{@reserve_app_url}calendars/#{@store.calendar_id}/tasks", class:"btn btn-warning btn-lg"%></a>
+            <a><%= link_to "予約可能時間の確認", "#{@reserve_app_url}/calendars/#{@store.calendar_id}/tasks", class:"btn btn-warning btn-lg"%></a>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
               <td><%= plan.plan_name %></td>
               <td><%= plan.plan_time %>分</td>
               <td class="js-price"><%= plan.plan_price %>円(税込)</td>
-              <td><%= link_to "プランを予約する", "#{@reserve_app_url}calendars/#{@store.calendar_id}/tasks?course_id=#{plan.course_id}", class:"btn btn-success" %></td>
+              <td><%= link_to "プランを予約する", "#{@reserve_app_url}/calendars/#{@store.calendar_id}/tasks?course_id=#{plan.course_id}", class:"btn btn-success" %></td>
             </tr>
             <% end %>
           </tbody>
