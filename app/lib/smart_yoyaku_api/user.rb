@@ -27,9 +27,4 @@ module SmartYoyakuApi::User
     -H 'Content-Type:application/json' \
     -H 'Authorization: Bearer "#{current_store_manager.smart_token}"'`
   end
-
-
-
-
-  
 end
