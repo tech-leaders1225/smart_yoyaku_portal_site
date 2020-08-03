@@ -58,7 +58,9 @@
                   </tr>
                   <tr>
                     <td>住所</td>
+                    
                     <td class="address"><span></span></td>
+                    
                   </tr>
                   <tr>
                     <td>電話番号</td>
@@ -97,6 +99,7 @@
 
 
 <script>
+
 $('#calendar').fullCalendar({
         defaultView: 'agendaWeek',
         events: '/events.json',
@@ -114,6 +117,9 @@ $('#calendar').fullCalendar({
         eventClick: function(event, jsEvent, view) {
           if ( event.end == null ){
             event.end = event.start;
+          }
+          if ( event.address == null ){
+            event.address = "未登録"
           }
           beforeStart = moment(event.start, "YYYY-MM-DD"); // 第一引数：日時、第二引数：フォーマット形式
           startDate = beforeStart.format('MM月DD日 HH:mm'); // YYYY年MM月DD日 HH:mm
@@ -148,7 +154,6 @@ $('#calendar').fullCalendar({
         viewRender : function(view, element) {
           // 月表示の時
           if (view.type == "month") {
-           
             document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前月"
             document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "次月"
           }
