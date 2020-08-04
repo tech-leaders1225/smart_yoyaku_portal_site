@@ -259,3 +259,17 @@ i.icon-l.ctg-icon_aircon {
   border: 1px solid #efefef;
   margin-top: 10px;
 }
+
+// 出張範囲の表示部分
+.area {
+  width: 15%;
+}
+
+.area-service .wrap-town .town {
+  display: inline-block;
+}
+
+.list-unstyled {
+  float:left;
+  white-space:nowrap;
+}
