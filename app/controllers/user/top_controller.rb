@@ -19,6 +19,12 @@ class User::TopController < User::Base
     @reserve_app_url = reserve_app_url
     @plans = @store.plans
     @masseurs = @store.masseurs
+    # 閲覧中のstoreが持っている出張範囲(各マッサージ師が持っている出張範囲)を全て取得
+    ranges = @masseurs.map { |masseur| masseur.business_trip_ranges.pluck(:city_id).map {|id| City.find_by(id: id) }}
+    # 取得した出張範囲で被っている出張範囲を一つにする。 それぞれのIDを取得
+    @prefecture_ids = ranges.flatten.uniq.map {|city| city.prefecture_id}
+    @city_ids = ranges.flatten.uniq.map {|city| city.id}
+
     @store_images = @store.store_images.first
     unless @store_images.nil?
       @count_store_image = @store_images.store_image.count

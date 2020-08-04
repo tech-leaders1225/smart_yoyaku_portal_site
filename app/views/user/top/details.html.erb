@@ -316,14 +316,22 @@
             <tr>
               <td>対応地域</td>
               <td>
-                <!-- 閲覧中のstoreが持っている出張範囲(各マッサージ師が持っている出張範囲)を全て取得 -->
-                <% ranges = @masseurs.map { |masseur| masseur.business_trip_ranges.pluck(:city_id).map {|id| City.find_by(id: id) } } %>
-                <!-- 取得した出張範囲で被っている範囲を一つにする。 その出張範囲の都道府県IDを取得 -->
-                <% prefecture_ids = ranges.flatten.uniq.map {|city| city.prefecture_id}.uniq %>
-                <% prefecture_ids.each do |prefecture_id| %>
-                  
+              <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name, include_hidden: false do |prefecture| %>
+                <% @prefecture_ids.uniq.each do |prefecture_id| %>
+                  <% if prefecture.object.id == prefecture_id %>
+                    <div class="prefecture_name"><%= "＜" + prefecture.text + "＞" %></div>
+                  <% end %>
                 <% end %>
-                
+                <%= collection_check_boxes :city, :city_ids, City.all, :id, :name, include_hidden: false do |city| %>
+                  <% if prefecture.object.id == city.object.prefecture_id %>
+                    <% @city_ids.each do |city_id| %>
+                      <% if city.object.id == city_id %>
+                        <%= city.text %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %> 
               </td>
             </tr>
           </tbody>
