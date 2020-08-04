@@ -18,6 +18,7 @@ class User::TopController < User::Base
   def details
     @reserve_app_url = reserve_app_url
     @plans = @store.plans
+    @store.masseurs
     @store_images = @store.store_images.first
     unless @store_images.nil?
       @count_store_image = @store_images.store_image.count
