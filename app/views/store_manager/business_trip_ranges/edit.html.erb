@@ -5,7 +5,6 @@
         <div class="mt-4 alert alert-<%= message_type %>"><%= msg %></div>
       <% end %>
       <h3 class="my-5 text-center"><%= @current_masseur.masseur_name %>の出張範囲登録</h3>
-      
       <%= form_with(model: @current_masseur, url: store_manager_business_trip_ranges_update_path(@current_masseur), method: :patch, local: true) do |f| %>
         <table class="prefecture table table-hover">
           <thead>
@@ -17,7 +16,6 @@
               </th>
             </tr>
           </thead>
-          
           <tbody>
             <tr>
               <td class="city-check-boxes">
@@ -27,7 +25,6 @@
             <% end %>
           </tbody>
         </table>
-        
         <div class="actions text-center">
           <%= f.submit "登録する", class: "btn btn-primary mt-5 w-50" %>
         </div>
