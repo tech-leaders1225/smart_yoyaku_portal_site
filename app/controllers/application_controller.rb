@@ -23,8 +23,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_store_attrs
   end
 
-  # ログインした状態で新規作成ページへ行こうとするとshowページへ遷移。user新規作成したらshowページへ遷移
+  # 一般ユーザーがログイン中に新規作成ページに行こうとするとマイページに遷移。
+  # store_managerがログイン中にstore_manager新規作成ページに行こうとするとrootに遷移。
   def after_sign_in_path_for(resource)
-    user_path(current_user)
+    if store_manager_signed_in?
+      root_path
+    else
+      user_path(current_user)
+    end
   end
 end
