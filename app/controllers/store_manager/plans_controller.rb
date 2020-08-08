@@ -84,7 +84,7 @@ class StoreManager::PlansController < StoreManager::Base
 
   def sign_in_store_manager
     unless store_manager_signed_in?
-      flash[:danger] = "ログインしてください。"
+      flash[:danger] = "アカウント登録もしくはログインしてください。"
       redirect_to store_manager_session_url
     end
   end

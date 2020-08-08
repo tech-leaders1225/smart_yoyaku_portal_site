@@ -1,6 +1,7 @@
 class StoreManager::StoreController < StoreManager::Base
   include SmartYoyakuApi::Calendar
   
+  before_action :sign_in_store_manager, only: [:edit]
   before_action :correct_store, only: [:edit]
 
   def new
@@ -32,7 +33,14 @@ class StoreManager::StoreController < StoreManager::Base
   end
 
   private
-
+    
+    # ログインしているかどうかの判定
+    def sign_in_store_manager
+      unless store_manager_signed_in?
+        flash[:danger] = "アカウント登録もしくはログインしてください。"
+        redirect_to store_manager_session_url
+      end
+    end
     # urlに含まれるstore.idがcurrent_store_managerと紐づいていない場合警告
     def correct_store
       unless params[:id] == current_store_manager.store.id.to_s
