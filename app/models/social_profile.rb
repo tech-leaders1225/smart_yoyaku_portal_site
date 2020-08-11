@@ -1,11 +1,13 @@
-class SocialProfile < ApplicationRecord
+class SocialProfile < ActiveRecord::Base
+  attr_accessor :access_token, :access_secret, :credentials, :name
+
   belongs_to :user
-  validates_uniqueness_of :uid, scope: :provider
   
   def set_values(omniauth)
+    return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
     credentials = omniauth['credentials']
     info = omniauth['info']
-
+  
     self.access_token = credentials['refresh_token']
     self.access_secret = credentials['secret']
     self.credentials = credentials.to_json
