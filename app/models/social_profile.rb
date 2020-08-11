@@ -1,6 +1,7 @@
 class SocialProfile < ApplicationRecord
   belongs_to :user
-
+  validates_uniqueness_of :uid, scope: :provider
+  
   def set_values(omniauth)
     credentials = omniauth['credentials']
     info = omniauth['info']

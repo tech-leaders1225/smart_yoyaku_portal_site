@@ -19,7 +19,7 @@ class User < ApplicationRecord
   # validates :gender, presence: true
   validates :nickname, length: { in: 1..30 }, allow_blank: true
 
-  private
+  protected
 
   # def self.find_for_google(auth)
   #   user = User.find_by(email: auth.info.email)
@@ -39,23 +39,4 @@ class User < ApplicationRecord
  def social_profile(provider)
    social_profiles.select{ |sp| sp.provider == provider.to_s }.first
  end
-
- def set_values(omniauth)
-  return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
-  credentials = omniauth['credentials']
-  info = omniauth['info']
-
-  self.access_token = credentials['refresh_token']
-  self.access_secret = credentials['secret']
-  self.credentials = credentials.to_json
-  self.name = info['name']
-  self.set_values_by_raw_info(omniauth['extra']['raw_info'])
-end
-
-def set_values_by_raw_info(raw_info)
-  self.raw_info = raw_info.to_json
-  self.save!
-end
-
-
 end
