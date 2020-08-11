@@ -9,7 +9,8 @@ Devise.setup do |config|
   ENV['GOOGLE_APP_SECRET'],
   name: :google
   
-  config.omniauth :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
+  OAUTH_CONFIG = YAML.load_file("#{Rails.root}/config/settings.yml")[Rails.env].symbolize_keys!
+  config.omniauth :line, OAUTH_CONFIG[:line]['key'], OAUTH_CONFIG[:line]['secret']
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.

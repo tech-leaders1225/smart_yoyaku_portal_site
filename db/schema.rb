@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_115840) do
+ActiveRecord::Schema.define(version: 2020_08_11_101612) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -134,6 +134,25 @@ ActiveRecord::Schema.define(version: 2020_07_18_115840) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "social_profiles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "name"
+    t.string "nickname"
+    t.string "email"
+    t.string "url"
+    t.string "image_url"
+    t.string "description"
+    t.text "other"
+    t.text "credentials"
+    t.text "raw_info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true
+    t.index ["user_id"], name: "index_social_profiles_on_user_id"
+  end
+
   create_table "store_images", force: :cascade do |t|
     t.json "store_image"
     t.integer "store_id"
@@ -206,5 +225,6 @@ ActiveRecord::Schema.define(version: 2020_07_18_115840) do
   add_foreign_key "plan_images", "plans"
   add_foreign_key "reviews", "masseurs"
   add_foreign_key "reviews", "users"
+  add_foreign_key "social_profiles", "users"
   add_foreign_key "store_images", "stores"
 end
