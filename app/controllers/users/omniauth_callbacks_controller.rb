@@ -1,27 +1,15 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  
+  require 'net/http'
+  require 'uri'
+  require 'json'
+
+  include SmartYoyakuApi::User
+
   def line; basic_action end
 
   private
-  
-  # def basic_action
-  #   @omniauth = request.env['omniauth.auth']
-  #   if @omniauth.present?
-  #     @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
-  #     if @profile
-  #       sign_in(:user, @profile)
-  #     else
-  #       email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
-  #       @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
-  #       sign_in(:user, @profile)
-  #       # redirect_to edit_user_path(@profile.user.id) and return
-  #     end
-  #   end
-  #   flash[:notice] = "ログインしました"
-  #   redirect_to root_path
-  # end
 
   def basic_action
     @omniauth = request.env['omniauth.auth']
@@ -41,6 +29,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
     flash[:success] = "ログインしました。"
     redirect_to root_path
+  end
+  
+  def set_access_token
+    uri = `curl -X POST https://api.line.me/oauth2/v2.1/token \
+    -H 'Content-Type: application/x-www-form-urlencoded' \
+    -d 'grant_type=authorization_code' \
+    -d 'code="#{params[:code]}"' \
+    -d 'redirect_uri=https://0f1424db0c1a.ngrok.io/users/auth/line/callback' \
+    -d 'client_id=1654658492' \
+    -d 'client_secret=4ed72a5dbea0f9b457d91868be60cec3'`
+    @api = JSON.parse(uri)
   end
 
   def fake_email(uid,provider)

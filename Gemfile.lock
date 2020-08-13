@@ -379,6 +379,7 @@ DEPENDENCIES
   omniauth
   omniauth-google-oauth2
   omniauth-line
+  omniauth-oauth2
   pg
   puma
   rails (= 6.0.2.1)

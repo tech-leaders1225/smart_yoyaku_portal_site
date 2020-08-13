@@ -7,7 +7,7 @@ class SocialProfile < ActiveRecord::Base
     return if provider.to_s != omniauth['provider'].to_s || uid != omniauth['uid']
     credentials = omniauth['credentials']
     info = omniauth['info']
-  
+    
     self.access_token = credentials['refresh_token']
     self.access_secret = credentials['secret']
     self.credentials = credentials.to_json
