@@ -5,8 +5,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   require 'uri'
   require 'json'
 
-  include SmartYoyakuApi::User
-
   def line; basic_action end
 
   private
@@ -31,21 +29,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path
   end
   
-  def set_access_token
-    uri = `curl -X POST https://api.line.me/oauth2/v2.1/token \
-    -H 'Content-Type: application/x-www-form-urlencoded' \
-    -d 'grant_type=authorization_code' \
-    -d 'code="#{params[:code]}"' \
-    -d 'redirect_uri=https://0f1424db0c1a.ngrok.io/users/auth/line/callback' \
-    -d 'client_id=1654658492' \
-    -d 'client_secret=4ed72a5dbea0f9b457d91868be60cec3'`
-    @api = JSON.parse(uri)
-  end
+  # lineのアクセストークン取得コード
+  # def set_access_token
+  #   uri = `curl -X POST https://api.line.me/oauth2/v2.1/token \
+  #   -H 'Content-Type: application/x-www-form-urlencoded' \
+  #   -d 'grant_type=authorization_code' \
+  #   -d 'code="#{params[:code]}"' \
+  #   -d 'redirect_uri=https://0f1424db0c1a.ngrok.io/users/auth/line/callback' \
+  #   -d 'client_id=1654658492' \
+  #   -d 'client_secret=4ed72a5dbea0f9b457d91868be60cec3'`
+  #   @api = JSON.parse(uri)
+  # end
 
-  def fake_email(uid,provider)
-    return "#{auth.uid}-#{auth.provider}@example.com"
-  end
-    
   # def google
   #   @user = User.find_for_google(request.env['omniauth.auth'])
 

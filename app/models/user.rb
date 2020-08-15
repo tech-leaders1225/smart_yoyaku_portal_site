@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable, :omniauthable
+         :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: %i[line google]
 
   enum gender: { "male": 0, "female": 1, "other": 2 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
