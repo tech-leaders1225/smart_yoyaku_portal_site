@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :reviews
+  has_many :social_profiles, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -17,19 +18,10 @@ class User < ApplicationRecord
   validates :address, presence: true, length: { in: 5..60 }
   validates :gender, presence: true
   validates :nickname, length: { in: 1..30 }, allow_blank: true
-  protected
-  def self.find_for_google(auth)
-    user = User.find_by(email: auth.info.email)
 
-    unless user
-      user = User.create(name:     auth.info.name,
-                         email: auth.info.email,
-                         provider: auth.provider,
-                         uid:      auth.uid,
-                         token:    auth.credentials.token,
-                         password: Devise.friendly_token[0, 20],
-                         meta:     auth.to_yaml)
-    end
-    user
+  protected
+
+  def social_profile(provider)
+    social_profiles.select{ |sp| sp.provider == provider.to_s }.first
   end
 end
