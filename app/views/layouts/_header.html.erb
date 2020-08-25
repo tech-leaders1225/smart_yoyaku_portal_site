@@ -21,7 +21,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-md-7">
+                    <!--<div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
                             <button type="button" class="category-btn">All Categories</button>
                             <form action="#" class="input-group">
@@ -29,7 +29,7 @@
                                 <button type="button"><i class="ti-search"></i></button>
                             </form>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- mobile menu表示時用 -->
                     <div class="col-lg-2 col-md-2">
                         <p>&emsp;</p>
@@ -55,9 +55,9 @@
                     <ul>
                         <li><%= link_to "トップ", root_path %></li>
                         <li><%= link_to "一覧ページ", shop_path %></li>
-                        <li><%= link_to "詳細", "#" %></li>
+                        <!--<li><%= link_to "詳細", "#" %></li>
                         <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="./contact.html">Contact</a></li>-->
                         <!-- 以下は(仮)Decorator導入の際に整える -->
                         <% if user_signed_in? %>
                             <li><%= link_to "#{current_user.name}", "#" %>
@@ -83,7 +83,6 @@
                                 </ul>
                             </li>
                         <% end %>
-                        
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>

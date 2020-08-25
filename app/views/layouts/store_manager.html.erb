@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <title>namespace - store_manager</title>
+    <title>Smartポータル</title>
     <%= csrf_meta_tags %>
+    <meta http-equiv="content-language" content="ja"> <!-- ページに中国語翻訳表示が出ないように対応 -->
     <%= stylesheet_link_tag    'store_manager', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'store_manager', 'data-turbolinks-track': 'reload' %>
+    <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
   </head>
 <body>
 <% content_for :content do %>
-  <%= render 'store_manager/store_manager/header' %>
   <%= yield %>
 <% end %>
 <%= render template: "layouts/application" %>

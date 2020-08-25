@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_104918) do
+ActiveRecord::Schema.define(version: 2020_08_11_101612) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -38,11 +38,14 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+
   create_table "business_trip_ranges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "masseur_business_trip_range"
     t.bigint "masseur_id"
+    t.bigint "city_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_business_trip_ranges_on_city_id"
     t.index ["masseur_id"], name: "index_business_trip_ranges_on_masseur_id"
   end
 
@@ -50,6 +53,14 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
     t.string "category_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.integer "prefecture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -108,6 +119,12 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
     t.index ["store_id"], name: "index_plans_on_store_id"
   end
 
+  create_table "prefectures", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "review"
     t.float "rate"
@@ -117,6 +134,25 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["masseur_id"], name: "index_reviews_on_masseur_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "social_profiles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "name"
+    t.string "nickname"
+    t.string "email"
+    t.string "url"
+    t.string "image_url"
+    t.string "description"
+    t.text "other"
+    t.text "credentials"
+    t.text "raw_info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true
+    t.index ["user_id"], name: "index_social_profiles_on_user_id"
   end
 
   create_table "store_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -182,11 +218,15 @@ ActiveRecord::Schema.define(version: 2020_07_09_104918) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "business_trip_ranges", "cities"
+  add_foreign_key "business_trip_ranges", "masseurs"
+  add_foreign_key "cities", "prefectures"
   add_foreign_key "favorites", "masseurs"
   add_foreign_key "favorites", "users"
   add_foreign_key "masseurs", "stores"
   add_foreign_key "plan_images", "plans"
   add_foreign_key "reviews", "masseurs"
   add_foreign_key "reviews", "users"
+  add_foreign_key "social_profiles", "users"
   add_foreign_key "store_images", "stores"
 end

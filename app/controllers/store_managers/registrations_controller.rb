@@ -18,15 +18,15 @@ class StoreManagers::RegistrationsController < Devise::RegistrationsController
     # 「ご契約中のシステムプランの確認」の遷移先
     @order_plan_url = 
       if current_store_manager.order_plan.nil?
-        reserve_app_url + "pay/choice_plan"
+        reserve_app_url + "/pay/choice_plan"
       else  
-        reserve_app_url + "order_plan/#{current_store_manager.order_plan}"
+        reserve_app_url + "/order_plan/#{current_store_manager.order_plan}"
       end
   end
 
   # 予約の確認
   def index
-    url = reserve_app_url + "api/v1/tasks"
+    url = reserve_app_url + "/api/v1/tasks"
     uri = `curl -v -X GET "#{url}" \
     -H 'Authorization: Bearer "#{current_store_manager.smart_token}"'`
     @api = JSON.parse(uri)["tasks"]

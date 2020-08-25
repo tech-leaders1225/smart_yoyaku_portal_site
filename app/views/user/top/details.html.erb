@@ -85,7 +85,7 @@
               <!--<span>首・肩集中コース</span>
               <span>〇〇円(税込)</span>-->
             </p>
-            <a><%= link_to "予約可能時間の確認", "#{@reserve_app_url}calendars/#{@store.calendar_id}/tasks", class:"btn btn-warning btn-lg"%></a>
+            <a><%= link_to "予約可能時間の確認", "#{@reserve_app_url}/calendars/#{@store.calendar_id}/tasks", class:"btn btn-warning btn-lg"%></a>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
               <td><%= plan.plan_name %></td>
               <td><%= plan.plan_time %>分</td>
               <td class="js-price"><%= plan.plan_price %>円(税込)</td>
-              <td><%= link_to "プランを予約する", "#{@reserve_app_url}calendars/#{@store.calendar_id}/tasks?course_id=#{plan.course_id}", class:"btn btn-success" %></td>
+              <td><%= link_to "プランを予約する", "#{@reserve_app_url}/calendars/#{@store.calendar_id}/tasks?course_id=#{plan.course_id}", class:"btn btn-success" %></td>
             </tr>
             <% end %>
           </tbody>
@@ -313,10 +313,31 @@
               <td>店舗連絡先</td>
               <td><%= @store.store_phonenumber %></td>
             </tr>
-            <!--<tr>
-              <td>対応地域</td>
-              <td>東京都</td>
-            </tr>-->
+            <tr>
+              <td class="area">対応地域</td>
+              <td class="area-service">
+              <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name, include_hidden: false do |prefecture| %>
+                <% @prefecture_ids.uniq.each do |prefecture_id| %>
+                  <% if prefecture.object.id == prefecture_id %>
+                    <div class="prefecture_name"><%= "＜" + prefecture.text + "＞" %></div>
+                  <% end %>
+                <% end %>
+                <%= collection_check_boxes :city, :city_ids, City.all, :id, :name, include_hidden: false do |city| %>
+                  <% if prefecture.object.id == city.object.prefecture_id %>
+                    <% @city_ids.each do |city_id| %>
+                      <% if city.object.id == city_id %>
+                      <ul class="wrap-town list-unstyled">
+                        <li class="town">
+                          <%= city.text %>
+                        </li>
+                      </ul>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

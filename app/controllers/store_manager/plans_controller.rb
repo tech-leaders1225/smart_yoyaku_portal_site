@@ -1,9 +1,8 @@
 class StoreManager::PlansController < StoreManager::Base
+  include SmartYoyakuApi::TaskCourse
   before_action :sign_in_store_manager
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :corrrect_store_manager, only: [:edit, :update, :destroy]
-  require "uri"
-  require "net/http"
 
   def index
     @plans = current_store_manager.store.plans
@@ -17,10 +16,10 @@ class StoreManager::PlansController < StoreManager::Base
   def create
     @plan = current_store_manager.store.plans.build(plan_params)
     ActiveRecord::Base.transaction do
-      response_parse = SmartYoyakuApi::TaskCourse.task_course_create(@plan)
-      @plan.course_id = response_parse['data']['id']
-      @plan.save
-      if @plan.persisted?
+      if @plan.save
+        response = task_course_create(@plan)
+        response_parse = JSON.parse(response)
+        @plan.update!(course_id: response_parse['data']['id'])
         flash[:success] = '新規作成に成功しました。'
         redirect_to store_manager_plans_url
       else
@@ -43,8 +42,8 @@ class StoreManager::PlansController < StoreManager::Base
   def update
     ActiveRecord::Base.transaction do
       if @plan.update(plan_params)
-        response_parse = SmartYoyakuApi::TaskCourse.task_course_update(@plan)
-        if response_parse['status'] == "200"
+        response = task_course_update(@plan)
+        if JSON.parse(response)['status'] == "200"
           flash[:success] = "#{@plan.plan_name}の情報を更新しました。"
           redirect_to store_manager_plans_url
         else
@@ -60,9 +59,9 @@ class StoreManager::PlansController < StoreManager::Base
   def destroy
     ActiveRecord::Base.transaction do
       if @plan.destroy
-        response_parse = SmartYoyakuApi::TaskCourse.task_course_delete(@plan)
-        if response_parse['status'] == "200"
-          flash[:success] = "プランを削除しました。"
+        response = task_course_delete(@plan)
+        if JSON.parse(response)['status'] == "200"
+          flash[:success] = "#{@plan.plan_name}を削除しました。"
         else
           raise RuntimeError
         end
@@ -85,7 +84,7 @@ class StoreManager::PlansController < StoreManager::Base
 
   def sign_in_store_manager
     unless store_manager_signed_in?
-      flash[:danger] = "ログインしてください。"
+      flash[:danger] = "アカウント登録もしくはログインしてください。"
       redirect_to store_manager_session_url
     end
   end

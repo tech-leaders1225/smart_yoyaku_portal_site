@@ -7,18 +7,11 @@ RSpec.describe "Users::Registrations", type: :request do
 
   describe "GET new" do
     context "ログインユーザーの場合" do
-      # 現在topページにリダイレクトされます。
-      it "topページにリダイレクトされること" do
+      it "showページにリダイレクトされること" do
         sign_in @user
         get new_user_registration_path
-        expect(response).to redirect_to root_url(@user)
+        expect(response).to redirect_to user_url(@user)
       end
-      # it "showページにリダイレクトされること" do
-      #   sign_in @user
-      #   get new_user_registration_path
-      #   expect(response).to redirect_to user_url(@user)
-      # end
-
       it "302httpレスポンスを返すこと" do
         sign_in @user
         get new_user_registration_path
