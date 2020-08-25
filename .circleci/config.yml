@@ -23,6 +23,8 @@ jobs: # ステップの集合
 
       - run:
           name: Bundler を指定
+          command: |
+            gem install bundler
           command: bundle -v
 
       # バンドルキャッシュを復元します
