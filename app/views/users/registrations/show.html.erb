@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-2">
+      <% flash.each do |message_type, msg| %>
+        <div class="alert alert-success mt-5"><%= msg %></div>
+      <% end %>
+      <h3 class="text-center my-5">〜<%= "#{current_user.name}" %>さんのマイページ〜</h3>
+      <hr>      
+      <h4 class="my-4 text-center">【ご登録内容】</h4>
+      <div class="jumbotron">
+        <table class="table">
+          <tr>
+            <td>【名前】</td>
+            <td><%= "#{current_user.name}" %></td>
+          </tr>
+          <tr>
+            <td>【ニックネーム】</td>
+            <td><%= "#{current_user.nickname}" %></td>
+          </tr>
+          <tr>
+            <td>【Eメール】</td>
+            <td><%= "#{current_user.email}" %></td>
+          </tr>
+          <tr>
+            <td>【性別】</td>
+            <td><%= "#{current_user.gender_i18n}" %></td>
+          </tr>
+          <tr>
+            <td>【住所】</td>
+            <td><%= "#{current_user.address}" %></td>
+          </tr>
+        </table>
+        <div class="text-center">
+          <%= link_to "登録内容を変更する", edit_user_registration_path, class:"btn btn-primary mt-4 w-50"%>
+        </div>
+      </div>
+      <p class="mt-5 mb-4"><%= link_to "トップページ", "/" %></p>
+      <p class="mb-4"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+      <p>
+        <%= link_to "アカウントを削除する", user_registration_path, method: :delete,
+        data: { confirm: "アカウントが削除されますがよろしいですか？" } %>
+       </p>
+    </div>
+  </div>
+</div>
+<!-- layouts/userを読み込むと上手く表示されない -->
+<%= render template: "layouts/users"%>

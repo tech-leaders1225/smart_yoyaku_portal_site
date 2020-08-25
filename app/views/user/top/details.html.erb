@@ -1,60 +1,403 @@
 <section>
 <div class="center cenrer-block">
   <div class="service-head">
-    <h1 class="ttl-main-page" itemprop="name">
-    <i class="icon-l ctg-icon_aircon"></i>
-    <span class="center_span">4/1〜予約！新春CP！技術は富士山級！接客はエベレスト級！15000縁！</span>
+    <h1 class="ttl-main-page top_space_m_10" itemprop="name">
+    <!--<i class="icon-l ctg-icon_aircon"></i>-->
+    <span class="center_span"><%= @store.store_name %></span>
     </h1>
-    <p class="description" itemprop="description">水圧32kg／cmの強力高圧分解洗浄！10年2万台の実績！損保加入！非喫煙者がお伺いします。消臭コート無料！</p>
+    <p class="description" itemprop="description">><%= @store.store_description %></p>
   </div>
   <div class="service-content01">
-    <div class="change-photo">
-      <div class="main-photo">
-        <img class="photo1" src="images/products/product-8.jpg" alt="" itemprop="image">
+    <div class="container">
+      <div class="row">
+        <% unless @store_images.nil? %>
+          <% unless @count_store_image == 0 %>
+            <div class="col-md-6">
+              <div class="change-photo">
+                <div class="left-image">
+                  <div id="cover">
+                    <div class="main-frame">
+                      <img id="main-img" class="width_image image_solid" src="<%= @store_images.store_image[0].url %>">
+                    </div>
+                    <% @count_store_image.times do |n| %>
+                      <img class="thumbnails smole_image p_top image_solid" src="<%= @store_images.store_image[n].url %>" data-imagesrc="<%= @store_images.store_image[n].url %>" >
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <img src="../images/no_image.jpg" alt="" class="image_solid width_image m-bottom-10">
+          <% end %>
+        <% else %>
+          <img src="../images/no_image.jpg" alt="" class="image_solid width_image m-bottom-10">
+        <% end %>
+
+        <div class="col-md-6">
+          <div class="wrap-service-info">
+            <div><%#= link_to "検討リストに追加する", "#", class:"btn btn-outline-dark btn-lg csr-btn"%><div>
+            <div class="wrap-star-rate">
+              <div class="star-rate star-rate4">
+                <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+              </div>
+              <a><%#= link_to "口コミ　〇〇件", "#" %></a>
+            </div>
+            <!--<div class="rating-text">4.85</div>-->
+          </div>
+
+          <div class="wrap-feature flex-low">
+            <div class="performance flex-low">
+              <div class="item-mark">
+               <!-- <p>返答の速さ</p> -->
+              </div>
+              <div class="item-mark">
+                <!-- <p>施術実績</p> -->
+              </div>
+            </div>
+            <div class="service-feature flex-row">
+            </div>
+          </div>
+
+          <table class="table">
+            <tbody>
+              <tr>
+                <!--<td>店長</td> -->
+                <td>
+                  <div class="shop-master">
+                    <!-- <img class="img-master img-circle" src="#" height="60" width="60" alt="店長の写真"> -->
+                  </div>
+                </td>
+                <td>
+                  <div class="text-master">
+                    <!--<p><%= @store.store_manager.name %></p> -->
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="area-action">
+            <p class="text-price">
+              <!--<span>首・肩集中コース</span>
+              <span>〇〇円(税込)</span>-->
+            </p>
+            <a><%= link_to "予約可能時間の確認", "#{@reserve_app_url}/calendars/#{@store.calendar_id}/tasks", class:"btn btn-warning btn-lg"%></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="service-link">
-    <a class="shortcut-on" href="#price">
-      料金表
-      <span class="glyphicon glyphicon-menu-down" aria-hidden="true">
-      </span>
-    </a>
-  </div>
-  <div class="servixe-content02">
+  <!-- <div class="service-link">
+    <span><%= link_to "料金表", { anchor: "price" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "口コミ（◯件）",{ anchor: "review" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "施術内容", { anchor: "storecommit" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>   
+    <span><%= link_to "施術までの流れ", { anchor: "step" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "ご予約の前に", { anchor: "attention" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <span><%= link_to "店舗について", { anchor: "shop" }, class:"glyphicon glyphicon-menu-down shortcut-on"%></span>
+    <%#aria-hidden="true" %>
+  </div> -->
+
+  <!--<div class="service-content02">
     <div id="salse-point" class="mb-large">
       <h2 class="content-h2">セールスポイント</h2>
       <div class="box-content">
-					<p>
-            <br>★★★★★★★★★★★★★★★★★★<br>
-            当店の<br>
-            『エアコンクリーニング/天井埋込タイプ』<br>
-            のサービスがお客様に支持され、<br>
+        <p><%= @store.store_description %></p>
+        <p><%= link_to "このサービスについて質問する", "#"%></p>
+      </div>
+    </div>-->
+
+    <div id="price" class="service-price">
+      <h2 class="content-h2">料金表</h2>
+      <div class="box-content">
+        <br>
+        <h5>【プラン一覧】</h5>
+        <br>
+        <table class="table">
+          <tbody>
+            <% @plans.each do |plan| %>
+            <tr>
+              <td><%= plan.plan_name %></td>
+              <td><%= plan.plan_time %>分</td>
+              <td class="js-price"><%= plan.plan_price %>円(税込)</td>
+              <td><%= link_to "プランを予約する", "#{@reserve_app_url}/calendars/#{@store.calendar_id}/tasks?course_id=#{plan.course_id}", class:"btn btn-success" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--<div id="review" class="service-review">
+      <h2 class="content-h2">口コミ</h2>
+      <div class="p-3">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            activeとは「選択した状態」のことを指します
+            <a href="#tab_a" class="nav-link active" data-toggle="tab">店舗の口コミ</a>
+          </li>
+          <li class="nav-item">
+            <a href="#tab_b" class="nav-link" data-toggle="tab">施術の口コミ</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="tab_a" class="tab-pane active">
             <br>
-            『くらしのマーケットアワード2018』<br>
-            において総合賞『金賞』を<br>
-            ２年連続受賞しました！！<br>
-            ★★★★★★★★★★★★★★★★★★<br>
+            <h5>店舗の口コミ</h5>
+            <p>☆☆☆☆☆　3.5　口コミ　1件</p>
+            <p>very good</p>
             <br>
-            『金賞』を受賞した<br>
-            当社の【技術】と【接客】については、<br>
-            口コミの下にある<br>
-            『詳しいサービス内容』を<br>
-            ご確認下さい！！！
-          </p>
-					<p><a class="link-contact" href="#">このサービスについて質問する</a></p>
+            <p><%= link_to "全〇〇件の口コミを見る", "#"%></p>
+          </div>
+          <div id="tab_b" class="tab-pane">
+            <br>
+            <h5>施術の口コミ</h5>
+            <p>☆☆☆☆☆　3.5　口コミ　1件</p>
+            <p>so good</p>
+            <br>
+            <p><%= link_to "全〇〇件の口コミを見る", "#"%></p>
+          </div>
         </div>
+      </div>
+      <p><%= link_to "予約日時を入力する", "#", class:"btn btn-warning btn-lg"%></p>
+    </div>-->
+
+    <!--<div id="detail-service" class="mb-large">
+      <h2 class="content-h2">詳しいサービス内容</h2>
+      <div class="box-content">
+       <p>弊社のサービスは少数精鋭で、時間短縮になるように日々技術を磨いている為、大手が行っているクリーニング代金より確実にお安いお値段が実現できます。<br>
+          洗剤は10種類、スポンジ類や備品含め20種類以上、高圧洗浄機などのフル装備で、社内テストに合格したプロのおそうじクルーがお掃除を致します。<br>
+          落ちない汚れもございますので、作業前ご相談ください。<br>
+          お部屋の汚れの悩み、掃除の仕方、何でもお答えできるように準備しております。色々とご相談して頂けるお客様の方が満足度が高い傾向にございます！<br>
+          作業前、作業中、作業後にも何でも聞いてください！<br>
+          やっと創業5年目の小さい会社です。<br>
+          LINE Pay、PayPay決済可能になりました<br>
+       </p>
+       <p><%= link_to "このサービスについて質問する", "#"%></p>
+      </div>
+      <p><%= link_to "予約日時を入力する", "#", class:"btn btn-warning btn-lg "%></p>
+    </div>-->
+
+    <div id="storecommit" class="service-price">
+      <h2 class="content-h2">プラン詳細</h2>
+      <div class="box-content">
+        <table class="table">
+          <% @plans.each do |plan| %>
+            <tr>
+              <% plan_images =  plan.plan_images.first %>
+              <% unless plan_images.nil? %>
+                <% plan_image_count = plan_images.plan_image.count %>
+                <% unless plan_image_count == 0 %>
+                  <td>
+                    <div class="change-photo">
+                      <div id="cover">
+                        <div class="main-frame">
+                          <img id="plan-img" class="width_image image_solid" src="<%= plan_images.plan_image[0].url %>">
+                        </div>
+                        <% plan_image_count.times do |n| %>
+                          <img class="plan_images smole_image p_top image_solid" src="<%= plan_images.plan_image[n].url %>" data-imagesrc="<%= plan_images.plan_image[n].url %>" >
+                        <% end %>
+                      </div>
+                    </div>
+                  </td>
+                <% else %>
+                  <td class="width_image"><img src="../images/no_image.jpg" alt="" class="image_solid width_image"></td>
+                <% end %>
+              <% else %>
+                <td class="width_image"><img src="../images/no_image.jpg" alt="" class="image_solid width_image"></td>
+              <% end %>
+            <td><h3><%= plan.plan_name%></h3><br><%= plan.plan_content %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <!--<div id="step" class="service-step">
+      <h2 class="content-h2">施術までの流れ</h2>
+      <div class="box-content">
+        <ul class="item-step list-unstyled">
+          <li class="step-num">
+            "STEP"
+            <br>
+            <span>1</span>
+          </li>
+          <li class="step-title">
+            <%= link_to "ネット予約", "#"%>
+          </li>
+          <li>予約ボタンをクリックしてネット予約をしてください。</li>
+        </ul>
+        <ul class="item-step list-unstyled">
+          <li class="step-num">
+            "STEP"
+            <br>
+            <span>2</span>
+          </li>
+          <li class="step-title">
+            予約確認
+          </li>
+          <li>当店から予約確認の連絡をさせて頂きます。</li>
+        </ul>
+        <ul class="item-step list-unstyled">
+          <li class="step-num">
+            "STEP"
+            <br>
+            <span>3</span>
+          </li>
+          <li class="step-title">
+            施術
+          </li>
+          <li>ご予約日時にこ来店いただき、施術いたします。</li>
+        </ul>
+        <ul class="item-step list-unstyled">
+          <li class="step-num">
+            "STEP"
+            <br>
+            <span>4</span>
+          </li>
+          <li class="step-title">
+            お支払い
+          </li>
+          <li>店舗にて施術料金をお支払い下さい。</li>
+        </ul>
+      </div>
+    </div>-->
+
+    <!--<div id="attention" class="service-price">
+      <h2 class="content-h2">ご予約の前に</h2>
+      <div class="box-content">
+        <h5>お客様へのお願い</h5>
+          <p>
+            ・お客様へのお願い<br>
+          </p>
+          <br>
+          <h5>変更・キャンセルについて</h5>
+          <p>
+            ・変更・キャンセルについて<br>
+          </p>
+          <br>
+          <h5>よくある質問と答え</h5>
+          <p>
+            ・よくある質問と答え<br>
+          </p>
+      </div>
+    </div>-->
+
+    <div id="shop" class="service-price">
+      <h2 class="content-h2">この店舗について</h2>
+      <div class="box-content">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>写真</td>
+              <td>
+                店長：<%= @store.store_manager.name %><br>
+                <!--コメント：PayPay, Line Pay, クレジットカード使用可 -->
+              </td>
+            </tr>
+            <tr>
+              <td>所在地</td>
+              <td><%= @store.adress %></td>
+            </tr>
+            <!--<tr>
+              <td>営業時間</td>
+              <td>9:00~18:00</td>
+            </tr>
+            <tr>
+              <td>定休日</td>
+              <td>不定休</td>
+            </tr>-->
+            <tr>
+              <td>店舗連絡先</td>
+              <td><%= @store.store_phonenumber %></td>
+            </tr>
+            <tr>
+              <td class="area">対応地域</td>
+              <td class="area-service">
+              <%= collection_check_boxes :prefecture, :prefecture_ids, Prefecture.all, :id, :name, include_hidden: false do |prefecture| %>
+                <% @prefecture_ids.uniq.each do |prefecture_id| %>
+                  <% if prefecture.object.id == prefecture_id %>
+                    <div class="prefecture_name"><%= "＜" + prefecture.text + "＞" %></div>
+                  <% end %>
+                <% end %>
+                <%= collection_check_boxes :city, :city_ids, City.all, :id, :name, include_hidden: false do |city| %>
+                  <% if prefecture.object.id == city.object.prefecture_id %>
+                    <% @city_ids.each do |city_id| %>
+                      <% if city.object.id == city_id %>
+                      <ul class="wrap-town list-unstyled">
+                        <li class="town">
+                          <%= city.text %>
+                        </li>
+                      </ul>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--<div id="price" class="service-price">
+      <h2 class="content-h2">この店舗のブログ</h2>
+      <div class="box-content">
+        〜ブログ5件が入る〜<br><br>
+        <p>
+          <%= link_to "【ブログタイトル】", "#"%><br>
+          ブログの内容
+        </p>
+        <hr>
+        <p>
+          <%= link_to "【ブログタイトル】", "#"%><br>
+          ブログの内容
+        </p>
+        <hr>
+        <p>
+          <%= link_to "【ブログタイトル】", "#"%><br>
+          ブログの内容
+        </p>
+        <hr>
+        <p><%= link_to "全〇〇件のブログを読む", "#"%></p>
+      </div>
+    </div>
+
+    <div id="service-other" class="service-other">
+      <h2 class="content-h2">この店舗のサービス</h2>
+      <div class="box-content">
+      </div>
+    </div>
+  </div>
   </div>
 </div>
-</section>
-    <!-- Js Plugins -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery-ui.min.js"></script>
-    <script src="assets/js/jquery.countdown.min.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <script src="assets/js/jquery.zoom.min.js"></script>
-    <script src="assets/js/jquery.dd.min.js"></script>
-    <script src="assets/js/jquery.slicknav.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/main.js"></script>
+</section>-->
+<!-- Js Plugins -->
+<!--
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
+<script src="assets/js/jquery.countdown.min.js"></script>
+<script src="assets/js/jquery.nice-select.min.js"></script>
+<script src="assets/js/jquery.zoom.min.js"></script>
+<script src="assets/js/jquery.dd.min.js"></script>
+<script src="assets/js/jquery.slicknav.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/main.js"></script> -->
+<script>
+  var thumbs =document.querySelectorAll('.thumbnails');
+  for (var i =0 ; i < thumbs.length; i++ ) {
+  thumbs[i].onclick = function() {
+  document.getElementById('main-img').src = this.dataset.imagesrc;
+  };
+}
+  var plan_images =document.querySelectorAll('.plan_images');
+  for (var i =0 ; i < plan_images.length; i++ ) {
+  plan_images[i].onclick = function() {
+  document.getElementById('plan-img').src = this.dataset.imagesrc;
+  };
+}
+</script>

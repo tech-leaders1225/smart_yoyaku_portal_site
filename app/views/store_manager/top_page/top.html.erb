@@ -1,0 +1,31 @@
+<%= render 'store_manager/store_manager/header' %>
+<div class="top_space text_area text_width">
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-success mt-5 text_left"><%= message %></div>
+    <% end %>
+  <div class="text_left">
+    <h1 class="top_space">マイページトップ</h1>
+  </div>
+  <div class="text-right mb-4">
+    <%= calendar_btn %>
+  </div>
+  <!--<div class="mypage_space">
+    <h2 class="headline_space text_left">管理者からの連絡</h2>
+    <p class="text_space_15 text_left">メッセージはありません。</p>
+  </div>
+  <div class="mypage_space">
+    <h2 class="headline_space text_left">予約</h2>
+    <p class="text_space_15 text_left">予約はありません。</p>
+  </div>
+  <div class="mypage_space">
+    <h2 class="headline_space text_left">ユーザーからのお問お合わせ</h2>
+    <p class="text_space_15 text_left">ユーザーからのお問お合わせはありません。</p>
+  </div>
+  <div class="mypage_space">
+    <h2 class="headline_space text_left">最新の口コミ</h2>
+    <ul>
+      <li><p class="text_space_15 text_left">xxxxさん<br>
+          とても良かったです。</p></li>
+    </ul>
+  </div>-->
+</div>

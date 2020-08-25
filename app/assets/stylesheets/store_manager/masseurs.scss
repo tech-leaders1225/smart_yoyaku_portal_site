@@ -1,0 +1,19 @@
+@import "bootstrap";
+
+.field_with_errors {
+  display: contents;
+  input {
+    @extend .is-invalid;
+  }
+}
+
+.category-list input[type="checkbox"] {
+  display: inline-block;
+  width: 10%;
+}
+
+.category-list input[type="checkbox"] + label {
+  display: inline-block;
+  margin-left: 1%;
+  width: 80%;
+}

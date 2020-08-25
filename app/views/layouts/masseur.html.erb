@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>namespace - masseur</title>
+    <title>Smartポータル</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'masseur', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'masseur', 'data-turbolinks-track': 'reload' %>
   </head>
 <body>
-<% content_for :content do %>  
+<% content_for :content do %>
   <%= yield %>
 <% end %>
 <%= render template: "layouts/application" %>

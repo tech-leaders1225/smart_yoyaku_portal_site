@@ -1,0 +1,58 @@
+<h2 class="title">施術プラン/料金設定<p style="font-size: 13px;">サイトに記載する施術メニュー、料金の設定を行ってください。</p></h2>
+<div class="col-md-8 offset-2">
+  <% flash.each do |message_type, msg| %>
+    <div class="mt-4 alert alert-<%= message_type %>"><%= msg %></div>
+  <% end %>
+  <%= form_with(model: @plan, url: store_manager_plan_path, method: :PATCH, local: true) do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
+    <div class="form-2">
+      <div class="flex-parent-new-page2">
+        <!--<div class="left-side">
+          プラン写真<span class="entrust-label">任意</span><br>
+          <img src="" height="220" width="220"><br>
+          <button class="file-button" disabled>ファイルを選択</button>
+        </div>-->
+        <div class="">
+          <div class="field mt-3">
+            <%= f.label "プラン名", class: "" %><span class="necessary-label">必須</span><br>
+            <%= f.text_field :plan_name, class: "form-control", required: true %>
+          </div>
+          <div class="field mt-3">
+            <%= f.label "プラン内容", class: "" %><span class="necessary-label">必須</span><br>
+            <%= f.text_area :plan_content, class: "form-control", required: true %>
+          </div>
+          <div class="field mt-3">
+            <%= f.label "プラン時間(単位/分)", class: "" %><span class="necessary-label">必須</span><br>
+            <%= f.number_field :plan_time, class: "form-control", required: true %>
+          </div>
+          <div class="field mt-3">
+            <%= f.label "プラン料金(税込)", class: "" %><span class="necessary-label">必須</span><br>
+            <%= f.number_field :plan_price, class: "form-control", required: true %>
+          </div>
+          <div class="field mt-3">
+            <% unless @plan.plan_images.any? %>
+              <%= f.fields_for :plan_images, @plan.plan_images.build do |pf| %>
+                <%= pf.label :plan_image %><br>
+                <%= pf.file_field :plan_image, multiple: true %>
+              <% end %>
+            <% else %>
+              <%= f.fields_for :plan_images do |pf| %>
+                <%= pf.label :plan_image %><br>
+                <%= pf.file_field :plan_image, multiple: true %><br>
+                <span class="image_notice">※画像の更新をする場合は添付する画像を選択してください。</span>
+                <div class="field mt-3">
+                  <span><%= pf.check_box :remove_plan_image %> &ensp;画像の削除</span>
+                  <p class="image_notice">※画像を削除する場合はチェックボックスにチェックを入れてください。</p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="create-button-center">
+        <%= f.submit "更新", class: "create-button" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="return-btn"><%= link_to "登録内容の一覧に戻る", store_manager_plans_path %></div>
+</div>

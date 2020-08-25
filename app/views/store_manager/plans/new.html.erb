@@ -1,0 +1,37 @@
+<h2 class="title">施術メニュー/料金設定<p style="font-size: 13px;">サイトに記載する施術メニュー、料金の設定を行ってください。</p></h2>
+
+<div class="col-md-8 offset-2">
+  <% flash.each do |message_type, msg| %>
+    <div class="mt-4 alert alert-<%= message_type %>"><%= msg %></div>
+  <% end %>
+    <%= form_with(model: @plan, url: store_manager_plans_path, method: :post, local: true) do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
+    <div class="form-2">
+      <div class="flex-parent-new-page2">
+        <div class="right">
+          <%= f.label "プラン名", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.text_field :plan_name, class: "form-control", required: true %>
+
+          <%= f.label "プラン内容", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.text_area :plan_content, class: "form-control", required: true %>
+
+          <%= f.label "プラン時間(単位/分)", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.number_field :plan_time, class: "form-control", required: true %>
+
+          <%= f.label "プラン料金(税込)", class: "" %><span class="necessary-label">必須</span><br>
+          <%= f.number_field :plan_price, class: "form-control", required: true %>
+        <!--<div class="left-side">-->
+          <%= f.fields_for :plan_images do |pif| %>
+            <%= pif.label :plan_image, class:"mr-2" %><br>
+            <%= pif.file_field :plan_image, multiple: true %>
+          <% end %>
+        <!--</div>-->
+        </div>
+      </div>
+      <div class="create-button-center">
+        <%= f.submit "新規作成", class: "create-button" %>
+      </div>
+    <% end %>
+    </div>
+  <div class="return-btn"><%= link_to "登録内容の一覧に戻る", store_manager_plans_path %></div>
+</div>

@@ -1,0 +1,195 @@
+<div class="text_width">
+  <h1 class="left_logo">Smart Potal</h1>
+  <div class="right_bottun">
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-warning btn_space" %>
+  </div>
+  <div class="hader_space">
+    <div class="">
+      <ul class="header_ul_space ">
+        <li>
+          <%= link_to "マイページ", store_manager_path(current_store_manager),  class:"header_line no_nuderline" %>
+        </li>
+        <li>
+          <a class="header_line_a">予約の管理</a>
+        </li>
+        <li>
+          <%= link_to "登録内容の編集", store_managers_show_path(current_store_manager),  class:"header_line no_nuderline" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="top_space">
+  <div class="text_width text_left">
+    <h1 class="top_space bottom_space">予約の管理</h1>
+  </div>
+  <div class="text_width">
+    <br><div id="calendar"></div>
+  </div>
+</div>
+
+
+<!-- カレンダーモーダル -->
+<div id="fullCalModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="modalTitle" class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+            </div>
+            <div id="modalBody" class="modal-body">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td>予約開始時間</td>
+                    <td class="start"><span></span></td>
+                  </tr>
+                  <tr>
+                    <td>予約終了時間</td>
+                    <td class="end"><span></span></td>
+                  </tr>
+                  <tr>
+                    <td>予約者</td>
+                    <td class="name"><span></span>様</td>
+                  </tr>
+                  <tr>
+                    <td>メールアドレス</td>
+                    <td class="email"><span></span></td>
+                  </tr>
+                  <tr>
+                    <td>住所</td>
+                    <td class="address"><span></span></td>
+                  </tr>
+                  <tr>
+                    <td>電話番号</td>
+                    <td class="phone"><span></span></td>
+                  </tr>
+                  <tr>
+                    <td>コース名</td>
+                    <td class="course"><span></span></td>
+                  </tr>
+                  <tr>
+                    <td>所要時間</td>
+                    <td class="course_time"><span></span>分</td>
+                  </tr>
+                  <tr>
+                    <td>料金</td>
+                    <td class="charge"><span></span></td>
+                  </tr><tr>
+                    <td>要望</td>
+                    <td class="request"><span></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               <!-- <button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="details" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<%= render template: "layouts/store_managers"%>
+
+
+<script>
+
+$('#calendar').fullCalendar({
+        defaultView: 'agendaWeek',
+        events: '/events.json',
+        //カレンダー上部を年月で表示させる
+        titleFormat: 'YYYY年 M月',
+        //曜日を日本語表示
+        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+        //ボタンのレイアウト
+        header: {
+            // title, prev, next, prevYear, nextYear, today
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month agendaWeek agendaDay'
+        },
+        eventClick: function(event, jsEvent, view) {
+          if ( event.end == null ){
+            event.end = event.start;
+          }
+          if ( event.address == null ){
+            event.address = "未登録"
+          }
+          beforeStart = moment(event.start, "YYYY-MM-DD"); // 第一引数：日時、第二引数：フォーマット形式
+          startDate = beforeStart.format('MM月DD日 HH:mm'); // YYYY年MM月DD日 HH:mm
+          beforeEnd = moment(event.end, "YYYY-MM-DD"); // 第一引数：日時、第二引数：フォーマット形式
+          endDate = beforeEnd.format('MM月DD日 HH:mm'); // YYYY年MM月DD日 HH:mm
+          name = event.name
+          email = event.email
+          address = event.address
+          phone = event.phone
+          course = event.course
+          course_time = event.course_time
+          charge = event.charge
+          request = event.request
+          
+          $('#modalTitle').text(event.title);
+          $('#modalBody .start span').text(startDate);
+          $('#modalBody .end span').text(endDate);
+          $('#modalBody .name span').text(name);
+          $('#modalBody .email span').text(email);
+          $('#modalBody .address span').text(address);
+          $('#modalBody .phone span').text(phone);
+          $('#modalBody .course span').text(course);
+          $('#modalBody .course_time span').text(course_time);
+          $('#modalBody .charge span').text(charge);
+          $('#modalBody .request span').text(request);
+          
+          $('#fullCalModal').modal('show');
+        },
+        events: '/store_managers/<%= @id %>/reservations.json',
+        // header表示切替
+        
+        viewRender : function(view, element) {
+          // 月表示の時
+          if (view.type == "month") {
+            document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前月"
+            document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "次月"
+          }
+          // 週表示の時
+          if (view.type == "agendaWeek") {
+            
+            document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前週"
+            document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "次週"
+          }
+          // 日表示の時
+          if (view.type == "agendaDay") {
+            document.getElementsByClassName('fc-prev-button fc-button fc-state-default fc-corner-left')[0].textContent = "前日"
+            document.getElementsByClassName('fc-next-button fc-button fc-state-default fc-corner-right')[0].textContent = "翌日"
+          }
+        },
+        // allDayの有無
+        allDaySlot: false,
+        //イベントの時間表示を２４時間に
+        timeFormat: "HH:mm",
+        displayEventTime: true,
+        displayEventEnd: true,
+        //ヘッダーボタンの名前
+        buttonText: {
+            prev: '前',
+            next: '次',
+            prevYear: '前年',
+            nextYear: '翌年',
+            today: '今日',
+            month: '月',
+            week: '週',
+            day: '日'
+        },
+        // 列の書式
+        slotLabelFormat : 'H:mm',
+        views: {
+            month: {columnFormat: 'ddd',},
+            week: {columnFormat: 'M/D[(]ddd[)]',},
+            day: {columnFormat: 'D日 ddd曜日',},
+        },
+});
+</script>

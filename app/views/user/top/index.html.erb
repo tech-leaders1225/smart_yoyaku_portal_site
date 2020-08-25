@@ -1,272 +1,219 @@
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> SmartReservation</a>
-                        <span>Shop</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb-text"> <a href="#"><i class="fa fa-home"></i> Smart Portal</a> <span>Category</span> </div>
+        <% flash.each do |message_type, msg| %>
+          <div class="alert alert-success">
+            <%= msg %>
+          </div>
+          <% end %>
+      </div>
     </div>
-    <!-- Breadcrumb Section Begin -->
-
-    <!-- Product Shop Section Begin -->
-    <section class="product-shop spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
-                    <div class="filter-widget">
-                        <h4 class="fw-title">一覧</h4>
-                        <ul class="filter-catagories">
-                            <li><a href="#">a</a></li>
-                            <li><a href="#">b</a></li>
-                            <li><a href="#">c</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9 order-1 order-lg-2">
-                    <div class="product-show-option">
-                        <h4 class="fw-title">
-                        お得なキャンペーン
-                        </h4>
-                    </div>
-                    <div class="product-list">
-                        <div class="row">
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="images/products/product-1.jpg" alt="">
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pure Pineapple</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h4 class="fw-title">特集</h4>
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="images/products/product-3.jpg" alt="">
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Shoes</div>
-                                        <a href="#">
-                                            <h5>Guangzhou sweater</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $34.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="images/products/product-4.jpg" alt="">
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Coat</div>
-                                        <a href="#">
-                                            <h5>Microfiber Wool Scarf</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $64.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="images/products/product-5.jpg" alt="">
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Shoes</div>
-                                        <a href="#">
-                                            <h5>Men's Painted Hat</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $44.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="images/products/product-6.jpg" alt="">
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Shoes</div>
-                                        <a href="#">
-                                            <h5>Converse Shoes</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $34.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h4 style="width: 100%; height: 30px;">人気のカテゴリ</h4>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="images/products/product-7.jpg" alt="">
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
-                                        <a href="#">
-                                            <h5>Pure Pineapple</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $64.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="images/products/product-8.jpg" alt="">
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Coat</div>
-                                        <a href="#">
-                                            <h5>2 Layer Windbreaker</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $44.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                        <img src="images/products/product-9.jpg" alt="">
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name">Shoes</div>
-                                        <a href="#">
-                                            <h5>Converse Shoes</h5>
-                                        </a>
-                                        <div class="product-price">
-                                            $34.00
-                                            <span>$35.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
+  </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+<!-- Product Shop Section Begin -->
+<section class="product-shop spad">
+  <div class="container">
+    <div class="row">
+      <!-- カテゴリ一覧 -->
+      <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+        <div class="filter-widget">
+          <h4 class="fw-title">カテゴリ一覧</h4>
+          <ul class="filter-catagories">
+            <% @categories.each do |category| %>
+              <li>
+                <%= link_to "#{category.category_name}", shop_path(category_id: category.id) %>
+              </li>
+            <% end %>
+            <li><%= link_to "全てのカテゴリ", shop_path %></li>
+          </ul>
         </div>
-    </section>
-    <section class="blog-details spad">
-      <div class="container">
-        <div>
-          <h4 class="fw-title">特集</>
-            <p>くらしのマーケットで実際にサービスを利用したユーザーの満足度をチェック！</p>
+      </div>
+      <!-- カテゴリ一覧 end -->
+      <!-- 特集 -->
+      <div class="col-lg-9 order-1 order-lg-2">
+        <div class="product-show-option">
+          <h4 class="fw-title"> 出張マッサージ専用スマートポータルサイト </h4>
+        </div>
+        <div class="product-list">
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+              <div class="product-item">
+                <div class="pi-pic"> <img src="images/categories/category-0.jpg" alt="">
+                  <%# <div class="sale pp-sale">Pick Up</div> %>
+                </div>
+                <div class="pi-text">
+                  <a href="/shop" class="stretched-link">
+                    <h5>〜自宅や宿泊先まで来てくれるなんて楽ちん！出張／訪問マッサージ〜</h5>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- row end -->
+        </div>
+        <!-- product-list end -->
+        <hr>
+        <!-- 人気のカテゴリ -->
+        <div class="row">
+          <h4 style="width: 100%; height: 30px;" class="pl-4 mb-4 mt-5">ピックアップカテゴリ</h4>
+          <!-- カテゴリ 1 -->
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-1.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="/shop?category_id=1" class="mb-5 stretched-link">
+                  <h5>整体</h5>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- カテゴリ 2 -->
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-2.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="/shop?category_id=2" class="mb-5 stretched-link">
+                  <h5>骨格矯正</h5>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- カテゴリ 3 -->
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-3.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="/shop?category_id=3" class="mb-5 stretched-link">
+                  <h5>スポーツマッサージ</h5>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- カテゴリ 4 -->
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-4.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="/shop?category_id=4" class="mb-5 stretched-link">
+                  <h5>アロマセラピー</h5>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- カテゴリ 5 -->
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-5.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="/shop?category_id=6" class="mb-5 stretched-link">
+                  <h5>按摩</h5>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- カテゴリ 6 -->
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-6.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="/shop?category_id=9" class="mb-5 stretched-link">
+                  <h5>リフレクソロジー</h5>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- row end -->
+        <%# <hr>
+        <!-- 最近利用した施術 -->
+        <div class="row">
+          <h4 style="width: 100%; height: 30px;" class="pl-4 mb-4 mt-5">最近利用した施術</h4>
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-0.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="#" class="mb-2 stretched-link">
+                  <h5>出張ケア 90分コース</h5>
+                </a>
+                <div class="product-price"> 10,000円(税込) </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-4.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="#" class="mb-2 stretched-link">
+                  <h5>アロマセラピー120分全身</h5>
+                </a>
+                <div class="product-price"> 15,000円(税込) </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="product-item">
+              <div class="pi-pic"> <img src="images/categories/category-4.jpg" alt=""> </div>
+              <div class="pi-text">
+                <a href="#" class="mb-2 stretched-link">
+                  <h5>アロマセラピー120分全身</h5>
+                </a>
+                <div class="product-price"> 15,000円(税込) </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- row end -->
+        <hr class="my-5">
+        <!-- 口コミ -->
+        <div class="col-lg-12">
+          <h4 style="width: 100%; height: 30px;" class="mb-3 mt-5">新着口コミ</h4>
+          <p class="pb-1">Smart Portal サイトで実際にサービスを利用したユーザーの満足度をチェック！</p>
         </div>
         <div class="row">
           <div class="col-lg-12">
             <div class="blog-details-inner">
               <div class="posted-by">
-                <div class="pb-pic">
-                  <img src="images/blog/post-by.png" alt="">
-                </div>
+                <div class="pb-pic"> <img src="images/blog/post-by.png" alt=""> </div>
                 <div class="pb-text">
                   <a href="#">
-                    <h5>Shane Lynch</h5>
+                    <h5>ヒロさん</h5>
                   </a>
-                  <p>Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                     velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                     amodo</p>
+                  <p>当日予約にもかかわらずすぐに返事を頂き、マッサージも力加減など全てに満足です。翌日は、痛み、重さも嘘のように なくなってました。又、利用したいと思います。</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="blog-details-inner">
+              <div class="posted-by">
+                <div class="pb-pic"> <img src="images/blog/post-by.png" alt=""> </div>
+                <div class="pb-text">
+                  <a href="#">
+                    <h5>くみさん</h5>
+                  </a>
+                  <p>出張マッサージは初めてで少し不安もあったのですが親切な対応で大満足でした。またお願いしたいと思います。ありがとうございました。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 口コミ end -->
+        </div>
+        <!-- col-lg-9 order-1 order-lg-2 end -->
+      </div> %>
+      <!-- row end -->
+    </div>
+    <!-- container end -->
+</section>
     <!-- Product Shop Section End -->
+    
     <!-- Js Plugins -->
+    <!--
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
@@ -276,4 +223,4 @@
     <script src="assets/js/jquery.dd.min.js"></script>
     <script src="assets/js/jquery.slicknav.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script> -->

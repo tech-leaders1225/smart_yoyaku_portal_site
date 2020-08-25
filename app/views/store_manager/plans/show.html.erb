@@ -1,0 +1,52 @@
+<div class="col-md-8 offset-2">
+  <h3 class="my-5 text-center">プラン詳細</h3>
+    <div class="outer-frame">
+      <div class="flex-parent-show-page">
+        <div class="left-image cover">
+          <% unless @plan_images.nil? %>
+            <% unless @count_plan_image == 0 %>
+              <div id="cover" class="m-width_80">
+                <div class="main-frame">
+                  <img id="main-img" class="width_image" src="<%= @plan_images.plan_image[0].url %>">
+                </div>
+                <% @count_plan_image.times do |n| %>
+                  <img class="thumbnails smole_image p_top " src="<%= @plan_images.plan_image[n].url %>" data-imagesrc="<%= @plan_images.plan_image[n].url %>" >
+                <% end %>
+              </div>
+            <% else %>
+              <img src="/images/no_image.jpg" alt="" class="image_solid width_image">
+            <% end %>
+          <% else %>
+            <img src="/images/no_image.jpg" alt="" class="image_solid width_image">
+          <% end %>
+        </div>
+        <div class="right-side right_width">
+          <div class="title-frame">
+            <div class="plan-title">
+              <strong><%= @plan.plan_name %></strong>
+            </div>
+          </div>
+          <div class="content-frame">
+            <div class="plan-content">
+              <%= simple_format(@plan.plan_content) %>
+            </div>
+          </div>
+          <div class="price-frame">
+            <div class="price-time">
+              <span class="time-required">所要時間　<%= @plan.plan_time %>分</span><span class="time_price">　<%= @plan.plan_price %>円(税込)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="return-btn-show"><%= link_to "登録内容の一覧に戻る", store_manager_plans_path %></div>
+</div>
+
+<script>
+  var thumbs =document.querySelectorAll('.thumbnails');
+  for (var i =0 ; i < thumbs.length; i++ ) {
+  thumbs[i].onclick = function() {
+  document.getElementById('main-img').src = this.dataset.imagesrc;
+  };
+}
+</script>
