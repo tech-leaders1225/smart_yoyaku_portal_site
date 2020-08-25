@@ -8,6 +8,7 @@ jobs: # ステップの集合
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
+          BUNDLER_VERSION: 2.1.4 
           PGHOST: 127.0.0.1
           PGUSER: circleci-demo-ruby
           RAILS_ENV: test
@@ -23,9 +24,9 @@ jobs: # ステップの集合
 
       - run:
           name: Bundler を指定
-          command: |
-            gem install bundler
-          command: bundle -v
+          command: 
+            gem install bundler -v 2.1.4
+            bundle -v
 
       # バンドルキャッシュを復元します
       # 依存関係キャッシュについては https://circleci.com/docs/ja/2.0/caching/ をお読みください
